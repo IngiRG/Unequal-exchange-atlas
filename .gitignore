@@ -1,0 +1,7 @@
+node_modules/
+dist/
+cache/
+.env
+.DS_Store
+config/eora_mapping_*.json
+config/eora_mapping.json
