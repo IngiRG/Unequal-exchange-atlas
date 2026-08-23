@@ -1,4 +1,0 @@
-numpy>=2.0
-pandas>=2.2
-requests>=2.32
-pycountry>=24.6.1
