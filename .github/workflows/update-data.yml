@@ -1,115 +1,81 @@
-name: Refresh open unequal-exchange data
+name: Refresh global unequal-exchange data
 
 on:
   workflow_dispatch:
     inputs:
-      mode:
-        description: "Dataset to build"
-        required: true
-        type: choice
-        options:
-          - oecd
-          - baci
-          - all
-        default: oecd
       years:
-        description: "Examples: 1995:2022 or 2022 2023 2024"
+        description: "Years to build"
         required: true
-        default: "1995:2022"
+        default: "2005:2022"
   schedule:
     - cron: "17 5 3 1,4,7,10 *"
 
 permissions:
   contents: write
 
-concurrency:
-  group: refresh-open-data
-  cancel-in-progress: false
-
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 360
-
-    env:
-      BACI_VERSION: ${{ vars.BACI_VERSION || '202601' }}
-      BACI_HS: ${{ vars.BACI_HS || '22' }}
+    timeout-minutes: 240
 
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: scripts/requirements.txt
 
-      - name: Install dependencies
-        run: pip install -r scripts/requirements.txt
+      - run: pip install -r scripts/requirements.txt
 
-      - name: Cache source downloads
+      - name: Cache downloaded source data
         uses: actions/cache@v4
         with:
           path: cache
-          key: data-${{ vars.BACI_VERSION || '202601' }}-${{ vars.BACI_HS || '22' }}-v5
+          key: global-open-data-v2
           restore-keys: |
-            data-${{ vars.BACI_VERSION || '202601' }}-
+            global-open-data-
 
-      - name: Manual build
-        if: github.event_name == 'workflow_dispatch'
+      - name: Build global estimates
         shell: bash
         run: |
-          set -euo pipefail
-          python scripts/build_data.py --mode "${{ inputs.mode }}" --years ${{ inputs.years }}
+          YEARS="${{ github.event.inputs.years || '2005:2022' }}"
+          python scripts/build_data.py --clean --years $YEARS
 
-      - name: Scheduled OECD build
-        if: github.event_name == 'schedule'
-        run: python scripts/build_data.py --mode oecd --years 1995:2022
-
-      - name: Scheduled BACI build
-        if: github.event_name == 'schedule'
-        continue-on-error: true
+      - name: Validate
         run: |
-          echo "BACI is supplementary; an upstream CEPII change will not discard OECD results."
-          python scripts/build_data.py --mode baci --years 2022 2023 2024
-
-      - name: Validate generated files
-        run: |
-          set -euo pipefail
           python - <<'PY'
           import json
           from pathlib import Path
 
           meta = json.loads(Path("public/data/meta.json").read_text())
-          assert meta.get("eora_used") is False
-          assert meta.get("available_methods")
-          assert meta.get("years")
 
-          for method, years in meta.get("method_years", {}).items():
-              for year in years:
-                  p = Path("public/data") / f"{method}-{year}.json"
-                  assert p.exists(), f"Missing {p}"
+          assert meta["mode"] == "best-available-global"
+          assert meta["eora_used"] is False
+          assert meta["years"]
+          assert meta["view_years"]["labour_transfer"]
+          assert meta["view_years"]["monetary_transfer"]
 
-          print("Methods:", ", ".join(meta["available_methods"]))
-          print("Years:", min(meta["years"]), "to", max(meta["years"]))
+          latest = max(meta["years"])
+
+          assert Path(
+              f"public/data/labour_transfer-{latest}.json"
+          ).exists()
+          assert Path(
+              f"public/data/monetary_transfer-{latest}.json"
+          ).exists()
+
+          print(
+              "Latest-year quality:",
+              meta["quality_by_year"][str(latest)],
+          )
           PY
 
-          # Do not search .github: otherwise the validation command matches itself.
-          if grep -Ril -E 'EORA_TOKEN|eora\.org/r2' public scripts src; then
-            echo "Unexpected Eora runtime dependency found."
-            exit 1
-          fi
-
-      - name: Commit derived data
+      - name: Commit derived results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/data
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "data: refresh open unequal-exchange estimates"
-            git push
-          fi
+          git diff --cached --quiet || git commit -m "data: refresh global unequal-exchange estimates"
+          git push

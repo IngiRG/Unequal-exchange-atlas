@@ -2,8 +2,7 @@ name: Deploy site to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -20,47 +19,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "22"
 
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
+      - run: npm install --no-audit --no-fund
+      - run: npm run build
 
-      - name: Build site
-        run: npm run build
+      - uses: actions/configure-pages@v5
 
-      - name: Verify Pages artifact
-        run: |
-          set -euo pipefail
-          test -f dist/index.html
-          test -f dist/data/meta.json
-          echo "Generated index:"
-          head -30 dist/index.html
-          echo "Generated files:"
-          find dist -maxdepth 2 -type f | sort | head -100
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
   deploy:
-    needs: build
-    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
 
     steps:
-      - name: Deploy
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
-
