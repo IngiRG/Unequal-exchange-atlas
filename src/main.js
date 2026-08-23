@@ -17,7 +17,7 @@ const VIEWS = {
     name: "Labour transfer",
     unit: "persons",
     description:
-      "Best-available embodied employment: OECD MRIO-backed observations where available and a calibrated open-data extension elsewhere.",
+      "Best-available embodied employment equivalents: OECD MRIO-backed observations where available and a calibrated open-data extension elsewhere.",
   },
 };
 
@@ -120,34 +120,161 @@ document.querySelector("#app").innerHTML = `
 
   <section id="methodology" class="card section methodology">
     <div class="kicker">Methodology</div>
-    <h2>One estimator, two data-quality tiers</h2>
-    <div class="method-grid">
-      <div>
-        <h3>Tier A · MRIO-backed</h3>
-        <p>For country pairs available in OECD Trade in Employment, the atlas uses the OECD supply-chain estimate directly.</p>
-        <div class="formula">H<sub>i→j</sub> = employment in producer i sustained by final demand in j</div>
-        <p class="small muted">These observations trace direct and indirect production through the OECD inter-country input-output system.</p>
-      </div>
-      <div>
-        <h3>Tier B · Extended calibrated</h3>
-        <p>Elsewhere, the atlas estimates export-linked employment from ILO employment and national exports/GDP, calibrates that relationship against OECD countries in the same year, and allocates the residual across partners using OECD balanced merchandise-trade shares.</p>
-        <div class="formula">H̃<sub>i→j</sub> = E<sub>i</sub> · (X<sub>i</sub>/GDP<sub>i</sub>) · m<sub>region,t</sub> · s<sub>ij</sub></div>
-        <p class="small muted">This is explicitly an extension model—not an MRIO observation. The map marks it separately.</p>
-      </div>
-      <div>
-        <h3>Monetary counterfactual</h3>
-        <p>Average labour income per employed person is estimated consistently across countries:</p>
-        <div class="formula">w<sub>i</sub> = labour income share<sub>i</sub> · GDP<sub>i</sub> / Employment<sub>i</sub></div>
-        <div class="formula">UE<sub>i→j</sub> = H<sub>i→j</sub> · (w<sub>j</sub> − w<sub>i</sub>)</div>
-      </div>
-      <div>
-        <h3>How to read it</h3>
-        <p>The empirical inputs are official/modelled statistics. The unequal-exchange value is a theoretical counterfactual inspired by Emmanuel. “MRIO-backed only” removes the extension without changing the economic definition.</p>
-      </div>
+    <h2>How the estimate works</h2>
+    <p class="method-intro">
+      The atlas asks two simple questions:
+      <strong>where is the labour performed?</strong> and
+      <strong>how differently is that labour valued between countries?</strong>
+    </p>
+
+    <div class="steps">
+      <article class="step-card">
+        <div class="step-number">1</div>
+        <div>
+          <h3>Estimate the labour behind consumption</h3>
+          <p>
+            We estimate how much employment in country <strong>A</strong> is involved in producing
+            goods and services ultimately demanded in country <strong>B</strong>.
+          </p>
+          <p>
+            Where OECD Trade in Employment has a direct supply-chain estimate, we use it.
+            These are labelled <strong>MRIO-backed</strong>.
+          </p>
+          <div class="plain-example">
+            Example: if production serving foreign demand is associated with 500,000 annual
+            employment equivalents in India, the atlas records those employment equivalents
+            as labour embodied in foreign consumption.
+          </div>
+        </div>
+      </article>
+
+      <article class="step-card">
+        <div class="step-number">2</div>
+        <div>
+          <h3>Fill gaps without pretending they are MRIO data</h3>
+          <p>
+            Some countries are missing from detailed international input-output systems.
+            Instead of dropping them from the map, we build a clearly marked
+            <strong>extended calibrated estimate</strong>.
+          </p>
+          <p>
+            It starts with total employment, the share of the economy exported, and bilateral
+            trade shares. We then calibrate that simple estimate against countries where the
+            stronger OECD MRIO result is available.
+          </p>
+          <div class="plain-example">
+            This gives broader global coverage, but it is less precise than an MRIO because it
+            cannot trace every indirect supply-chain step. The site marks these estimates separately.
+          </div>
+        </div>
+      </article>
+
+      <article class="step-card">
+        <div class="step-number">3</div>
+        <div>
+          <h3>Estimate average labour income in each country</h3>
+          <p>
+            We combine labour-income share, GDP and employment to estimate average annual labour
+            income per employed person.
+          </p>
+          <p>
+            This is a country-level average used for comparison. It is <strong>not</strong> the wage
+            of a specific worker.
+          </p>
+        </div>
+      </article>
+
+      <article class="step-card">
+        <div class="step-number">4</div>
+        <div>
+          <h3>Apply the Emmanuel-inspired counterfactual</h3>
+          <p>
+            We ask: how much more or less would the labour embodied in country A's production be
+            worth if it were valued at country B's average labour-income level?
+          </p>
+          <div class="plain-example">
+            A positive result means the model estimates a value transfer from the producing country
+            toward the consuming country under this counterfactual.
+          </div>
+        </div>
+      </article>
+
+      <article class="step-card">
+        <div class="step-number">5</div>
+        <div>
+          <h3>Add the flows together</h3>
+          <p>
+            We combine bilateral flows in both directions to calculate each country's net position.
+            A country can therefore be a net supplier in one relationship and a net recipient in another.
+          </p>
+          <p>
+            The map shows the resulting <strong>net balance</strong>.
+          </p>
+        </div>
+      </article>
     </div>
+
+    <div class="employment-note">
+      <strong>What does “employment equivalent” mean?</strong>
+      It is an annual employment-equivalent measure associated with production.
+      It does <strong>not</strong> mean unique individual people, migration, or labour-hours.
+      A value of “2 million employment equivalents” should be read as roughly the amount of annual
+      employment embodied in production, not two million distinct named workers.
+    </div>
+
+    <details class="math-details">
+      <summary>Show mathematical details</summary>
+      <div class="math-content">
+        <h3>MRIO-backed labour transfer</h3>
+        <p>
+          For OECD-covered country pairs:
+        </p>
+        <div class="formula">
+          H<sub>i→j</sub> = employment in producer i sustained by final demand in j
+        </div>
+
+        <h3>Extended calibrated labour estimate</h3>
+        <div class="formula">
+          H̃<sub>i→j</sub> =
+          E<sub>i</sub> · (X<sub>i</sub>/GDP<sub>i</sub>) ·
+          m<sub>region,t</sub> · s<sub>ij</sub>
+        </div>
+        <p class="small muted">
+          E = employment, X/GDP = export share, m = calibration multiplier learned from
+          MRIO-overlap countries, and s = bilateral trade share.
+        </p>
+
+        <h3>Average labour income</h3>
+        <div class="formula">
+          w<sub>i</sub> =
+          labour income share<sub>i</sub> · GDP<sub>i</sub> /
+          Employment<sub>i</sub>
+        </div>
+
+        <h3>Monetary unequal-exchange counterfactual</h3>
+        <div class="formula">
+          UE<sub>i→j</sub> =
+          H<sub>i→j</sub> · (w<sub>j</sub> − w<sub>i</sub>)
+        </div>
+      </div>
+    </details>
+
     <div class="notice">
-      <strong>Important:</strong> “Extended calibrated” does not claim country-specific input-output precision.
-      It exists so that countries with weaker MRIO coverage are not simply erased from a map of the world economy.
+      <strong>How to interpret the result:</strong>
+      the source statistics are empirical inputs, but the unequal-exchange value is a
+      <strong>model-derived counterfactual</strong>. It should be read as
+      “estimated unequal exchange under an Emmanuel-inspired labour-valuation model,”
+      not as a directly observed cash transfer or a literal measure of theft.
+    </div>
+
+    <div class="limitations">
+      <h3>Important limitations</h3>
+      <ul>
+        <li>MRIO-backed estimates are stronger than extended calibrated estimates.</li>
+        <li>The extended model uses bilateral merchandise trade shares and cannot perfectly trace indirect supply chains.</li>
+        <li>Country-average labour income hides large wage differences within countries.</li>
+        <li>The monetary result depends on the counterfactual assumption that labour is compared using the consuming country's average labour-income level.</li>
+      </ul>
     </div>
   </section>
 </div>`;
@@ -189,7 +316,7 @@ function fmt(value) {
   const compact = d3.format(".3~s")(abs).replace("G", "B");
 
   if (unit() === "persons") {
-    return `${sign}${compact} people`;
+    return `${sign}${compact} employment equivalents`;
   }
   return `${sign}$${compact}`;
 }
@@ -424,11 +551,11 @@ function renderDetails(row, flows) {
     <div class="qualitybadge ${row.coverage_tier}">
       ${qualityLabel(row)}
     </div>
-    <div class="muted">${el.year.value} · ${VIEWS[view].name}</div>
+    <div class="muted">${el.year.value} · ${VIEWS[view].name}</div><div class="small muted interpretation-line">${view === "labour_transfer" ? "Annual employment-equivalent estimate" : "Model-derived counterfactual value"}</div>
     <div class="metric ${row.net >= 0 ? "pos" : "neg"}">
       ${fmt(row.net)}
     </div>
-    <div class="small muted">net balance</div>
+    <div class="small muted">net estimated balance</div>
 
     <div class="stats">
       <div class="stat">
@@ -506,7 +633,7 @@ async function renderSummary() {
     [
       "MRIO-backed share",
       total ? `${(100 * mrio / total).toFixed(1)}%` : "—",
-      "weighted by displayed flow",
+      "share of displayed flow using MRIO-backed estimates",
     ],
     [
       "Largest recipient",
