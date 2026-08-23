@@ -259,37 +259,85 @@ def tidy_ilo(start: int, end: int):
 
 
 def wb_indicator(indicator: str, start: int, end: int) -> pd.DataFrame:
+    """
+    Fetch a World Development Indicators series with pagination.
+
+    The World Bank API can reject very large per_page values. We therefore use
+    a conservative page size and follow the API's reported page count.
+    """
     path = CACHE / "worldbank" / f"{indicator}-{start}-{end}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
 
     if path.exists():
-        payload = json.loads(path.read_text())
+        rows = json.loads(path.read_text())
     else:
-        url = (
-            f"{WB_API}/country/all/indicator/{indicator}"
-            f"?format=json&per_page=40000&date={start}:{end}"
-        )
-        log(f"GET World Bank {indicator}")
-        response = requests.get(url, headers=UA, timeout=600)
-        response.raise_for_status()
-        payload = response.json()
-        path.write_text(json.dumps(payload))
+        rows = []
+        page = 1
+        pages = 1
 
-    rows = payload[1] if isinstance(payload, list) and len(payload) > 1 else []
+        while page <= pages:
+            url = (
+                f"{WB_API}/country/all/indicator/{indicator}"
+                f"?format=json&per_page=1000"
+                f"&page={page}"
+                f"&date={start}:{end}"
+            )
+
+            log(
+                f"GET World Bank {indicator} "
+                f"page {page}/{pages if pages > 1 else '?'}"
+            )
+
+            response = requests.get(
+                url,
+                headers=UA,
+                timeout=600,
+            )
+            response.raise_for_status()
+            payload = response.json()
+
+            if not isinstance(payload, list) or len(payload) < 2:
+                raise RuntimeError(
+                    f"Unexpected World Bank API response for {indicator}"
+                )
+
+            metadata = payload[0] or {}
+            page_rows = payload[1] or []
+
+            rows.extend(page_rows)
+
+            try:
+                pages = int(metadata.get("pages", 1))
+            except (TypeError, ValueError):
+                pages = 1
+
+            page += 1
+
+        path.write_text(json.dumps(rows))
+
     output = []
 
     for item in rows:
         iso = str(item.get("countryiso3code") or "").upper()
         value = item.get("value")
         year = item.get("date")
-        if not re.fullmatch(r"[A-Z]{3}", iso) or value is None:
-            continue
-        try:
-            output.append((iso, int(year), float(value)))
-        except (TypeError, ValueError):
-            pass
 
-    return pd.DataFrame(output, columns=["iso", "year", "value"])
+        if not re.fullmatch(r"[A-Z]{3}", iso):
+            continue
+        if value is None:
+            continue
+
+        try:
+            output.append(
+                (iso, int(year), float(value))
+            )
+        except (TypeError, ValueError):
+            continue
+
+    return pd.DataFrame(
+        output,
+        columns=["iso", "year", "value"],
+    )
 
 
 def wb_regions() -> dict[str, str]:
