@@ -3,9 +3,8 @@
     "name": "OECD Trade in Employment (TiM), 2025 edition",
     "url": "https://www.oecd.org/en/data/datasets/trade-in-employment.html",
     "api": "https://sdmx.oecd.org/public/rest/",
-    "coverage": "1995-2022; EU/OECD/G20 and most East/Southeast Asian economies; 50 industries",
-    "license": "OECD Terms and Conditions (Data): reuse, adaptation, distribution and embedding permitted with attribution unless specific additional restrictions apply.",
-    "attribution": "OECD (2026), Trade in Employment (TiM), 2025 edition, accessed via OECD Data Explorer."
+    "coverage": "1995-2022; bilateral counterpart economies; 50 industries",
+    "attribution": "OECD, Trade in Employment (TiM), 2025 edition."
   },
   "baci": {
     "name": "CEPII BACI",
@@ -18,7 +17,6 @@
   "world_bank": {
     "name": "World Bank Open Data",
     "url": "https://data.worldbank.org/",
-    "license": "World Bank-produced datasets are generally CC BY 4.0, subject to dataset-specific terms.",
     "attribution": "World Bank Open Data."
   }
 }
