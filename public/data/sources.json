@@ -1,0 +1,24 @@
+{
+  "oecd_tim": {
+    "name": "OECD Trade in Employment (TiM), 2025 edition",
+    "url": "https://www.oecd.org/en/data/datasets/trade-in-employment.html",
+    "api": "https://sdmx.oecd.org/public/rest/",
+    "coverage": "1995-2022; EU/OECD/G20 and most East/Southeast Asian economies; 50 industries",
+    "license": "OECD Terms and Conditions (Data): reuse, adaptation, distribution and embedding permitted with attribution unless specific additional restrictions apply.",
+    "attribution": "OECD (2026), Trade in Employment (TiM), 2025 edition, accessed via OECD Data Explorer."
+  },
+  "baci": {
+    "name": "CEPII BACI",
+    "url": "https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37",
+    "version": "202601",
+    "hs_revision": "22",
+    "license": "Etalab Open Licence 2.0",
+    "attribution": "CEPII, BACI; Gaulier and Zignago (2010)."
+  },
+  "world_bank": {
+    "name": "World Bank Open Data",
+    "url": "https://data.worldbank.org/",
+    "license": "World Bank-produced datasets are generally CC BY 4.0, subject to dataset-specific terms.",
+    "attribution": "World Bank Open Data."
+  }
+}
