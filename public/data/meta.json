@@ -1,0 +1,11 @@
+{
+  "mode": "awaiting-real-data-build",
+  "years": [],
+  "method_years": {},
+  "available_methods": [],
+  "country_ids": [],
+  "sources": {},
+  "methods": {},
+  "generated_by": "Run scripts/build_data.py or the GitHub Actions workflow",
+  "eora_used": false
+}
