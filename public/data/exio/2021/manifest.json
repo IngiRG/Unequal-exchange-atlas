@@ -1611,62 +1611,96 @@
     }
   ],
   "members": {
-    "US": [
-      "USA"
+    "AU": [
+      "AUS"
     ],
-    "IN": [
-      "IND"
+    "WE": [
+      "ALA",
+      "ALB",
+      "AND",
+      "BIH",
+      "BLR",
+      "FRO",
+      "GGY",
+      "GIB",
+      "IMN",
+      "ISL",
+      "JEY",
+      "LIE",
+      "MCO",
+      "MDA",
+      "MKD",
+      "MNE",
+      "SJM",
+      "SMR",
+      "SRB",
+      "UKR",
+      "VAT"
     ],
-    "MT": [
-      "MLT"
+    "LT": [
+      "LTU"
     ],
-    "LV": [
-      "LVA"
+    "TW": [
+      "TWN"
     ],
-    "DK": [
-      "DNK"
-    ],
-    "HU": [
-      "HUN"
-    ],
-    "AT": [
-      "AUT"
-    ],
-    "ES": [
-      "ESP"
+    "WL": [
+      "ABW",
+      "AIA",
+      "ARG",
+      "ATG",
+      "BES",
+      "BHS",
+      "BLM",
+      "BLZ",
+      "BMU",
+      "BOL",
+      "BRB",
+      "CHL",
+      "COL",
+      "CRI",
+      "CUB",
+      "CUW",
+      "CYM",
+      "DMA",
+      "DOM",
+      "ECU",
+      "FLK",
+      "GLP",
+      "GRD",
+      "GRL",
+      "GTM",
+      "GUF",
+      "GUY",
+      "HND",
+      "HTI",
+      "JAM",
+      "KNA",
+      "LCA",
+      "MAF",
+      "MSR",
+      "MTQ",
+      "NIC",
+      "PAN",
+      "PER",
+      "PRI",
+      "PRY",
+      "SLV",
+      "SPM",
+      "SUR",
+      "SXM",
+      "TCA",
+      "TTO",
+      "URY",
+      "VCT",
+      "VEN",
+      "VGB",
+      "VIR"
     ],
     "IE": [
       "IRL"
     ],
-    "RO": [
-      "ROU"
-    ],
-    "SK": [
-      "SVK"
-    ],
-    "CA": [
-      "CAN"
-    ],
-    "AU": [
-      "AUS"
-    ],
-    "DE": [
-      "DEU"
-    ],
-    "IT": [
-      "ITA"
-    ],
-    "BE": [
-      "BEL"
-    ],
-    "GB": [
-      "GBR"
-    ],
-    "JP": [
-      "JPN"
-    ],
-    "NO": [
-      "NOR"
+    "IN": [
+      "IND"
     ],
     "WF": [
       "AGO",
@@ -1727,117 +1761,133 @@
       "ZMB",
       "ZWE"
     ],
-    "ZA": [
-      "ZAF"
-    ],
     "CZ": [
       "CZE"
     ],
-    "BR": [
-      "BRA"
+    "TR": [
+      "TUR"
     ],
-    "BG": [
-      "BGR"
+    "ID": [
+      "IDN"
     ],
-    "WL": [
-      "ABW",
-      "AIA",
-      "ARG",
-      "ATG",
-      "BES",
-      "BHS",
-      "BLM",
-      "BLZ",
-      "BMU",
-      "BOL",
-      "BRB",
-      "CHL",
-      "COL",
-      "CRI",
-      "CUB",
-      "CUW",
-      "CYM",
-      "DMA",
-      "DOM",
-      "ECU",
-      "FLK",
-      "GLP",
-      "GRD",
-      "GRL",
-      "GTM",
-      "GUF",
-      "GUY",
-      "HND",
-      "HTI",
-      "JAM",
-      "KNA",
-      "LCA",
-      "MAF",
-      "MSR",
-      "MTQ",
-      "NIC",
-      "PAN",
-      "PER",
-      "PRI",
-      "PRY",
-      "SLV",
-      "SPM",
-      "SUR",
-      "SXM",
-      "TCA",
-      "TTO",
-      "URY",
-      "VCT",
-      "VEN",
-      "VGB",
-      "VIR"
+    "IT": [
+      "ITA"
     ],
-    "LU": [
-      "LUX"
+    "MT": [
+      "MLT"
     ],
-    "CH": [
-      "CHE"
+    "PL": [
+      "POL"
     ],
-    "TW": [
-      "TWN"
+    "RU": [
+      "RUS"
     ],
-    "EE": [
-      "EST"
+    "SK": [
+      "SVK"
     ],
-    "HR": [
-      "HRV"
-    ],
-    "LT": [
-      "LTU"
-    ],
-    "WE": [
-      "ALA",
-      "ALB",
-      "AND",
-      "BIH",
-      "BLR",
-      "FRO",
-      "GGY",
-      "GIB",
-      "IMN",
-      "ISL",
-      "JEY",
-      "LIE",
-      "MCO",
-      "MDA",
-      "MKD",
-      "MNE",
-      "SJM",
-      "SMR",
-      "SRB",
-      "UKR",
-      "VAT"
+    "JP": [
+      "JPN"
     ],
     "NL": [
       "NLD"
     ],
+    "BR": [
+      "BRA"
+    ],
+    "ES": [
+      "ESP"
+    ],
+    "CH": [
+      "CHE"
+    ],
+    "KR": [
+      "KOR"
+    ],
+    "FI": [
+      "FIN"
+    ],
+    "DE": [
+      "DEU"
+    ],
+    "LU": [
+      "LUX"
+    ],
+    "WM": [
+      "ARE",
+      "BHR",
+      "EGY",
+      "IRN",
+      "IRQ",
+      "ISR",
+      "JOR",
+      "KWT",
+      "LBN",
+      "OMN",
+      "PSE",
+      "QAT",
+      "SAU",
+      "SYR",
+      "YEM"
+    ],
+    "DK": [
+      "DNK"
+    ],
+    "CY": [
+      "CYP"
+    ],
+    "HR": [
+      "HRV"
+    ],
+    "ZA": [
+      "ZAF"
+    ],
+    "EE": [
+      "EST"
+    ],
+    "LV": [
+      "LVA"
+    ],
+    "CA": [
+      "CAN"
+    ],
+    "NO": [
+      "NOR"
+    ],
+    "FR": [
+      "FRA"
+    ],
+    "MX": [
+      "MEX"
+    ],
+    "AT": [
+      "AUT"
+    ],
     "SE": [
       "SWE"
+    ],
+    "PT": [
+      "PRT"
+    ],
+    "CN": [
+      "CHN"
+    ],
+    "SI": [
+      "SVN"
+    ],
+    "US": [
+      "USA"
+    ],
+    "BE": [
+      "BEL"
+    ],
+    "GR": [
+      "GRC"
+    ],
+    "GB": [
+      "GBR"
+    ],
+    "HU": [
+      "HUN"
     ],
     "WA": [
       "AFG",
@@ -1902,61 +1952,11 @@
       "WLF",
       "WSM"
     ],
-    "GR": [
-      "GRC"
+    "RO": [
+      "ROU"
     ],
-    "FI": [
-      "FIN"
-    ],
-    "FR": [
-      "FRA"
-    ],
-    "CN": [
-      "CHN"
-    ],
-    "WM": [
-      "ARE",
-      "BHR",
-      "EGY",
-      "IRN",
-      "IRQ",
-      "ISR",
-      "JOR",
-      "KWT",
-      "LBN",
-      "OMN",
-      "PSE",
-      "QAT",
-      "SAU",
-      "SYR",
-      "YEM"
-    ],
-    "PL": [
-      "POL"
-    ],
-    "TR": [
-      "TUR"
-    ],
-    "RU": [
-      "RUS"
-    ],
-    "KR": [
-      "KOR"
-    ],
-    "SI": [
-      "SVN"
-    ],
-    "MX": [
-      "MEX"
-    ],
-    "PT": [
-      "PRT"
-    ],
-    "CY": [
-      "CYP"
-    ],
-    "ID": [
-      "IDN"
+    "BG": [
+      "BGR"
     ]
   },
   "global_north": [
@@ -1991,34 +1991,89 @@
     "TW",
     "US"
   ],
-  "benchmark": {
+  "north_south": {
     "year": 2021,
     "south_to_north_hours": 905991086537.1382,
-    "north_to_south_hours": 80003604967.05579,
-    "net_hours": 825987481570.0824,
-    "net_hours_by_skill": {
-      "low": 206653418509.69754,
-      "medium": 567296100242.2234,
-      "high": 52037962818.16139
+    "north_to_south_hours": 80003604967.0558,
+    "net_north_appropriation_hours": 825987481570.0824,
+    "wage_value_2005_eur": 16906064105875.006,
+    "by_skill": {
+      "low": {
+        "south_to_north_hours": 215609091413.96198,
+        "north_to_south_hours": 8955672904.264435,
+        "net_north_appropriation_hours": 206653418509.69754,
+        "north_export_wage_eur_per_hour": 14.711380235184857,
+        "wage_value_2005_eur": 3040157016596.9487
+      },
+      "medium": {
+        "south_to_north_hours": 614766716197.0192,
+        "north_to_south_hours": 47470615954.79578,
+        "net_north_appropriation_hours": 567296100242.2234,
+        "north_export_wage_eur_per_hour": 21.165249481777757,
+        "wage_value_2005_eur": 12006963491666.262
+      },
+      "high": {
+        "south_to_north_hours": 75615278926.15698,
+        "north_to_south_hours": 23577316107.99559,
+        "net_north_appropriation_hours": 52037962818.16139,
+        "north_export_wage_eur_per_hour": 35.722835732589786,
+        "wage_value_2005_eur": 1858943597611.7944
+      }
     },
-    "north_export_wage_eur_per_hour_by_skill": {
-      "low": 14.711380235184857,
-      "medium": 21.165249481777753,
-      "high": 35.72283573258979
-    },
-    "wage_value_2005_eur": 16906064105875.004,
-    "published_hickel_2021": {
-      "south_to_north_hours": 906000000000.0,
-      "north_to_south_hours": 80000000000.0,
-      "net_hours": 826000000000.0,
-      "wage_value_2005_eur": 16900000000000.0
-    },
-    "difference_pct": {
-      "south_to_north_hours": -0.0009838259229377933,
-      "north_to_south_hours": 0.004506208819732666,
-      "net_hours": -0.0015155484161746414,
-      "wage_value_2005_eur": 0.03588228328404678
-    }
+    "north_regions": [
+      "AT",
+      "AU",
+      "BE",
+      "CA",
+      "CH",
+      "CY",
+      "CZ",
+      "DE",
+      "DK",
+      "EE",
+      "ES",
+      "FI",
+      "FR",
+      "GB",
+      "GR",
+      "IE",
+      "IT",
+      "JP",
+      "KR",
+      "LU",
+      "LV",
+      "MT",
+      "NL",
+      "NO",
+      "PT",
+      "SE",
+      "SI",
+      "SK",
+      "TW",
+      "US"
+    ],
+    "south_regions": [
+      "BG",
+      "BR",
+      "CN",
+      "HR",
+      "HU",
+      "ID",
+      "IN",
+      "LT",
+      "MX",
+      "PL",
+      "RO",
+      "RU",
+      "TR",
+      "WA",
+      "WE",
+      "WF",
+      "WL",
+      "WM",
+      "ZA"
+    ],
+    "note": "Calculated directly from this atlas's EXIOBASE 3.8.2 results. No external benchmark values are inserted."
   },
   "skills": [
     "all",
