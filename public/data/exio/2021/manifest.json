@@ -1611,9 +1611,6 @@
     }
   ],
   "members": {
-    "AU": [
-      "AUS"
-    ],
     "WE": [
       "ALA",
       "ALB",
@@ -1637,11 +1634,23 @@
       "UKR",
       "VAT"
     ],
+    "AT": [
+      "AUT"
+    ],
+    "ZA": [
+      "ZAF"
+    ],
+    "HU": [
+      "HUN"
+    ],
     "LT": [
       "LTU"
     ],
-    "TW": [
-      "TWN"
+    "SI": [
+      "SVN"
+    ],
+    "IN": [
+      "IND"
     ],
     "WL": [
       "ABW",
@@ -1696,11 +1705,8 @@
       "VGB",
       "VIR"
     ],
-    "IE": [
-      "IRL"
-    ],
-    "IN": [
-      "IND"
+    "US": [
+      "USA"
     ],
     "WF": [
       "AGO",
@@ -1761,14 +1767,14 @@
       "ZMB",
       "ZWE"
     ],
-    "CZ": [
-      "CZE"
-    ],
     "TR": [
       "TUR"
     ],
-    "ID": [
-      "IDN"
+    "NL": [
+      "NLD"
+    ],
+    "TW": [
+      "TWN"
     ],
     "IT": [
       "ITA"
@@ -1776,118 +1782,68 @@
     "MT": [
       "MLT"
     ],
-    "PL": [
-      "POL"
-    ],
-    "RU": [
-      "RUS"
-    ],
-    "SK": [
-      "SVK"
-    ],
-    "JP": [
-      "JPN"
-    ],
-    "NL": [
-      "NLD"
-    ],
-    "BR": [
-      "BRA"
-    ],
-    "ES": [
-      "ESP"
-    ],
-    "CH": [
-      "CHE"
-    ],
-    "KR": [
-      "KOR"
-    ],
-    "FI": [
-      "FIN"
-    ],
-    "DE": [
-      "DEU"
-    ],
-    "LU": [
-      "LUX"
-    ],
-    "WM": [
-      "ARE",
-      "BHR",
-      "EGY",
-      "IRN",
-      "IRQ",
-      "ISR",
-      "JOR",
-      "KWT",
-      "LBN",
-      "OMN",
-      "PSE",
-      "QAT",
-      "SAU",
-      "SYR",
-      "YEM"
-    ],
-    "DK": [
-      "DNK"
-    ],
-    "CY": [
-      "CYP"
-    ],
-    "HR": [
-      "HRV"
-    ],
-    "ZA": [
-      "ZAF"
-    ],
-    "EE": [
-      "EST"
-    ],
-    "LV": [
-      "LVA"
-    ],
-    "CA": [
-      "CAN"
-    ],
-    "NO": [
-      "NOR"
-    ],
-    "FR": [
-      "FRA"
-    ],
-    "MX": [
-      "MEX"
-    ],
-    "AT": [
-      "AUT"
-    ],
-    "SE": [
-      "SWE"
-    ],
-    "PT": [
-      "PRT"
+    "RO": [
+      "ROU"
     ],
     "CN": [
       "CHN"
     ],
-    "SI": [
-      "SVN"
+    "BR": [
+      "BRA"
     ],
-    "US": [
-      "USA"
+    "NO": [
+      "NOR"
     ],
-    "BE": [
-      "BEL"
+    "KR": [
+      "KOR"
+    ],
+    "LV": [
+      "LVA"
+    ],
+    "ID": [
+      "IDN"
     ],
     "GR": [
       "GRC"
     ],
+    "ES": [
+      "ESP"
+    ],
+    "SK": [
+      "SVK"
+    ],
+    "DK": [
+      "DNK"
+    ],
+    "AU": [
+      "AUS"
+    ],
+    "FI": [
+      "FIN"
+    ],
+    "FR": [
+      "FRA"
+    ],
+    "PL": [
+      "POL"
+    ],
     "GB": [
       "GBR"
     ],
-    "HU": [
-      "HUN"
+    "CY": [
+      "CYP"
+    ],
+    "LU": [
+      "LUX"
+    ],
+    "CH": [
+      "CHE"
+    ],
+    "BE": [
+      "BEL"
+    ],
+    "CZ": [
+      "CZE"
     ],
     "WA": [
       "AFG",
@@ -1952,11 +1908,55 @@
       "WLF",
       "WSM"
     ],
-    "RO": [
-      "ROU"
+    "IE": [
+      "IRL"
+    ],
+    "PT": [
+      "PRT"
+    ],
+    "MX": [
+      "MEX"
+    ],
+    "DE": [
+      "DEU"
+    ],
+    "EE": [
+      "EST"
+    ],
+    "CA": [
+      "CAN"
     ],
     "BG": [
       "BGR"
+    ],
+    "HR": [
+      "HRV"
+    ],
+    "RU": [
+      "RUS"
+    ],
+    "SE": [
+      "SWE"
+    ],
+    "JP": [
+      "JPN"
+    ],
+    "WM": [
+      "ARE",
+      "BHR",
+      "EGY",
+      "IRN",
+      "IRQ",
+      "ISR",
+      "JOR",
+      "KWT",
+      "LBN",
+      "OMN",
+      "PSE",
+      "QAT",
+      "SAU",
+      "SYR",
+      "YEM"
     ]
   },
   "global_north": [
@@ -1993,31 +1993,182 @@
   ],
   "north_south": {
     "year": 2021,
-    "south_to_north_hours": 905991086537.1382,
-    "north_to_south_hours": 80003604967.0558,
-    "net_north_appropriation_hours": 825987481570.0824,
-    "wage_value_2005_eur": 16906064105875.006,
-    "by_skill": {
+    "by_selection": {
       "low": {
         "south_to_north_hours": 215609091413.96198,
         "north_to_south_hours": 8955672904.264435,
         "net_north_appropriation_hours": 206653418509.69754,
-        "north_export_wage_eur_per_hour": 14.711380235184857,
-        "wage_value_2005_eur": 3040157016596.9487
+        "south_to_north_producer_compensation_eur": 147908372874.2577,
+        "south_to_north_recipient_wage_value_eur": 3850861020658.8516,
+        "south_to_north_value_transfer_eur": 3702952647784.5986,
+        "north_to_south_producer_compensation_eur": 704320428.5467855,
+        "north_to_south_recipient_wage_value_eur": 606161033.0006937,
+        "north_to_south_value_transfer_eur": 98159395.54609168,
+        "net_north_value_transfer_eur": 3702854488389.0527,
+        "north_population": 1045424839.0,
+        "south_population": 6875300208.0,
+        "north_gdp_eur_2005": 46351779707976.29,
+        "south_gdp_eur_2005": 36204721252403.62,
+        "north_net_hours_per_capita": 197.67410415403143,
+        "south_net_hours_per_capita": -30.05736655240721,
+        "north_value_transfer_per_capita_eur": 3541.961459353706,
+        "south_value_transfer_per_capita_eur": -538.5734988096177,
+        "value_transfer_pct_north_gdp": 7.988591833404532,
+        "value_transfer_pct_south_gdp": 10.227545911966445,
+        "net_hours_pct_north_domestic_labor": 244.0160198407437,
+        "net_hours_pct_south_domestic_labor": -10.777121995734914,
+        "by_skill": {
+          "low": {
+            "south_to_north_hours": 215609091413.96198,
+            "north_to_south_hours": 8955672904.264435,
+            "net_north_appropriation_hours": 206653418509.69754,
+            "south_to_north_producer_compensation_eur": 147908372874.2577,
+            "south_to_north_recipient_wage_value_eur": 3850861020658.8516,
+            "south_to_north_value_transfer_eur": 3702952647784.5986,
+            "north_to_south_producer_compensation_eur": 704320428.5467855,
+            "north_to_south_recipient_wage_value_eur": 606161033.0006937,
+            "north_to_south_value_transfer_eur": 98159395.54609168,
+            "net_north_value_transfer_eur": 3702854488389.0527
+          }
+        }
       },
       "medium": {
         "south_to_north_hours": 614766716197.0192,
         "north_to_south_hours": 47470615954.79578,
         "net_north_appropriation_hours": 567296100242.2234,
-        "north_export_wage_eur_per_hour": 21.165249481777757,
-        "wage_value_2005_eur": 12006963491666.262
+        "south_to_north_producer_compensation_eur": 825133767652.1714,
+        "south_to_north_recipient_wage_value_eur": 14194514936578.436,
+        "south_to_north_value_transfer_eur": 13369381168926.266,
+        "north_to_south_producer_compensation_eur": 5739157169.323548,
+        "north_to_south_recipient_wage_value_eur": 7762747677.673194,
+        "north_to_south_value_transfer_eur": -2023590508.3496459,
+        "net_north_value_transfer_eur": 13371404759434.615,
+        "north_population": 1045424839.0,
+        "south_population": 6875300208.0,
+        "north_gdp_eur_2005": 46351779707976.29,
+        "south_gdp_eur_2005": 36204721252403.62,
+        "north_net_hours_per_capita": 542.6464716343165,
+        "south_net_hours_per_capita": -82.5121933704256,
+        "north_value_transfer_per_capita_eur": 12790.402772737845,
+        "south_value_transfer_per_capita_eur": -1944.846676495063,
+        "value_transfer_pct_north_gdp": 28.847662039465643,
+        "value_transfer_pct_south_gdp": 36.93276538773764,
+        "net_hours_pct_north_domestic_labor": 105.05933996644072,
+        "net_hours_pct_south_domestic_labor": -10.065027469444127,
+        "by_skill": {
+          "medium": {
+            "south_to_north_hours": 614766716197.0192,
+            "north_to_south_hours": 47470615954.79578,
+            "net_north_appropriation_hours": 567296100242.2234,
+            "south_to_north_producer_compensation_eur": 825133767652.1714,
+            "south_to_north_recipient_wage_value_eur": 14194514936578.436,
+            "south_to_north_value_transfer_eur": 13369381168926.266,
+            "north_to_south_producer_compensation_eur": 5739157169.323548,
+            "north_to_south_recipient_wage_value_eur": 7762747677.673194,
+            "north_to_south_value_transfer_eur": -2023590508.3496459,
+            "net_north_value_transfer_eur": 13371404759434.615
+          }
+        }
       },
       "high": {
-        "south_to_north_hours": 75615278926.15698,
-        "north_to_south_hours": 23577316107.99559,
-        "net_north_appropriation_hours": 52037962818.16139,
-        "north_export_wage_eur_per_hour": 35.722835732589786,
-        "wage_value_2005_eur": 1858943597611.7944
+        "south_to_north_hours": 75615278926.157,
+        "north_to_south_hours": 23577316107.995586,
+        "net_north_appropriation_hours": 52037962818.16141,
+        "south_to_north_producer_compensation_eur": 201892797263.52185,
+        "south_to_north_recipient_wage_value_eur": 2150018750349.241,
+        "south_to_north_value_transfer_eur": 1948125953085.7192,
+        "north_to_south_producer_compensation_eur": 65208338045.89185,
+        "north_to_south_recipient_wage_value_eur": 27003736829.27702,
+        "north_to_south_value_transfer_eur": 38204601216.614845,
+        "net_north_value_transfer_eur": 1909921351869.1045,
+        "north_population": 1045424839.0,
+        "south_population": 6875300208.0,
+        "north_gdp_eur_2005": 46351779707976.29,
+        "south_gdp_eur_2005": 36204721252403.62,
+        "north_net_hours_per_capita": 49.77685709853447,
+        "south_net_hours_per_capita": -7.568827722985941,
+        "north_value_transfer_per_capita_eur": 1826.9332051609158,
+        "south_value_transfer_per_capita_eur": -277.7946117388078,
+        "value_transfer_pct_north_gdp": 4.1204919506908215,
+        "value_transfer_pct_south_gdp": 5.275337817280683,
+        "net_hours_pct_north_domestic_labor": 15.01517281239238,
+        "net_hours_pct_south_domestic_labor": -4.629572975430791,
+        "by_skill": {
+          "high": {
+            "south_to_north_hours": 75615278926.157,
+            "north_to_south_hours": 23577316107.995586,
+            "net_north_appropriation_hours": 52037962818.16141,
+            "south_to_north_producer_compensation_eur": 201892797263.52185,
+            "south_to_north_recipient_wage_value_eur": 2150018750349.241,
+            "south_to_north_value_transfer_eur": 1948125953085.7192,
+            "north_to_south_producer_compensation_eur": 65208338045.89185,
+            "north_to_south_recipient_wage_value_eur": 27003736829.27702,
+            "north_to_south_value_transfer_eur": 38204601216.614845,
+            "net_north_value_transfer_eur": 1909921351869.1045
+          }
+        }
+      },
+      "all": {
+        "south_to_north_hours": 905991086537.1382,
+        "north_to_south_hours": 80003604967.0558,
+        "net_north_appropriation_hours": 825987481570.0824,
+        "south_to_north_producer_compensation_eur": 1174934937789.951,
+        "south_to_north_recipient_wage_value_eur": 20195394707586.53,
+        "south_to_north_value_transfer_eur": 19020459769796.582,
+        "north_to_south_producer_compensation_eur": 71651815643.76219,
+        "north_to_south_recipient_wage_value_eur": 35372645539.950905,
+        "north_to_south_value_transfer_eur": 36279170103.811295,
+        "net_north_value_transfer_eur": 18984180599692.77,
+        "north_population": 1045424839.0,
+        "south_population": 6875300208.0,
+        "north_gdp_eur_2005": 46351779707976.29,
+        "south_gdp_eur_2005": 36204721252403.62,
+        "north_net_hours_per_capita": 790.0974328868824,
+        "south_net_hours_per_capita": -120.13838764581877,
+        "north_value_transfer_per_capita_eur": 18159.297437252462,
+        "south_value_transfer_per_capita_eur": -2761.2147870434883,
+        "value_transfer_pct_north_gdp": 40.95674582356099,
+        "value_transfer_pct_south_gdp": 52.43564911698475,
+        "net_hours_pct_north_domestic_labor": 85.0451142175389,
+        "net_hours_pct_south_domestic_labor": -9.518328441300996,
+        "by_skill": {
+          "low": {
+            "south_to_north_hours": 215609091413.96198,
+            "north_to_south_hours": 8955672904.264435,
+            "net_north_appropriation_hours": 206653418509.69754,
+            "south_to_north_producer_compensation_eur": 147908372874.2577,
+            "south_to_north_recipient_wage_value_eur": 3850861020658.8516,
+            "south_to_north_value_transfer_eur": 3702952647784.5986,
+            "north_to_south_producer_compensation_eur": 704320428.5467855,
+            "north_to_south_recipient_wage_value_eur": 606161033.0006937,
+            "north_to_south_value_transfer_eur": 98159395.54609168,
+            "net_north_value_transfer_eur": 3702854488389.0527
+          },
+          "medium": {
+            "south_to_north_hours": 614766716197.0192,
+            "north_to_south_hours": 47470615954.79578,
+            "net_north_appropriation_hours": 567296100242.2234,
+            "south_to_north_producer_compensation_eur": 825133767652.1714,
+            "south_to_north_recipient_wage_value_eur": 14194514936578.436,
+            "south_to_north_value_transfer_eur": 13369381168926.266,
+            "north_to_south_producer_compensation_eur": 5739157169.323548,
+            "north_to_south_recipient_wage_value_eur": 7762747677.673194,
+            "north_to_south_value_transfer_eur": -2023590508.3496459,
+            "net_north_value_transfer_eur": 13371404759434.615
+          },
+          "high": {
+            "south_to_north_hours": 75615278926.157,
+            "north_to_south_hours": 23577316107.995586,
+            "net_north_appropriation_hours": 52037962818.16141,
+            "south_to_north_producer_compensation_eur": 201892797263.52185,
+            "south_to_north_recipient_wage_value_eur": 2150018750349.241,
+            "south_to_north_value_transfer_eur": 1948125953085.7192,
+            "north_to_south_producer_compensation_eur": 65208338045.89185,
+            "north_to_south_recipient_wage_value_eur": 27003736829.27702,
+            "north_to_south_value_transfer_eur": 38204601216.614845,
+            "net_north_value_transfer_eur": 1909921351869.1045
+          }
+        }
       }
     },
     "north_regions": [
@@ -2073,7 +2224,109 @@
       "WM",
       "ZA"
     ],
-    "note": "Calculated directly from this atlas's EXIOBASE 3.8.2 results. No external benchmark values are inserted."
+    "note": "Calculated pairwise from EXIOBASE 3.8.2 labour hours and compensation."
+  },
+  "region_population": {
+    "AT": 8955797.0,
+    "BE": 11586195.0,
+    "BG": 6507301.0,
+    "CY": 1317309.0,
+    "CZ": 10505772.0,
+    "DE": 83196078.0,
+    "DK": 5856733.0,
+    "EE": 1330932.0,
+    "ES": 47443821.0,
+    "FI": 5541017.0,
+    "FR": 67842811.0,
+    "GR": 10570130.0,
+    "HR": 3878981.0,
+    "HU": 9630932.0,
+    "IE": 5110585.0,
+    "IT": 59133173.0,
+    "LT": 2808380.0,
+    "LU": 640064.0,
+    "LV": 1884490.0,
+    "MT": 518150.0,
+    "NL": 17533044.0,
+    "PL": 36981559.0,
+    "PT": 10361831.0,
+    "RO": 19122059.0,
+    "SE": 10415811.0,
+    "SI": 2108079.0,
+    "SK": 5447247.0,
+    "GB": 66978000.0,
+    "US": 332100166.0,
+    "JP": 125681593.0,
+    "CN": 1412360000.0,
+    "CA": 38239864.0,
+    "KR": 51769539.0,
+    "BR": 209550294.0,
+    "IN": 1414203896.0,
+    "MX": 127648148.0,
+    "RU": 144746762.0,
+    "AU": 25685412.0,
+    "CH": 8704546.0,
+    "TR": 84147318.0,
+    "TW": 23558330.0,
+    "NO": 5408320.0,
+    "ID": 276758053.0,
+    "ZA": 61502603.0,
+    "WA": 1054172273.0,
+    "WL": 313270888.0,
+    "WE": 72134998.0,
+    "WF": 1240314261.0,
+    "WM": 385561502.0
+  },
+  "region_gdp_eur_2005": {
+    "AT": 410591888488.89734,
+    "BE": 488678056578.3665,
+    "BG": 64495009566.08757,
+    "CY": 23188424141.923782,
+    "CZ": 235861907291.78583,
+    "DE": 3542229736272.269,
+    "DK": 324181355784.45026,
+    "EE": 29736943135.43342,
+    "ES": 1289310906782.0916,
+    "FI": 247672247195.37488,
+    "FR": 2489153906388.473,
+    "GR": 190681308453.1228,
+    "HR": 56821070876.276344,
+    "HU": 155212651724.92096,
+    "IE": 380116115251.00854,
+    "IT": 1813243685140.6296,
+    "LT": 51356558140.230965,
+    "LU": 67013155445.911804,
+    "LV": 32220288353.043564,
+    "MT": 14368578087.75503,
+    "NL": 836074932174.1306,
+    "PL": 563425966697.8514,
+    "PT": 219959563239.81503,
+    "RO": 223381838997.81198,
+    "SE": 491016532502.18915,
+    "SI": 51174088314.38023,
+    "SK": 99047304675.38159,
+    "GB": 2600814798117.4785,
+    "US": 19886563429488.816,
+    "JP": 4581760573142.337,
+    "CN": 14357324432010.15,
+    "CA": 1610793887669.9844,
+    "KR": 1544716529074.8223,
+    "BR": 1724141987707.1135,
+    "IN": 2970320070012.6494,
+    "MX": 1158583522869.7659,
+    "RU": 1572001579866.4346,
+    "AU": 1293332172185.0647,
+    "CH": 672299976038.5364,
+    "TR": 721456837883.3447,
+    "TW": 511079981018.77386,
+    "NO": 374897437544.0454,
+    "ID": 1105325241828.1619,
+    "ZA": 321871004421.1761,
+    "WA": 3733409861436.746,
+    "WL": 2187106426828.8618,
+    "WE": 364405171175.3031,
+    "WF": 1693561824257.3171,
+    "WM": 3180520196103.412
   },
   "skills": [
     "all",
@@ -2083,6 +2336,8 @@
   ],
   "views": [
     "labour_hours",
-    "wage_value"
+    "producer_compensation",
+    "recipient_wage_value",
+    "value_transfer"
   ]
 }
