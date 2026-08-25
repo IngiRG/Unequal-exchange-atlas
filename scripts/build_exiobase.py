@@ -26,7 +26,6 @@ SKILLS={
 "medium":{"hours":["employment hours","medium-skilled"],"people":["employment:","medium-skilled"],"comp":["compensation of employees","medium-skilled"]},
 "high":{"hours":["employment hours","high-skilled"],"people":["employment:","high-skilled"],"comp":["compensation of employees","high-skilled"]},
 }
-EXPECTED_2021={"south_to_north_hours":906e9,"north_to_south_hours":80e9,"net_hours":826e9,"wage_value_2005_eur":16.9e12}
 
 def log(x): print(x,flush=True)
 def norm(x): return re.sub(r"\s+"," ",str(x).lower().replace("–","-").replace("—","-")).strip()
@@ -280,26 +279,85 @@ def gross(H,regions):
         out[r]={"gross_imported":float(H[mask,i].sum()),"gross_exported":float(H[i,mask].sum()),"domestic":float(H[i,i])}
     return out
 
-def benchmark(hours,comp,regions,year):
-    idx={r:i for i,r in enumerate(regions)}
-    north=[idx[r] for r in GLOBAL_NORTH if r in idx]
-    south=[i for i,r in enumerate(regions) if r not in GLOBAL_NORTH]
-    stn=nts=wv=0.0;net_skill={};north_wage={}
-    for sk in SKILLS:
-        H=hours[sk];C=comp[sk]
-        a=float(H[np.ix_(south,north)].sum());b=float(H[np.ix_(north,south)].sum())
-        stn+=a;nts+=b;net=a-b;net_skill[sk]=net
-        he=ce=0.0
+def north_south(hours, comp, regions, year):
+    """
+    Aggregate the atlas's own EXIOBASE results into Global South ↔ Global North flows.
+
+    These are calculated directly from the generated EXIOBASE labour-hour and
+    compensation matrices. No external benchmark values are inserted.
+    """
+    idx = {r: i for i, r in enumerate(regions)}
+    north = [idx[r] for r in GLOBAL_NORTH if r in idx]
+    south = [i for i, r in enumerate(regions) if r not in GLOBAL_NORTH]
+
+    south_to_north = 0.0
+    north_to_south = 0.0
+    wage_value = 0.0
+    by_skill = {}
+
+    for skill in SKILLS:
+        H = hours[skill]
+        C = comp[skill]
+
+        stn = float(H[np.ix_(south, north)].sum())
+        nts = float(H[np.ix_(north, south)].sum())
+        net = stn - nts
+
+        # Northern export wage for this skill, using the same logic as the
+        # pairwise wage-value calculation elsewhere in the atlas.
+        north_export_hours = 0.0
+        north_export_comp = 0.0
+
         for i in north:
-            mask=np.ones(len(regions),bool);mask[i]=False
-            he+=float(H[i,mask].sum());ce+=float(C[i,mask].sum())
-        wage=ce/he if he>0 else math.nan;north_wage[sk]=wage
-        if net>0 and math.isfinite(wage):wv+=net*wage
-    res={"year":year,"south_to_north_hours":stn,"north_to_south_hours":nts,"net_hours":stn-nts,"net_hours_by_skill":net_skill,"north_export_wage_eur_per_hour_by_skill":north_wage,"wage_value_2005_eur":wv}
-    if year==2021:
-        res["published_hickel_2021"]=EXPECTED_2021
-        res["difference_pct"]={k:100*(res[k]-EXPECTED_2021[k])/EXPECTED_2021[k] for k in EXPECTED_2021}
-    return res
+            mask = np.ones(len(regions), bool)
+            mask[i] = False
+            north_export_hours += float(H[i, mask].sum())
+            north_export_comp += float(C[i, mask].sum())
+
+        north_wage = (
+            north_export_comp / north_export_hours
+            if north_export_hours > 0
+            else math.nan
+        )
+
+        skill_value = (
+            net * north_wage
+            if net > 0 and math.isfinite(north_wage)
+            else 0.0
+        )
+
+        by_skill[skill] = {
+            "south_to_north_hours": stn,
+            "north_to_south_hours": nts,
+            "net_north_appropriation_hours": net,
+            "north_export_wage_eur_per_hour": north_wage,
+            "wage_value_2005_eur": skill_value,
+        }
+
+        south_to_north += stn
+        north_to_south += nts
+        wage_value += skill_value
+
+    return {
+        "year": year,
+        "south_to_north_hours": south_to_north,
+        "north_to_south_hours": north_to_south,
+        "net_north_appropriation_hours": (
+            south_to_north - north_to_south
+        ),
+        "wage_value_2005_eur": wage_value,
+        "by_skill": by_skill,
+        "north_regions": sorted(
+            r for r in GLOBAL_NORTH if r in idx
+        ),
+        "south_regions": sorted(
+            r for r in regions if r not in GLOBAL_NORTH
+        ),
+        "note": (
+            "Calculated directly from this atlas's EXIOBASE 3.8.2 results. "
+            "No external benchmark values are inserted."
+        ),
+    }
 
 def build(year,keep_raw=False):
     if not 1995<=year<=2022:raise ValueError("Use EXIOBASE years 1995-2022")
@@ -351,9 +409,9 @@ def build(year,keep_raw=False):
         wp={"year":year,"view":"wage_value","skill":sel,"unit":"constant_2005_EUR","regions":[{"code":r,"name":REGION_NAMES.get(r,r),"aggregate":r in ROW_CODES,"members":sorted(members.get(r,[])),**ws[r]} for r in regions],"bilateral":wr,"note":"Counterfactual wage value of pairwise net-appropriated labour, valued at the recipient region's same-skill export wage."}
         (ydir/f"labour_hours-{sel}.json").write_text(json.dumps(lp,separators=(",",":"),allow_nan=False))
         (ydir/f"wage_value-{sel}.json").write_text(json.dumps(wp,separators=(",",":"),allow_nan=False))
-    b=benchmark(hours,comp,regions,year)
-    (ydir/"benchmark.json").write_text(json.dumps(b,indent=2,allow_nan=False))
-    manifest={"year":year,"exiobase_version":"3.8.2","exiobase_doi":DOI,"system":SYSTEM,"regions":regions,"region_names":{r:REGION_NAMES.get(r,r) for r in regions},"row_regions":sorted(ROW_CODES & set(regions)),"country_to_region":mapping,"geometry":geometry,"members":members,"global_north":sorted(GLOBAL_NORTH & set(regions)),"benchmark":b,"skills":["all","low","medium","high"],"views":["labour_hours","wage_value"]}
+    ns=north_south(hours,comp,regions,year)
+    (ydir/"north_south.json").write_text(json.dumps(ns,indent=2,allow_nan=False))
+    manifest={"year":year,"exiobase_version":"3.8.2","exiobase_doi":DOI,"system":SYSTEM,"regions":regions,"region_names":{r:REGION_NAMES.get(r,r) for r in regions},"row_regions":sorted(ROW_CODES & set(regions)),"country_to_region":mapping,"geometry":geometry,"members":members,"global_north":sorted(GLOBAL_NORTH & set(regions)),"north_south":ns,"skills":["all","low","medium","high"],"views":["labour_hours","wage_value"]}
     (ydir/"manifest.json").write_text(json.dumps(manifest,indent=2,allow_nan=False))
     dest=PUBLIC/str(year)
     if dest.exists():shutil.rmtree(dest)
