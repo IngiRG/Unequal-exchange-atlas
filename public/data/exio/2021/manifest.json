@@ -1611,6 +1611,18 @@
     }
   ],
   "members": {
+    "SE": [
+      "SWE"
+    ],
+    "TR": [
+      "TUR"
+    ],
+    "PT": [
+      "PRT"
+    ],
+    "IN": [
+      "IND"
+    ],
     "WL": [
       "ABW",
       "AIA",
@@ -1663,6 +1675,207 @@
       "VEN",
       "VGB",
       "VIR"
+    ],
+    "HR": [
+      "HRV"
+    ],
+    "ID": [
+      "IDN"
+    ],
+    "CN": [
+      "CHN"
+    ],
+    "PL": [
+      "POL"
+    ],
+    "RO": [
+      "ROU"
+    ],
+    "BE": [
+      "BEL"
+    ],
+    "KR": [
+      "KOR"
+    ],
+    "MT": [
+      "MLT"
+    ],
+    "LT": [
+      "LTU"
+    ],
+    "AU": [
+      "AUS"
+    ],
+    "LU": [
+      "LUX"
+    ],
+    "WE": [
+      "ALA",
+      "ALB",
+      "AND",
+      "BIH",
+      "BLR",
+      "FRO",
+      "GGY",
+      "GIB",
+      "IMN",
+      "ISL",
+      "JEY",
+      "LIE",
+      "MCO",
+      "MDA",
+      "MKD",
+      "MNE",
+      "SJM",
+      "SMR",
+      "SRB",
+      "UKR",
+      "VAT"
+    ],
+    "TW": [
+      "TWN"
+    ],
+    "WF": [
+      "AGO",
+      "ATF",
+      "BDI",
+      "BEN",
+      "BFA",
+      "BWA",
+      "CAF",
+      "CIV",
+      "CMR",
+      "COD",
+      "COG",
+      "COM",
+      "CPV",
+      "DJI",
+      "DZA",
+      "ERI",
+      "ESH",
+      "ETH",
+      "GAB",
+      "GHA",
+      "GIN",
+      "GMB",
+      "GNB",
+      "GNQ",
+      "KEN",
+      "LBR",
+      "LBY",
+      "LSO",
+      "MAR",
+      "MDG",
+      "MLI",
+      "MOZ",
+      "MRT",
+      "MUS",
+      "MWI",
+      "MYT",
+      "NAM",
+      "NER",
+      "NGA",
+      "REU",
+      "RWA",
+      "SDN",
+      "SEN",
+      "SHN",
+      "SLE",
+      "SOM",
+      "SSD",
+      "STP",
+      "SWZ",
+      "SYC",
+      "TCD",
+      "TGO",
+      "TUN",
+      "TZA",
+      "UGA",
+      "ZMB",
+      "ZWE"
+    ],
+    "FR": [
+      "FRA"
+    ],
+    "BG": [
+      "BGR"
+    ],
+    "ES": [
+      "ESP"
+    ],
+    "WM": [
+      "ARE",
+      "BHR",
+      "EGY",
+      "IRN",
+      "IRQ",
+      "ISR",
+      "JOR",
+      "KWT",
+      "LBN",
+      "OMN",
+      "PSE",
+      "QAT",
+      "SAU",
+      "SYR",
+      "YEM"
+    ],
+    "US": [
+      "USA"
+    ],
+    "NO": [
+      "NOR"
+    ],
+    "EE": [
+      "EST"
+    ],
+    "IT": [
+      "ITA"
+    ],
+    "CA": [
+      "CAN"
+    ],
+    "SI": [
+      "SVN"
+    ],
+    "FI": [
+      "FIN"
+    ],
+    "SK": [
+      "SVK"
+    ],
+    "BR": [
+      "BRA"
+    ],
+    "RU": [
+      "RUS"
+    ],
+    "DE": [
+      "DEU"
+    ],
+    "CZ": [
+      "CZE"
+    ],
+    "DK": [
+      "DNK"
+    ],
+    "MX": [
+      "MEX"
+    ],
+    "ZA": [
+      "ZAF"
+    ],
+    "HU": [
+      "HUN"
+    ],
+    "AT": [
+      "AUT"
+    ],
+    "JP": [
+      "JPN"
+    ],
+    "LV": [
+      "LVA"
     ],
     "WA": [
       "AFG",
@@ -1727,236 +1940,23 @@
       "WLF",
       "WSM"
     ],
+    "GR": [
+      "GRC"
+    ],
     "GB": [
       "GBR"
-    ],
-    "IE": [
-      "IRL"
-    ],
-    "BR": [
-      "BRA"
-    ],
-    "KR": [
-      "KOR"
-    ],
-    "DK": [
-      "DNK"
-    ],
-    "LU": [
-      "LUX"
-    ],
-    "ID": [
-      "IDN"
-    ],
-    "WE": [
-      "ALA",
-      "ALB",
-      "AND",
-      "BIH",
-      "BLR",
-      "FRO",
-      "GGY",
-      "GIB",
-      "IMN",
-      "ISL",
-      "JEY",
-      "LIE",
-      "MCO",
-      "MDA",
-      "MKD",
-      "MNE",
-      "SJM",
-      "SMR",
-      "SRB",
-      "UKR",
-      "VAT"
-    ],
-    "US": [
-      "USA"
-    ],
-    "WM": [
-      "ARE",
-      "BHR",
-      "EGY",
-      "IRN",
-      "IRQ",
-      "ISR",
-      "JOR",
-      "KWT",
-      "LBN",
-      "OMN",
-      "PSE",
-      "QAT",
-      "SAU",
-      "SYR",
-      "YEM"
-    ],
-    "NO": [
-      "NOR"
-    ],
-    "IN": [
-      "IND"
-    ],
-    "SK": [
-      "SVK"
-    ],
-    "EE": [
-      "EST"
-    ],
-    "HR": [
-      "HRV"
-    ],
-    "PL": [
-      "POL"
-    ],
-    "ZA": [
-      "ZAF"
-    ],
-    "PT": [
-      "PRT"
-    ],
-    "DE": [
-      "DEU"
-    ],
-    "SI": [
-      "SVN"
-    ],
-    "MT": [
-      "MLT"
-    ],
-    "RO": [
-      "ROU"
-    ],
-    "CZ": [
-      "CZE"
-    ],
-    "ES": [
-      "ESP"
-    ],
-    "LV": [
-      "LVA"
-    ],
-    "JP": [
-      "JPN"
-    ],
-    "WF": [
-      "AGO",
-      "ATF",
-      "BDI",
-      "BEN",
-      "BFA",
-      "BWA",
-      "CAF",
-      "CIV",
-      "CMR",
-      "COD",
-      "COG",
-      "COM",
-      "CPV",
-      "DJI",
-      "DZA",
-      "ERI",
-      "ESH",
-      "ETH",
-      "GAB",
-      "GHA",
-      "GIN",
-      "GMB",
-      "GNB",
-      "GNQ",
-      "KEN",
-      "LBR",
-      "LBY",
-      "LSO",
-      "MAR",
-      "MDG",
-      "MLI",
-      "MOZ",
-      "MRT",
-      "MUS",
-      "MWI",
-      "MYT",
-      "NAM",
-      "NER",
-      "NGA",
-      "REU",
-      "RWA",
-      "SDN",
-      "SEN",
-      "SHN",
-      "SLE",
-      "SOM",
-      "SSD",
-      "STP",
-      "SWZ",
-      "SYC",
-      "TCD",
-      "TGO",
-      "TUN",
-      "TZA",
-      "UGA",
-      "ZMB",
-      "ZWE"
-    ],
-    "IT": [
-      "ITA"
-    ],
-    "FI": [
-      "FIN"
-    ],
-    "LT": [
-      "LTU"
     ],
     "CY": [
       "CYP"
     ],
-    "AU": [
-      "AUS"
-    ],
-    "AT": [
-      "AUT"
-    ],
     "NL": [
       "NLD"
-    ],
-    "BG": [
-      "BGR"
-    ],
-    "SE": [
-      "SWE"
-    ],
-    "FR": [
-      "FRA"
-    ],
-    "HU": [
-      "HUN"
-    ],
-    "RU": [
-      "RUS"
-    ],
-    "BE": [
-      "BEL"
-    ],
-    "CN": [
-      "CHN"
     ],
     "CH": [
       "CHE"
     ],
-    "MX": [
-      "MEX"
-    ],
-    "CA": [
-      "CAN"
-    ],
-    "TR": [
-      "TUR"
-    ],
-    "GR": [
-      "GRC"
-    ],
-    "TW": [
-      "TWN"
+    "IE": [
+      "IRL"
     ]
   },
   "global_north": [
@@ -1998,17 +1998,17 @@
         "south_to_north_hours": 215609091413.96198,
         "north_to_south_hours": 8955672904.264435,
         "net_north_appropriation_hours": 206653418509.69754,
-        "wage_value_2005_eur": 3040157016596.9487,
+        "wage_value_2005_eur": 3040157016596.9497,
         "north_population": 1045424839.0,
         "south_population": 6875300208.0,
         "north_gdp_eur_2005": 46351779707976.29,
         "south_gdp_eur_2005": 36204721252403.62,
         "north_net_hours_per_capita": 197.67410415403143,
         "south_net_hours_per_capita": -30.05736655240721,
-        "north_wage_value_per_capita_eur": 2908.0589088594907,
-        "south_wage_value_per_capita_eur": -442.1853482207898,
-        "wage_value_pct_north_gdp": 6.5588787221341445,
-        "wage_value_pct_south_gdp": 8.397128638009093,
+        "north_wage_value_per_capita_eur": 2908.0589088594916,
+        "south_wage_value_per_capita_eur": -442.18534822079,
+        "wage_value_pct_north_gdp": 6.558878722134147,
+        "wage_value_pct_south_gdp": 8.397128638009097,
         "net_hours_pct_north_domestic_labor": 244.0160198407437,
         "net_hours_pct_south_domestic_labor": -10.777121995734914,
         "by_skill": {
@@ -2016,8 +2016,8 @@
             "south_to_north_hours": 215609091413.96198,
             "north_to_south_hours": 8955672904.264435,
             "net_north_appropriation_hours": 206653418509.69754,
-            "north_export_wage_eur_per_hour": 14.711380235184857,
-            "wage_value_2005_eur": 3040157016596.9487
+            "north_export_wage_eur_per_hour": 14.71138023518486,
+            "wage_value_2005_eur": 3040157016596.9497
           }
         }
       },
@@ -2052,17 +2052,17 @@
         "south_to_north_hours": 75615278926.157,
         "north_to_south_hours": 23577316107.995586,
         "net_north_appropriation_hours": 52037962818.16141,
-        "wage_value_2005_eur": 1858943597611.7954,
+        "wage_value_2005_eur": 1858943597611.7957,
         "north_population": 1045424839.0,
         "south_population": 6875300208.0,
         "north_gdp_eur_2005": 46351779707976.29,
         "south_gdp_eur_2005": 36204721252403.62,
         "north_net_hours_per_capita": 49.77685709853447,
         "south_net_hours_per_capita": -7.568827722985941,
-        "north_wage_value_per_capita_eur": 1778.1704894155432,
-        "south_wage_value_per_capita_eur": -270.3799894364984,
-        "wage_value_pct_north_gdp": 4.010511806285413,
-        "wage_value_pct_south_gdp": 5.134533655575047,
+        "north_wage_value_per_capita_eur": 1778.1704894155434,
+        "south_wage_value_per_capita_eur": -270.3799894364985,
+        "wage_value_pct_north_gdp": 4.010511806285414,
+        "wage_value_pct_south_gdp": 5.134533655575048,
         "net_hours_pct_north_domestic_labor": 15.01517281239238,
         "net_hours_pct_south_domestic_labor": -4.629572975430791,
         "by_skill": {
@@ -2070,8 +2070,8 @@
             "south_to_north_hours": 75615278926.157,
             "north_to_south_hours": 23577316107.995586,
             "net_north_appropriation_hours": 52037962818.16141,
-            "north_export_wage_eur_per_hour": 35.72283573258979,
-            "wage_value_2005_eur": 1858943597611.7954
+            "north_export_wage_eur_per_hour": 35.7228357325898,
+            "wage_value_2005_eur": 1858943597611.7957
           }
         }
       },
@@ -2097,8 +2097,8 @@
             "south_to_north_hours": 215609091413.96198,
             "north_to_south_hours": 8955672904.264435,
             "net_north_appropriation_hours": 206653418509.69754,
-            "north_export_wage_eur_per_hour": 14.711380235184857,
-            "wage_value_2005_eur": 3040157016596.9487
+            "north_export_wage_eur_per_hour": 14.71138023518486,
+            "wage_value_2005_eur": 3040157016596.9497
           },
           "medium": {
             "south_to_north_hours": 614766716197.0192,
@@ -2111,8 +2111,8 @@
             "south_to_north_hours": 75615278926.157,
             "north_to_south_hours": 23577316107.995586,
             "net_north_appropriation_hours": 52037962818.16141,
-            "north_export_wage_eur_per_hour": 35.72283573258979,
-            "wage_value_2005_eur": 1858943597611.7954
+            "north_export_wage_eur_per_hour": 35.7228357325898,
+            "wage_value_2005_eur": 1858943597611.7957
           }
         }
       }

@@ -1,0 +1,181 @@
+{
+  "year": 1997,
+  "by_selection": {
+    "low": {
+      "south_to_north_hours": 103061615631.68454,
+      "north_to_south_hours": 4073129421.5854297,
+      "net_north_appropriation_hours": 98988486210.0991,
+      "wage_value_2005_eur": 913686018055.0146,
+      "north_population": 924324316.0,
+      "south_population": 4984117163.0,
+      "north_gdp_eur_2005": 21522400993202.996,
+      "south_gdp_eur_2005": 6401677397928.026,
+      "north_net_hours_per_capita": 107.09280768298981,
+      "south_net_hours_per_capita": -19.860786368536477,
+      "north_wage_value_per_capita_eur": 988.4907301897862,
+      "south_wage_value_per_capita_eur": -183.31953045523034,
+      "wage_value_pct_north_gdp": 4.245279224857702,
+      "wage_value_pct_south_gdp": 14.27260327661527,
+      "net_hours_pct_north_domestic_labor": 134.14881447476324,
+      "net_hours_pct_south_domestic_labor": -16.281363371862277,
+      "by_skill": {
+        "low": {
+          "south_to_north_hours": 103061615631.68454,
+          "north_to_south_hours": 4073129421.5854297,
+          "net_north_appropriation_hours": 98988486210.0991,
+          "north_export_wage_eur_per_hour": 9.230225181095836,
+          "wage_value_2005_eur": 913686018055.0146
+        }
+      }
+    },
+    "medium": {
+      "south_to_north_hours": 461690164786.22626,
+      "north_to_south_hours": 26542083061.953636,
+      "net_north_appropriation_hours": 435148081724.27264,
+      "wage_value_2005_eur": 5040043360364.5,
+      "north_population": 924324316.0,
+      "south_population": 4984117163.0,
+      "north_gdp_eur_2005": 21522400993202.996,
+      "south_gdp_eur_2005": 6401677397928.026,
+      "north_net_hours_per_capita": 470.7742447016537,
+      "south_net_hours_per_capita": -87.30695276480053,
+      "north_wage_value_per_capita_eur": 5452.678538389225,
+      "south_wage_value_per_capita_eur": -1011.2208833651971,
+      "wage_value_pct_north_gdp": 23.41766312204758,
+      "wage_value_pct_south_gdp": 78.73004287900802,
+      "net_hours_pct_north_domestic_labor": 102.14187932011339,
+      "net_hours_pct_south_domestic_labor": -12.812487225231303,
+      "by_skill": {
+        "medium": {
+          "south_to_north_hours": 461690164786.22626,
+          "north_to_south_hours": 26542083061.953636,
+          "net_north_appropriation_hours": 435148081724.27264,
+          "north_export_wage_eur_per_hour": 11.582363733268332,
+          "wage_value_2005_eur": 5040043360364.5
+        }
+      }
+    },
+    "high": {
+      "south_to_north_hours": 44460240817.86154,
+      "north_to_south_hours": 11895854847.137436,
+      "net_north_appropriation_hours": 32564385970.724106,
+      "wage_value_2005_eur": 663140727332.008,
+      "north_population": 924324316.0,
+      "south_population": 4984117163.0,
+      "north_gdp_eur_2005": 21522400993202.996,
+      "south_gdp_eur_2005": 6401677397928.026,
+      "north_net_hours_per_capita": 35.23047636747891,
+      "south_net_hours_per_capita": -6.533631715656381,
+      "north_wage_value_per_capita_eur": 717.43295708344,
+      "south_wage_value_per_capita_eur": -133.05079026931534,
+      "wage_value_pct_north_gdp": 3.081165189429539,
+      "wage_value_pct_south_gdp": 10.358858875747798,
+      "net_hours_pct_north_domestic_labor": 11.394375154070085,
+      "net_hours_pct_south_domestic_labor": -5.460515989521444,
+      "by_skill": {
+        "high": {
+          "south_to_north_hours": 44460240817.86154,
+          "north_to_south_hours": 11895854847.137436,
+          "net_north_appropriation_hours": 32564385970.724106,
+          "north_export_wage_eur_per_hour": 20.363986839124863,
+          "wage_value_2005_eur": 663140727332.008
+        }
+      }
+    },
+    "all": {
+      "south_to_north_hours": 609212021235.7723,
+      "north_to_south_hours": 42511067330.6765,
+      "net_north_appropriation_hours": 566700953905.0958,
+      "wage_value_2005_eur": 6616870105751.522,
+      "north_population": 924324316.0,
+      "south_population": 4984117163.0,
+      "north_gdp_eur_2005": 21522400993202.996,
+      "south_gdp_eur_2005": 6401677397928.026,
+      "north_net_hours_per_capita": 613.0975287521223,
+      "south_net_hours_per_capita": -113.70137084899339,
+      "north_wage_value_per_capita_eur": 7158.602225662451,
+      "south_wage_value_per_capita_eur": -1327.5912040897426,
+      "wage_value_pct_north_gdp": 30.74410753633482,
+      "wage_value_pct_south_gdp": 103.3615050313711,
+      "net_hours_pct_north_domestic_labor": 72.13544801026023,
+      "net_hours_pct_south_domestic_labor": -12.317902865238596,
+      "by_skill": {
+        "low": {
+          "south_to_north_hours": 103061615631.68454,
+          "north_to_south_hours": 4073129421.5854297,
+          "net_north_appropriation_hours": 98988486210.0991,
+          "north_export_wage_eur_per_hour": 9.230225181095836,
+          "wage_value_2005_eur": 913686018055.0146
+        },
+        "medium": {
+          "south_to_north_hours": 461690164786.22626,
+          "north_to_south_hours": 26542083061.953636,
+          "net_north_appropriation_hours": 435148081724.27264,
+          "north_export_wage_eur_per_hour": 11.582363733268332,
+          "wage_value_2005_eur": 5040043360364.5
+        },
+        "high": {
+          "south_to_north_hours": 44460240817.86154,
+          "north_to_south_hours": 11895854847.137436,
+          "net_north_appropriation_hours": 32564385970.724106,
+          "north_export_wage_eur_per_hour": 20.363986839124863,
+          "wage_value_2005_eur": 663140727332.008
+        }
+      }
+    }
+  },
+  "north_regions": [
+    "AT",
+    "AU",
+    "BE",
+    "CA",
+    "CH",
+    "CY",
+    "CZ",
+    "DE",
+    "DK",
+    "EE",
+    "ES",
+    "FI",
+    "FR",
+    "GB",
+    "GR",
+    "IE",
+    "IT",
+    "JP",
+    "KR",
+    "LU",
+    "LV",
+    "MT",
+    "NL",
+    "NO",
+    "PT",
+    "SE",
+    "SI",
+    "SK",
+    "TW",
+    "US"
+  ],
+  "south_regions": [
+    "BG",
+    "BR",
+    "CN",
+    "HR",
+    "HU",
+    "ID",
+    "IN",
+    "LT",
+    "MX",
+    "PL",
+    "RO",
+    "RU",
+    "TR",
+    "WA",
+    "WE",
+    "WF",
+    "WL",
+    "WM",
+    "ZA"
+  ],
+  "note": "Calculated directly from this atlas's EXIOBASE 3.8.2 build for the selected year."
+}

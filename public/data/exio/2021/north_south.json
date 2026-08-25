@@ -5,17 +5,17 @@
       "south_to_north_hours": 215609091413.96198,
       "north_to_south_hours": 8955672904.264435,
       "net_north_appropriation_hours": 206653418509.69754,
-      "wage_value_2005_eur": 3040157016596.9487,
+      "wage_value_2005_eur": 3040157016596.9497,
       "north_population": 1045424839.0,
       "south_population": 6875300208.0,
       "north_gdp_eur_2005": 46351779707976.29,
       "south_gdp_eur_2005": 36204721252403.62,
       "north_net_hours_per_capita": 197.67410415403143,
       "south_net_hours_per_capita": -30.05736655240721,
-      "north_wage_value_per_capita_eur": 2908.0589088594907,
-      "south_wage_value_per_capita_eur": -442.1853482207898,
-      "wage_value_pct_north_gdp": 6.5588787221341445,
-      "wage_value_pct_south_gdp": 8.397128638009093,
+      "north_wage_value_per_capita_eur": 2908.0589088594916,
+      "south_wage_value_per_capita_eur": -442.18534822079,
+      "wage_value_pct_north_gdp": 6.558878722134147,
+      "wage_value_pct_south_gdp": 8.397128638009097,
       "net_hours_pct_north_domestic_labor": 244.0160198407437,
       "net_hours_pct_south_domestic_labor": -10.777121995734914,
       "by_skill": {
@@ -23,8 +23,8 @@
           "south_to_north_hours": 215609091413.96198,
           "north_to_south_hours": 8955672904.264435,
           "net_north_appropriation_hours": 206653418509.69754,
-          "north_export_wage_eur_per_hour": 14.711380235184857,
-          "wage_value_2005_eur": 3040157016596.9487
+          "north_export_wage_eur_per_hour": 14.71138023518486,
+          "wage_value_2005_eur": 3040157016596.9497
         }
       }
     },
@@ -59,17 +59,17 @@
       "south_to_north_hours": 75615278926.157,
       "north_to_south_hours": 23577316107.995586,
       "net_north_appropriation_hours": 52037962818.16141,
-      "wage_value_2005_eur": 1858943597611.7954,
+      "wage_value_2005_eur": 1858943597611.7957,
       "north_population": 1045424839.0,
       "south_population": 6875300208.0,
       "north_gdp_eur_2005": 46351779707976.29,
       "south_gdp_eur_2005": 36204721252403.62,
       "north_net_hours_per_capita": 49.77685709853447,
       "south_net_hours_per_capita": -7.568827722985941,
-      "north_wage_value_per_capita_eur": 1778.1704894155432,
-      "south_wage_value_per_capita_eur": -270.3799894364984,
-      "wage_value_pct_north_gdp": 4.010511806285413,
-      "wage_value_pct_south_gdp": 5.134533655575047,
+      "north_wage_value_per_capita_eur": 1778.1704894155434,
+      "south_wage_value_per_capita_eur": -270.3799894364985,
+      "wage_value_pct_north_gdp": 4.010511806285414,
+      "wage_value_pct_south_gdp": 5.134533655575048,
       "net_hours_pct_north_domestic_labor": 15.01517281239238,
       "net_hours_pct_south_domestic_labor": -4.629572975430791,
       "by_skill": {
@@ -77,8 +77,8 @@
           "south_to_north_hours": 75615278926.157,
           "north_to_south_hours": 23577316107.995586,
           "net_north_appropriation_hours": 52037962818.16141,
-          "north_export_wage_eur_per_hour": 35.72283573258979,
-          "wage_value_2005_eur": 1858943597611.7954
+          "north_export_wage_eur_per_hour": 35.7228357325898,
+          "wage_value_2005_eur": 1858943597611.7957
         }
       }
     },
@@ -104,8 +104,8 @@
           "south_to_north_hours": 215609091413.96198,
           "north_to_south_hours": 8955672904.264435,
           "net_north_appropriation_hours": 206653418509.69754,
-          "north_export_wage_eur_per_hour": 14.711380235184857,
-          "wage_value_2005_eur": 3040157016596.9487
+          "north_export_wage_eur_per_hour": 14.71138023518486,
+          "wage_value_2005_eur": 3040157016596.9497
         },
         "medium": {
           "south_to_north_hours": 614766716197.0192,
@@ -118,8 +118,8 @@
           "south_to_north_hours": 75615278926.157,
           "north_to_south_hours": 23577316107.995586,
           "net_north_appropriation_hours": 52037962818.16141,
-          "north_export_wage_eur_per_hour": 35.72283573258979,
-          "wage_value_2005_eur": 1858943597611.7954
+          "north_export_wage_eur_per_hour": 35.7228357325898,
+          "wage_value_2005_eur": 1858943597611.7957
         }
       }
     }

@@ -1,0 +1,2287 @@
+{
+  "year": 1996,
+  "exiobase_version": "3.8.2",
+  "exiobase_doi": "10.5281/zenodo.5589597",
+  "system": "pxp",
+  "regions": [
+    "AT",
+    "BE",
+    "BG",
+    "CY",
+    "CZ",
+    "DE",
+    "DK",
+    "EE",
+    "ES",
+    "FI",
+    "FR",
+    "GR",
+    "HR",
+    "HU",
+    "IE",
+    "IT",
+    "LT",
+    "LU",
+    "LV",
+    "MT",
+    "NL",
+    "PL",
+    "PT",
+    "RO",
+    "SE",
+    "SI",
+    "SK",
+    "GB",
+    "US",
+    "JP",
+    "CN",
+    "CA",
+    "KR",
+    "BR",
+    "IN",
+    "MX",
+    "RU",
+    "AU",
+    "CH",
+    "TR",
+    "TW",
+    "NO",
+    "ID",
+    "ZA",
+    "WA",
+    "WL",
+    "WE",
+    "WF",
+    "WM"
+  ],
+  "region_names": {
+    "AT": "Austria",
+    "BE": "Belgium",
+    "BG": "Bulgaria",
+    "CY": "Cyprus",
+    "CZ": "Czech Republic",
+    "DE": "Germany",
+    "DK": "Denmark",
+    "EE": "Estonia",
+    "ES": "Spain",
+    "FI": "Finland",
+    "FR": "France",
+    "GR": "Greece",
+    "HR": "Croatia",
+    "HU": "Hungary",
+    "IE": "Ireland",
+    "IT": "Italy",
+    "LT": "Lithuania",
+    "LU": "Luxembourg",
+    "LV": "Latvia",
+    "MT": "Malta",
+    "NL": "Netherlands",
+    "PL": "Poland",
+    "PT": "Portugal",
+    "RO": "Romania",
+    "SE": "Sweden",
+    "SI": "Slovenia",
+    "SK": "Slovakia",
+    "GB": "United Kingdom",
+    "US": "United States",
+    "JP": "Japan",
+    "CN": "China",
+    "CA": "Canada",
+    "KR": "South Korea",
+    "BR": "Brazil",
+    "IN": "India",
+    "MX": "Mexico",
+    "RU": "Russia",
+    "AU": "Australia",
+    "CH": "Switzerland",
+    "TR": "Turkey",
+    "TW": "Taiwan",
+    "NO": "Norway",
+    "ID": "Indonesia",
+    "ZA": "South Africa",
+    "WA": "Rest of Asia & Pacific",
+    "WL": "Rest of America",
+    "WE": "Rest of Europe",
+    "WF": "Rest of Africa",
+    "WM": "Rest of Middle East"
+  },
+  "row_regions": [
+    "WA",
+    "WE",
+    "WF",
+    "WL",
+    "WM"
+  ],
+  "country_to_region": {
+    "ABW": "WL",
+    "AFG": "WA",
+    "AGO": "WF",
+    "AIA": "WL",
+    "ALA": "WE",
+    "ALB": "WE",
+    "AND": "WE",
+    "ARE": "WM",
+    "ARG": "WL",
+    "ARM": "WA",
+    "ASM": "WA",
+    "ATA": "WA",
+    "ATF": "WF",
+    "ATG": "WL",
+    "AUS": "AU",
+    "AUT": "AT",
+    "AZE": "WA",
+    "BDI": "WF",
+    "BEL": "BE",
+    "BEN": "WF",
+    "BES": "WL",
+    "BFA": "WF",
+    "BGD": "WA",
+    "BGR": "BG",
+    "BHR": "WM",
+    "BHS": "WL",
+    "BIH": "WE",
+    "BLM": "WL",
+    "BLR": "WE",
+    "BLZ": "WL",
+    "BMU": "WL",
+    "BOL": "WL",
+    "BRA": "BR",
+    "BRB": "WL",
+    "BRN": "WA",
+    "BTN": "WA",
+    "BVT": "WA",
+    "BWA": "WF",
+    "CAF": "WF",
+    "CAN": "CA",
+    "CCK": "WA",
+    "CHE": "CH",
+    "CHL": "WL",
+    "CHN": "CN",
+    "CIV": "WF",
+    "CMR": "WF",
+    "COD": "WF",
+    "COG": "WF",
+    "COK": "WA",
+    "COL": "WL",
+    "COM": "WF",
+    "CPV": "WF",
+    "CRI": "WL",
+    "CUB": "WL",
+    "CUW": "WL",
+    "CXR": "WA",
+    "CYM": "WL",
+    "CYP": "CY",
+    "CZE": "CZ",
+    "DEU": "DE",
+    "DJI": "WF",
+    "DMA": "WL",
+    "DNK": "DK",
+    "DOM": "WL",
+    "DZA": "WF",
+    "ECU": "WL",
+    "EGY": "WM",
+    "ERI": "WF",
+    "ESH": "WF",
+    "ESP": "ES",
+    "EST": "EE",
+    "ETH": "WF",
+    "FIN": "FI",
+    "FJI": "WA",
+    "FLK": "WL",
+    "FRA": "FR",
+    "FRO": "WE",
+    "FSM": "WA",
+    "GAB": "WF",
+    "GBR": "GB",
+    "GEO": "WA",
+    "GGY": "WE",
+    "GHA": "WF",
+    "GIB": "WE",
+    "GIN": "WF",
+    "GLP": "WL",
+    "GMB": "WF",
+    "GNB": "WF",
+    "GNQ": "WF",
+    "GRC": "GR",
+    "GRD": "WL",
+    "GRL": "WL",
+    "GTM": "WL",
+    "GUF": "WL",
+    "GUM": "WA",
+    "GUY": "WL",
+    "HKG": "WA",
+    "HMD": "WA",
+    "HND": "WL",
+    "HRV": "HR",
+    "HTI": "WL",
+    "HUN": "HU",
+    "IDN": "ID",
+    "IMN": "WE",
+    "IND": "IN",
+    "IOT": "WA",
+    "IRL": "IE",
+    "IRN": "WM",
+    "IRQ": "WM",
+    "ISL": "WE",
+    "ISR": "WM",
+    "ITA": "IT",
+    "JAM": "WL",
+    "JEY": "WE",
+    "JOR": "WM",
+    "JPN": "JP",
+    "KAZ": "WA",
+    "KEN": "WF",
+    "KGZ": "WA",
+    "KHM": "WA",
+    "KIR": "WA",
+    "KNA": "WL",
+    "KOR": "KR",
+    "KWT": "WM",
+    "LAO": "WA",
+    "LBN": "WM",
+    "LBR": "WF",
+    "LBY": "WF",
+    "LCA": "WL",
+    "LIE": "WE",
+    "LKA": "WA",
+    "LSO": "WF",
+    "LTU": "LT",
+    "LUX": "LU",
+    "LVA": "LV",
+    "MAC": "WA",
+    "MAF": "WL",
+    "MAR": "WF",
+    "MCO": "WE",
+    "MDA": "WE",
+    "MDG": "WF",
+    "MDV": "WA",
+    "MEX": "MX",
+    "MHL": "WA",
+    "MKD": "WE",
+    "MLI": "WF",
+    "MLT": "MT",
+    "MMR": "WA",
+    "MNE": "WE",
+    "MNG": "WA",
+    "MNP": "WA",
+    "MOZ": "WF",
+    "MRT": "WF",
+    "MSR": "WL",
+    "MTQ": "WL",
+    "MUS": "WF",
+    "MWI": "WF",
+    "MYS": "WA",
+    "MYT": "WF",
+    "NAM": "WF",
+    "NCL": "WA",
+    "NER": "WF",
+    "NFK": "WA",
+    "NGA": "WF",
+    "NIC": "WL",
+    "NIU": "WA",
+    "NLD": "NL",
+    "NOR": "NO",
+    "NPL": "WA",
+    "NRU": "WA",
+    "NZL": "WA",
+    "OMN": "WM",
+    "PAK": "WA",
+    "PAN": "WL",
+    "PCN": "WA",
+    "PER": "WL",
+    "PHL": "WA",
+    "PLW": "WA",
+    "PNG": "WA",
+    "POL": "PL",
+    "PRI": "WL",
+    "PRK": "WA",
+    "PRT": "PT",
+    "PRY": "WL",
+    "PSE": "WM",
+    "PYF": "WA",
+    "QAT": "WM",
+    "REU": "WF",
+    "ROU": "RO",
+    "RUS": "RU",
+    "RWA": "WF",
+    "SAU": "WM",
+    "SDN": "WF",
+    "SEN": "WF",
+    "SGP": "WA",
+    "SGS": "WA",
+    "SHN": "WF",
+    "SJM": "WE",
+    "SLB": "WA",
+    "SLE": "WF",
+    "SLV": "WL",
+    "SMR": "WE",
+    "SOM": "WF",
+    "SPM": "WL",
+    "SRB": "WE",
+    "SSD": "WF",
+    "STP": "WF",
+    "SUR": "WL",
+    "SVK": "SK",
+    "SVN": "SI",
+    "SWE": "SE",
+    "SWZ": "WF",
+    "SXM": "WL",
+    "SYC": "WF",
+    "SYR": "WM",
+    "TCA": "WL",
+    "TCD": "WF",
+    "TGO": "WF",
+    "THA": "WA",
+    "TJK": "WA",
+    "TKL": "WA",
+    "TKM": "WA",
+    "TLS": "WA",
+    "TON": "WA",
+    "TTO": "WL",
+    "TUN": "WF",
+    "TUR": "TR",
+    "TUV": "WA",
+    "TWN": "TW",
+    "TZA": "WF",
+    "UGA": "WF",
+    "UKR": "WE",
+    "UMI": "WA",
+    "URY": "WL",
+    "USA": "US",
+    "UZB": "WA",
+    "VAT": "WE",
+    "VCT": "WL",
+    "VEN": "WL",
+    "VGB": "WL",
+    "VIR": "WL",
+    "VNM": "WA",
+    "VUT": "WA",
+    "WLF": "WA",
+    "WSM": "WA",
+    "YEM": "WM",
+    "ZAF": "ZA",
+    "ZMB": "WF",
+    "ZWE": "WF"
+  },
+  "geometry": [
+    {
+      "id": "533",
+      "iso3": "ABW",
+      "exio_region": "WL"
+    },
+    {
+      "id": "004",
+      "iso3": "AFG",
+      "exio_region": "WA"
+    },
+    {
+      "id": "024",
+      "iso3": "AGO",
+      "exio_region": "WF"
+    },
+    {
+      "id": "660",
+      "iso3": "AIA",
+      "exio_region": "WL"
+    },
+    {
+      "id": "248",
+      "iso3": "ALA",
+      "exio_region": "WE"
+    },
+    {
+      "id": "008",
+      "iso3": "ALB",
+      "exio_region": "WE"
+    },
+    {
+      "id": "020",
+      "iso3": "AND",
+      "exio_region": "WE"
+    },
+    {
+      "id": "784",
+      "iso3": "ARE",
+      "exio_region": "WM"
+    },
+    {
+      "id": "032",
+      "iso3": "ARG",
+      "exio_region": "WL"
+    },
+    {
+      "id": "051",
+      "iso3": "ARM",
+      "exio_region": "WA"
+    },
+    {
+      "id": "016",
+      "iso3": "ASM",
+      "exio_region": "WA"
+    },
+    {
+      "id": "010",
+      "iso3": "ATA",
+      "exio_region": "WA"
+    },
+    {
+      "id": "260",
+      "iso3": "ATF",
+      "exio_region": "WF"
+    },
+    {
+      "id": "028",
+      "iso3": "ATG",
+      "exio_region": "WL"
+    },
+    {
+      "id": "036",
+      "iso3": "AUS",
+      "exio_region": "AU"
+    },
+    {
+      "id": "040",
+      "iso3": "AUT",
+      "exio_region": "AT"
+    },
+    {
+      "id": "031",
+      "iso3": "AZE",
+      "exio_region": "WA"
+    },
+    {
+      "id": "108",
+      "iso3": "BDI",
+      "exio_region": "WF"
+    },
+    {
+      "id": "056",
+      "iso3": "BEL",
+      "exio_region": "BE"
+    },
+    {
+      "id": "204",
+      "iso3": "BEN",
+      "exio_region": "WF"
+    },
+    {
+      "id": "535",
+      "iso3": "BES",
+      "exio_region": "WL"
+    },
+    {
+      "id": "854",
+      "iso3": "BFA",
+      "exio_region": "WF"
+    },
+    {
+      "id": "050",
+      "iso3": "BGD",
+      "exio_region": "WA"
+    },
+    {
+      "id": "100",
+      "iso3": "BGR",
+      "exio_region": "BG"
+    },
+    {
+      "id": "048",
+      "iso3": "BHR",
+      "exio_region": "WM"
+    },
+    {
+      "id": "044",
+      "iso3": "BHS",
+      "exio_region": "WL"
+    },
+    {
+      "id": "070",
+      "iso3": "BIH",
+      "exio_region": "WE"
+    },
+    {
+      "id": "652",
+      "iso3": "BLM",
+      "exio_region": "WL"
+    },
+    {
+      "id": "112",
+      "iso3": "BLR",
+      "exio_region": "WE"
+    },
+    {
+      "id": "084",
+      "iso3": "BLZ",
+      "exio_region": "WL"
+    },
+    {
+      "id": "060",
+      "iso3": "BMU",
+      "exio_region": "WL"
+    },
+    {
+      "id": "068",
+      "iso3": "BOL",
+      "exio_region": "WL"
+    },
+    {
+      "id": "076",
+      "iso3": "BRA",
+      "exio_region": "BR"
+    },
+    {
+      "id": "052",
+      "iso3": "BRB",
+      "exio_region": "WL"
+    },
+    {
+      "id": "096",
+      "iso3": "BRN",
+      "exio_region": "WA"
+    },
+    {
+      "id": "064",
+      "iso3": "BTN",
+      "exio_region": "WA"
+    },
+    {
+      "id": "074",
+      "iso3": "BVT",
+      "exio_region": "WA"
+    },
+    {
+      "id": "072",
+      "iso3": "BWA",
+      "exio_region": "WF"
+    },
+    {
+      "id": "140",
+      "iso3": "CAF",
+      "exio_region": "WF"
+    },
+    {
+      "id": "124",
+      "iso3": "CAN",
+      "exio_region": "CA"
+    },
+    {
+      "id": "166",
+      "iso3": "CCK",
+      "exio_region": "WA"
+    },
+    {
+      "id": "756",
+      "iso3": "CHE",
+      "exio_region": "CH"
+    },
+    {
+      "id": "152",
+      "iso3": "CHL",
+      "exio_region": "WL"
+    },
+    {
+      "id": "156",
+      "iso3": "CHN",
+      "exio_region": "CN"
+    },
+    {
+      "id": "384",
+      "iso3": "CIV",
+      "exio_region": "WF"
+    },
+    {
+      "id": "120",
+      "iso3": "CMR",
+      "exio_region": "WF"
+    },
+    {
+      "id": "180",
+      "iso3": "COD",
+      "exio_region": "WF"
+    },
+    {
+      "id": "178",
+      "iso3": "COG",
+      "exio_region": "WF"
+    },
+    {
+      "id": "184",
+      "iso3": "COK",
+      "exio_region": "WA"
+    },
+    {
+      "id": "170",
+      "iso3": "COL",
+      "exio_region": "WL"
+    },
+    {
+      "id": "174",
+      "iso3": "COM",
+      "exio_region": "WF"
+    },
+    {
+      "id": "132",
+      "iso3": "CPV",
+      "exio_region": "WF"
+    },
+    {
+      "id": "188",
+      "iso3": "CRI",
+      "exio_region": "WL"
+    },
+    {
+      "id": "192",
+      "iso3": "CUB",
+      "exio_region": "WL"
+    },
+    {
+      "id": "531",
+      "iso3": "CUW",
+      "exio_region": "WL"
+    },
+    {
+      "id": "162",
+      "iso3": "CXR",
+      "exio_region": "WA"
+    },
+    {
+      "id": "136",
+      "iso3": "CYM",
+      "exio_region": "WL"
+    },
+    {
+      "id": "196",
+      "iso3": "CYP",
+      "exio_region": "CY"
+    },
+    {
+      "id": "203",
+      "iso3": "CZE",
+      "exio_region": "CZ"
+    },
+    {
+      "id": "276",
+      "iso3": "DEU",
+      "exio_region": "DE"
+    },
+    {
+      "id": "262",
+      "iso3": "DJI",
+      "exio_region": "WF"
+    },
+    {
+      "id": "212",
+      "iso3": "DMA",
+      "exio_region": "WL"
+    },
+    {
+      "id": "208",
+      "iso3": "DNK",
+      "exio_region": "DK"
+    },
+    {
+      "id": "214",
+      "iso3": "DOM",
+      "exio_region": "WL"
+    },
+    {
+      "id": "012",
+      "iso3": "DZA",
+      "exio_region": "WF"
+    },
+    {
+      "id": "218",
+      "iso3": "ECU",
+      "exio_region": "WL"
+    },
+    {
+      "id": "818",
+      "iso3": "EGY",
+      "exio_region": "WM"
+    },
+    {
+      "id": "232",
+      "iso3": "ERI",
+      "exio_region": "WF"
+    },
+    {
+      "id": "732",
+      "iso3": "ESH",
+      "exio_region": "WF"
+    },
+    {
+      "id": "724",
+      "iso3": "ESP",
+      "exio_region": "ES"
+    },
+    {
+      "id": "233",
+      "iso3": "EST",
+      "exio_region": "EE"
+    },
+    {
+      "id": "231",
+      "iso3": "ETH",
+      "exio_region": "WF"
+    },
+    {
+      "id": "246",
+      "iso3": "FIN",
+      "exio_region": "FI"
+    },
+    {
+      "id": "242",
+      "iso3": "FJI",
+      "exio_region": "WA"
+    },
+    {
+      "id": "238",
+      "iso3": "FLK",
+      "exio_region": "WL"
+    },
+    {
+      "id": "250",
+      "iso3": "FRA",
+      "exio_region": "FR"
+    },
+    {
+      "id": "234",
+      "iso3": "FRO",
+      "exio_region": "WE"
+    },
+    {
+      "id": "583",
+      "iso3": "FSM",
+      "exio_region": "WA"
+    },
+    {
+      "id": "266",
+      "iso3": "GAB",
+      "exio_region": "WF"
+    },
+    {
+      "id": "826",
+      "iso3": "GBR",
+      "exio_region": "GB"
+    },
+    {
+      "id": "268",
+      "iso3": "GEO",
+      "exio_region": "WA"
+    },
+    {
+      "id": "831",
+      "iso3": "GGY",
+      "exio_region": "WE"
+    },
+    {
+      "id": "288",
+      "iso3": "GHA",
+      "exio_region": "WF"
+    },
+    {
+      "id": "292",
+      "iso3": "GIB",
+      "exio_region": "WE"
+    },
+    {
+      "id": "324",
+      "iso3": "GIN",
+      "exio_region": "WF"
+    },
+    {
+      "id": "312",
+      "iso3": "GLP",
+      "exio_region": "WL"
+    },
+    {
+      "id": "270",
+      "iso3": "GMB",
+      "exio_region": "WF"
+    },
+    {
+      "id": "624",
+      "iso3": "GNB",
+      "exio_region": "WF"
+    },
+    {
+      "id": "226",
+      "iso3": "GNQ",
+      "exio_region": "WF"
+    },
+    {
+      "id": "300",
+      "iso3": "GRC",
+      "exio_region": "GR"
+    },
+    {
+      "id": "308",
+      "iso3": "GRD",
+      "exio_region": "WL"
+    },
+    {
+      "id": "304",
+      "iso3": "GRL",
+      "exio_region": "WL"
+    },
+    {
+      "id": "320",
+      "iso3": "GTM",
+      "exio_region": "WL"
+    },
+    {
+      "id": "254",
+      "iso3": "GUF",
+      "exio_region": "WL"
+    },
+    {
+      "id": "316",
+      "iso3": "GUM",
+      "exio_region": "WA"
+    },
+    {
+      "id": "328",
+      "iso3": "GUY",
+      "exio_region": "WL"
+    },
+    {
+      "id": "344",
+      "iso3": "HKG",
+      "exio_region": "WA"
+    },
+    {
+      "id": "334",
+      "iso3": "HMD",
+      "exio_region": "WA"
+    },
+    {
+      "id": "340",
+      "iso3": "HND",
+      "exio_region": "WL"
+    },
+    {
+      "id": "191",
+      "iso3": "HRV",
+      "exio_region": "HR"
+    },
+    {
+      "id": "332",
+      "iso3": "HTI",
+      "exio_region": "WL"
+    },
+    {
+      "id": "348",
+      "iso3": "HUN",
+      "exio_region": "HU"
+    },
+    {
+      "id": "360",
+      "iso3": "IDN",
+      "exio_region": "ID"
+    },
+    {
+      "id": "833",
+      "iso3": "IMN",
+      "exio_region": "WE"
+    },
+    {
+      "id": "356",
+      "iso3": "IND",
+      "exio_region": "IN"
+    },
+    {
+      "id": "086",
+      "iso3": "IOT",
+      "exio_region": "WA"
+    },
+    {
+      "id": "372",
+      "iso3": "IRL",
+      "exio_region": "IE"
+    },
+    {
+      "id": "364",
+      "iso3": "IRN",
+      "exio_region": "WM"
+    },
+    {
+      "id": "368",
+      "iso3": "IRQ",
+      "exio_region": "WM"
+    },
+    {
+      "id": "352",
+      "iso3": "ISL",
+      "exio_region": "WE"
+    },
+    {
+      "id": "376",
+      "iso3": "ISR",
+      "exio_region": "WM"
+    },
+    {
+      "id": "380",
+      "iso3": "ITA",
+      "exio_region": "IT"
+    },
+    {
+      "id": "388",
+      "iso3": "JAM",
+      "exio_region": "WL"
+    },
+    {
+      "id": "832",
+      "iso3": "JEY",
+      "exio_region": "WE"
+    },
+    {
+      "id": "400",
+      "iso3": "JOR",
+      "exio_region": "WM"
+    },
+    {
+      "id": "392",
+      "iso3": "JPN",
+      "exio_region": "JP"
+    },
+    {
+      "id": "398",
+      "iso3": "KAZ",
+      "exio_region": "WA"
+    },
+    {
+      "id": "404",
+      "iso3": "KEN",
+      "exio_region": "WF"
+    },
+    {
+      "id": "417",
+      "iso3": "KGZ",
+      "exio_region": "WA"
+    },
+    {
+      "id": "116",
+      "iso3": "KHM",
+      "exio_region": "WA"
+    },
+    {
+      "id": "296",
+      "iso3": "KIR",
+      "exio_region": "WA"
+    },
+    {
+      "id": "659",
+      "iso3": "KNA",
+      "exio_region": "WL"
+    },
+    {
+      "id": "410",
+      "iso3": "KOR",
+      "exio_region": "KR"
+    },
+    {
+      "id": "414",
+      "iso3": "KWT",
+      "exio_region": "WM"
+    },
+    {
+      "id": "418",
+      "iso3": "LAO",
+      "exio_region": "WA"
+    },
+    {
+      "id": "422",
+      "iso3": "LBN",
+      "exio_region": "WM"
+    },
+    {
+      "id": "430",
+      "iso3": "LBR",
+      "exio_region": "WF"
+    },
+    {
+      "id": "434",
+      "iso3": "LBY",
+      "exio_region": "WF"
+    },
+    {
+      "id": "662",
+      "iso3": "LCA",
+      "exio_region": "WL"
+    },
+    {
+      "id": "438",
+      "iso3": "LIE",
+      "exio_region": "WE"
+    },
+    {
+      "id": "144",
+      "iso3": "LKA",
+      "exio_region": "WA"
+    },
+    {
+      "id": "426",
+      "iso3": "LSO",
+      "exio_region": "WF"
+    },
+    {
+      "id": "440",
+      "iso3": "LTU",
+      "exio_region": "LT"
+    },
+    {
+      "id": "442",
+      "iso3": "LUX",
+      "exio_region": "LU"
+    },
+    {
+      "id": "428",
+      "iso3": "LVA",
+      "exio_region": "LV"
+    },
+    {
+      "id": "446",
+      "iso3": "MAC",
+      "exio_region": "WA"
+    },
+    {
+      "id": "663",
+      "iso3": "MAF",
+      "exio_region": "WL"
+    },
+    {
+      "id": "504",
+      "iso3": "MAR",
+      "exio_region": "WF"
+    },
+    {
+      "id": "492",
+      "iso3": "MCO",
+      "exio_region": "WE"
+    },
+    {
+      "id": "498",
+      "iso3": "MDA",
+      "exio_region": "WE"
+    },
+    {
+      "id": "450",
+      "iso3": "MDG",
+      "exio_region": "WF"
+    },
+    {
+      "id": "462",
+      "iso3": "MDV",
+      "exio_region": "WA"
+    },
+    {
+      "id": "484",
+      "iso3": "MEX",
+      "exio_region": "MX"
+    },
+    {
+      "id": "584",
+      "iso3": "MHL",
+      "exio_region": "WA"
+    },
+    {
+      "id": "807",
+      "iso3": "MKD",
+      "exio_region": "WE"
+    },
+    {
+      "id": "466",
+      "iso3": "MLI",
+      "exio_region": "WF"
+    },
+    {
+      "id": "470",
+      "iso3": "MLT",
+      "exio_region": "MT"
+    },
+    {
+      "id": "104",
+      "iso3": "MMR",
+      "exio_region": "WA"
+    },
+    {
+      "id": "499",
+      "iso3": "MNE",
+      "exio_region": "WE"
+    },
+    {
+      "id": "496",
+      "iso3": "MNG",
+      "exio_region": "WA"
+    },
+    {
+      "id": "580",
+      "iso3": "MNP",
+      "exio_region": "WA"
+    },
+    {
+      "id": "508",
+      "iso3": "MOZ",
+      "exio_region": "WF"
+    },
+    {
+      "id": "478",
+      "iso3": "MRT",
+      "exio_region": "WF"
+    },
+    {
+      "id": "500",
+      "iso3": "MSR",
+      "exio_region": "WL"
+    },
+    {
+      "id": "474",
+      "iso3": "MTQ",
+      "exio_region": "WL"
+    },
+    {
+      "id": "480",
+      "iso3": "MUS",
+      "exio_region": "WF"
+    },
+    {
+      "id": "454",
+      "iso3": "MWI",
+      "exio_region": "WF"
+    },
+    {
+      "id": "458",
+      "iso3": "MYS",
+      "exio_region": "WA"
+    },
+    {
+      "id": "175",
+      "iso3": "MYT",
+      "exio_region": "WF"
+    },
+    {
+      "id": "516",
+      "iso3": "NAM",
+      "exio_region": "WF"
+    },
+    {
+      "id": "540",
+      "iso3": "NCL",
+      "exio_region": "WA"
+    },
+    {
+      "id": "562",
+      "iso3": "NER",
+      "exio_region": "WF"
+    },
+    {
+      "id": "574",
+      "iso3": "NFK",
+      "exio_region": "WA"
+    },
+    {
+      "id": "566",
+      "iso3": "NGA",
+      "exio_region": "WF"
+    },
+    {
+      "id": "558",
+      "iso3": "NIC",
+      "exio_region": "WL"
+    },
+    {
+      "id": "570",
+      "iso3": "NIU",
+      "exio_region": "WA"
+    },
+    {
+      "id": "528",
+      "iso3": "NLD",
+      "exio_region": "NL"
+    },
+    {
+      "id": "578",
+      "iso3": "NOR",
+      "exio_region": "NO"
+    },
+    {
+      "id": "524",
+      "iso3": "NPL",
+      "exio_region": "WA"
+    },
+    {
+      "id": "520",
+      "iso3": "NRU",
+      "exio_region": "WA"
+    },
+    {
+      "id": "554",
+      "iso3": "NZL",
+      "exio_region": "WA"
+    },
+    {
+      "id": "512",
+      "iso3": "OMN",
+      "exio_region": "WM"
+    },
+    {
+      "id": "586",
+      "iso3": "PAK",
+      "exio_region": "WA"
+    },
+    {
+      "id": "591",
+      "iso3": "PAN",
+      "exio_region": "WL"
+    },
+    {
+      "id": "612",
+      "iso3": "PCN",
+      "exio_region": "WA"
+    },
+    {
+      "id": "604",
+      "iso3": "PER",
+      "exio_region": "WL"
+    },
+    {
+      "id": "608",
+      "iso3": "PHL",
+      "exio_region": "WA"
+    },
+    {
+      "id": "585",
+      "iso3": "PLW",
+      "exio_region": "WA"
+    },
+    {
+      "id": "598",
+      "iso3": "PNG",
+      "exio_region": "WA"
+    },
+    {
+      "id": "616",
+      "iso3": "POL",
+      "exio_region": "PL"
+    },
+    {
+      "id": "630",
+      "iso3": "PRI",
+      "exio_region": "WL"
+    },
+    {
+      "id": "408",
+      "iso3": "PRK",
+      "exio_region": "WA"
+    },
+    {
+      "id": "620",
+      "iso3": "PRT",
+      "exio_region": "PT"
+    },
+    {
+      "id": "600",
+      "iso3": "PRY",
+      "exio_region": "WL"
+    },
+    {
+      "id": "275",
+      "iso3": "PSE",
+      "exio_region": "WM"
+    },
+    {
+      "id": "258",
+      "iso3": "PYF",
+      "exio_region": "WA"
+    },
+    {
+      "id": "634",
+      "iso3": "QAT",
+      "exio_region": "WM"
+    },
+    {
+      "id": "638",
+      "iso3": "REU",
+      "exio_region": "WF"
+    },
+    {
+      "id": "642",
+      "iso3": "ROU",
+      "exio_region": "RO"
+    },
+    {
+      "id": "643",
+      "iso3": "RUS",
+      "exio_region": "RU"
+    },
+    {
+      "id": "646",
+      "iso3": "RWA",
+      "exio_region": "WF"
+    },
+    {
+      "id": "682",
+      "iso3": "SAU",
+      "exio_region": "WM"
+    },
+    {
+      "id": "729",
+      "iso3": "SDN",
+      "exio_region": "WF"
+    },
+    {
+      "id": "686",
+      "iso3": "SEN",
+      "exio_region": "WF"
+    },
+    {
+      "id": "702",
+      "iso3": "SGP",
+      "exio_region": "WA"
+    },
+    {
+      "id": "239",
+      "iso3": "SGS",
+      "exio_region": "WA"
+    },
+    {
+      "id": "654",
+      "iso3": "SHN",
+      "exio_region": "WF"
+    },
+    {
+      "id": "744",
+      "iso3": "SJM",
+      "exio_region": "WE"
+    },
+    {
+      "id": "090",
+      "iso3": "SLB",
+      "exio_region": "WA"
+    },
+    {
+      "id": "694",
+      "iso3": "SLE",
+      "exio_region": "WF"
+    },
+    {
+      "id": "222",
+      "iso3": "SLV",
+      "exio_region": "WL"
+    },
+    {
+      "id": "674",
+      "iso3": "SMR",
+      "exio_region": "WE"
+    },
+    {
+      "id": "706",
+      "iso3": "SOM",
+      "exio_region": "WF"
+    },
+    {
+      "id": "666",
+      "iso3": "SPM",
+      "exio_region": "WL"
+    },
+    {
+      "id": "688",
+      "iso3": "SRB",
+      "exio_region": "WE"
+    },
+    {
+      "id": "728",
+      "iso3": "SSD",
+      "exio_region": "WF"
+    },
+    {
+      "id": "678",
+      "iso3": "STP",
+      "exio_region": "WF"
+    },
+    {
+      "id": "740",
+      "iso3": "SUR",
+      "exio_region": "WL"
+    },
+    {
+      "id": "703",
+      "iso3": "SVK",
+      "exio_region": "SK"
+    },
+    {
+      "id": "705",
+      "iso3": "SVN",
+      "exio_region": "SI"
+    },
+    {
+      "id": "752",
+      "iso3": "SWE",
+      "exio_region": "SE"
+    },
+    {
+      "id": "748",
+      "iso3": "SWZ",
+      "exio_region": "WF"
+    },
+    {
+      "id": "534",
+      "iso3": "SXM",
+      "exio_region": "WL"
+    },
+    {
+      "id": "690",
+      "iso3": "SYC",
+      "exio_region": "WF"
+    },
+    {
+      "id": "760",
+      "iso3": "SYR",
+      "exio_region": "WM"
+    },
+    {
+      "id": "796",
+      "iso3": "TCA",
+      "exio_region": "WL"
+    },
+    {
+      "id": "148",
+      "iso3": "TCD",
+      "exio_region": "WF"
+    },
+    {
+      "id": "768",
+      "iso3": "TGO",
+      "exio_region": "WF"
+    },
+    {
+      "id": "764",
+      "iso3": "THA",
+      "exio_region": "WA"
+    },
+    {
+      "id": "762",
+      "iso3": "TJK",
+      "exio_region": "WA"
+    },
+    {
+      "id": "772",
+      "iso3": "TKL",
+      "exio_region": "WA"
+    },
+    {
+      "id": "795",
+      "iso3": "TKM",
+      "exio_region": "WA"
+    },
+    {
+      "id": "626",
+      "iso3": "TLS",
+      "exio_region": "WA"
+    },
+    {
+      "id": "776",
+      "iso3": "TON",
+      "exio_region": "WA"
+    },
+    {
+      "id": "780",
+      "iso3": "TTO",
+      "exio_region": "WL"
+    },
+    {
+      "id": "788",
+      "iso3": "TUN",
+      "exio_region": "WF"
+    },
+    {
+      "id": "792",
+      "iso3": "TUR",
+      "exio_region": "TR"
+    },
+    {
+      "id": "798",
+      "iso3": "TUV",
+      "exio_region": "WA"
+    },
+    {
+      "id": "158",
+      "iso3": "TWN",
+      "exio_region": "TW"
+    },
+    {
+      "id": "834",
+      "iso3": "TZA",
+      "exio_region": "WF"
+    },
+    {
+      "id": "800",
+      "iso3": "UGA",
+      "exio_region": "WF"
+    },
+    {
+      "id": "804",
+      "iso3": "UKR",
+      "exio_region": "WE"
+    },
+    {
+      "id": "581",
+      "iso3": "UMI",
+      "exio_region": "WA"
+    },
+    {
+      "id": "858",
+      "iso3": "URY",
+      "exio_region": "WL"
+    },
+    {
+      "id": "840",
+      "iso3": "USA",
+      "exio_region": "US"
+    },
+    {
+      "id": "860",
+      "iso3": "UZB",
+      "exio_region": "WA"
+    },
+    {
+      "id": "336",
+      "iso3": "VAT",
+      "exio_region": "WE"
+    },
+    {
+      "id": "670",
+      "iso3": "VCT",
+      "exio_region": "WL"
+    },
+    {
+      "id": "862",
+      "iso3": "VEN",
+      "exio_region": "WL"
+    },
+    {
+      "id": "092",
+      "iso3": "VGB",
+      "exio_region": "WL"
+    },
+    {
+      "id": "850",
+      "iso3": "VIR",
+      "exio_region": "WL"
+    },
+    {
+      "id": "704",
+      "iso3": "VNM",
+      "exio_region": "WA"
+    },
+    {
+      "id": "548",
+      "iso3": "VUT",
+      "exio_region": "WA"
+    },
+    {
+      "id": "876",
+      "iso3": "WLF",
+      "exio_region": "WA"
+    },
+    {
+      "id": "882",
+      "iso3": "WSM",
+      "exio_region": "WA"
+    },
+    {
+      "id": "887",
+      "iso3": "YEM",
+      "exio_region": "WM"
+    },
+    {
+      "id": "710",
+      "iso3": "ZAF",
+      "exio_region": "ZA"
+    },
+    {
+      "id": "894",
+      "iso3": "ZMB",
+      "exio_region": "WF"
+    },
+    {
+      "id": "716",
+      "iso3": "ZWE",
+      "exio_region": "WF"
+    }
+  ],
+  "members": {
+    "FI": [
+      "FIN"
+    ],
+    "HU": [
+      "HUN"
+    ],
+    "DK": [
+      "DNK"
+    ],
+    "IE": [
+      "IRL"
+    ],
+    "WM": [
+      "ARE",
+      "BHR",
+      "EGY",
+      "IRN",
+      "IRQ",
+      "ISR",
+      "JOR",
+      "KWT",
+      "LBN",
+      "OMN",
+      "PSE",
+      "QAT",
+      "SAU",
+      "SYR",
+      "YEM"
+    ],
+    "BG": [
+      "BGR"
+    ],
+    "RO": [
+      "ROU"
+    ],
+    "LU": [
+      "LUX"
+    ],
+    "CY": [
+      "CYP"
+    ],
+    "SK": [
+      "SVK"
+    ],
+    "TR": [
+      "TUR"
+    ],
+    "BE": [
+      "BEL"
+    ],
+    "WE": [
+      "ALA",
+      "ALB",
+      "AND",
+      "BIH",
+      "BLR",
+      "FRO",
+      "GGY",
+      "GIB",
+      "IMN",
+      "ISL",
+      "JEY",
+      "LIE",
+      "MCO",
+      "MDA",
+      "MKD",
+      "MNE",
+      "SJM",
+      "SMR",
+      "SRB",
+      "UKR",
+      "VAT"
+    ],
+    "CN": [
+      "CHN"
+    ],
+    "WA": [
+      "AFG",
+      "ARM",
+      "ASM",
+      "ATA",
+      "AZE",
+      "BGD",
+      "BRN",
+      "BTN",
+      "BVT",
+      "CCK",
+      "COK",
+      "CXR",
+      "FJI",
+      "FSM",
+      "GEO",
+      "GUM",
+      "HKG",
+      "HMD",
+      "IOT",
+      "KAZ",
+      "KGZ",
+      "KHM",
+      "KIR",
+      "LAO",
+      "LKA",
+      "MAC",
+      "MDV",
+      "MHL",
+      "MMR",
+      "MNG",
+      "MNP",
+      "MYS",
+      "NCL",
+      "NFK",
+      "NIU",
+      "NPL",
+      "NRU",
+      "NZL",
+      "PAK",
+      "PCN",
+      "PHL",
+      "PLW",
+      "PNG",
+      "PRK",
+      "PYF",
+      "SGP",
+      "SGS",
+      "SLB",
+      "THA",
+      "TJK",
+      "TKL",
+      "TKM",
+      "TLS",
+      "TON",
+      "TUV",
+      "UMI",
+      "UZB",
+      "VNM",
+      "VUT",
+      "WLF",
+      "WSM"
+    ],
+    "PT": [
+      "PRT"
+    ],
+    "CA": [
+      "CAN"
+    ],
+    "RU": [
+      "RUS"
+    ],
+    "ZA": [
+      "ZAF"
+    ],
+    "MT": [
+      "MLT"
+    ],
+    "FR": [
+      "FRA"
+    ],
+    "NL": [
+      "NLD"
+    ],
+    "TW": [
+      "TWN"
+    ],
+    "ES": [
+      "ESP"
+    ],
+    "CZ": [
+      "CZE"
+    ],
+    "CH": [
+      "CHE"
+    ],
+    "WL": [
+      "ABW",
+      "AIA",
+      "ARG",
+      "ATG",
+      "BES",
+      "BHS",
+      "BLM",
+      "BLZ",
+      "BMU",
+      "BOL",
+      "BRB",
+      "CHL",
+      "COL",
+      "CRI",
+      "CUB",
+      "CUW",
+      "CYM",
+      "DMA",
+      "DOM",
+      "ECU",
+      "FLK",
+      "GLP",
+      "GRD",
+      "GRL",
+      "GTM",
+      "GUF",
+      "GUY",
+      "HND",
+      "HTI",
+      "JAM",
+      "KNA",
+      "LCA",
+      "MAF",
+      "MSR",
+      "MTQ",
+      "NIC",
+      "PAN",
+      "PER",
+      "PRI",
+      "PRY",
+      "SLV",
+      "SPM",
+      "SUR",
+      "SXM",
+      "TCA",
+      "TTO",
+      "URY",
+      "VCT",
+      "VEN",
+      "VGB",
+      "VIR"
+    ],
+    "GR": [
+      "GRC"
+    ],
+    "KR": [
+      "KOR"
+    ],
+    "IN": [
+      "IND"
+    ],
+    "BR": [
+      "BRA"
+    ],
+    "JP": [
+      "JPN"
+    ],
+    "HR": [
+      "HRV"
+    ],
+    "SI": [
+      "SVN"
+    ],
+    "WF": [
+      "AGO",
+      "ATF",
+      "BDI",
+      "BEN",
+      "BFA",
+      "BWA",
+      "CAF",
+      "CIV",
+      "CMR",
+      "COD",
+      "COG",
+      "COM",
+      "CPV",
+      "DJI",
+      "DZA",
+      "ERI",
+      "ESH",
+      "ETH",
+      "GAB",
+      "GHA",
+      "GIN",
+      "GMB",
+      "GNB",
+      "GNQ",
+      "KEN",
+      "LBR",
+      "LBY",
+      "LSO",
+      "MAR",
+      "MDG",
+      "MLI",
+      "MOZ",
+      "MRT",
+      "MUS",
+      "MWI",
+      "MYT",
+      "NAM",
+      "NER",
+      "NGA",
+      "REU",
+      "RWA",
+      "SDN",
+      "SEN",
+      "SHN",
+      "SLE",
+      "SOM",
+      "SSD",
+      "STP",
+      "SWZ",
+      "SYC",
+      "TCD",
+      "TGO",
+      "TUN",
+      "TZA",
+      "UGA",
+      "ZMB",
+      "ZWE"
+    ],
+    "GB": [
+      "GBR"
+    ],
+    "US": [
+      "USA"
+    ],
+    "MX": [
+      "MEX"
+    ],
+    "LT": [
+      "LTU"
+    ],
+    "NO": [
+      "NOR"
+    ],
+    "IT": [
+      "ITA"
+    ],
+    "SE": [
+      "SWE"
+    ],
+    "PL": [
+      "POL"
+    ],
+    "LV": [
+      "LVA"
+    ],
+    "DE": [
+      "DEU"
+    ],
+    "AU": [
+      "AUS"
+    ],
+    "ID": [
+      "IDN"
+    ],
+    "EE": [
+      "EST"
+    ],
+    "AT": [
+      "AUT"
+    ]
+  },
+  "global_north": [
+    "AT",
+    "AU",
+    "BE",
+    "CA",
+    "CH",
+    "CY",
+    "CZ",
+    "DE",
+    "DK",
+    "EE",
+    "ES",
+    "FI",
+    "FR",
+    "GB",
+    "GR",
+    "IE",
+    "IT",
+    "JP",
+    "KR",
+    "LU",
+    "LV",
+    "MT",
+    "NL",
+    "NO",
+    "PT",
+    "SE",
+    "SI",
+    "SK",
+    "TW",
+    "US"
+  ],
+  "north_south": {
+    "year": 1996,
+    "by_selection": {
+      "low": {
+        "south_to_north_hours": 109354249318.92496,
+        "north_to_south_hours": 3777917042.97943,
+        "net_north_appropriation_hours": 105576332275.94553,
+        "wage_value_2005_eur": 926514210309.5573,
+        "north_population": 918669058.0,
+        "south_population": 4903903215.0,
+        "north_gdp_eur_2005": 19629021325745.914,
+        "south_gdp_eur_2005": 5421485880532.87,
+        "north_net_hours_per_capita": 114.92313946634036,
+        "south_net_hours_per_capita": -21.529040775725328,
+        "north_wage_value_per_capita_eur": 1008.5396936374854,
+        "south_wage_value_per_capita_eur": -188.9340326855446,
+        "wage_value_pct_north_gdp": 4.720124324763549,
+        "wage_value_pct_south_gdp": 17.089673029241414,
+        "net_hours_pct_north_domestic_labor": 143.9469400793738,
+        "net_hours_pct_south_domestic_labor": -17.482317140533503,
+        "by_skill": {
+          "low": {
+            "south_to_north_hours": 109354249318.92496,
+            "north_to_south_hours": 3777917042.97943,
+            "net_north_appropriation_hours": 105576332275.94553,
+            "north_export_wage_eur_per_hour": 8.775775690785707,
+            "wage_value_2005_eur": 926514210309.5573
+          }
+        }
+      },
+      "medium": {
+        "south_to_north_hours": 476201986012.45715,
+        "north_to_south_hours": 25096399838.464306,
+        "net_north_appropriation_hours": 451105586173.99286,
+        "wage_value_2005_eur": 4914224622182.28,
+        "north_population": 918669058.0,
+        "south_population": 4903903215.0,
+        "north_gdp_eur_2005": 19629021325745.914,
+        "south_gdp_eur_2005": 5421485880532.87,
+        "north_net_hours_per_capita": 491.04253838273155,
+        "south_net_hours_per_capita": -91.98908836417418,
+        "north_wage_value_per_capita_eur": 5349.2871882295185,
+        "south_wage_value_per_capita_eur": -1002.1047330523794,
+        "wage_value_pct_north_gdp": 25.03550503425589,
+        "wage_value_pct_south_gdp": 90.64350125540248,
+        "net_hours_pct_north_domestic_labor": 105.77891572415375,
+        "net_hours_pct_south_domestic_labor": -13.436828896646977,
+        "by_skill": {
+          "medium": {
+            "south_to_north_hours": 476201986012.45715,
+            "north_to_south_hours": 25096399838.464306,
+            "net_north_appropriation_hours": 451105586173.99286,
+            "north_export_wage_eur_per_hour": 10.893734799122722,
+            "wage_value_2005_eur": 4914224622182.28
+          }
+        }
+      },
+      "high": {
+        "south_to_north_hours": 49139690006.06991,
+        "north_to_south_hours": 11114336159.20438,
+        "net_north_appropriation_hours": 38025353846.865524,
+        "wage_value_2005_eur": 723892015117.0854,
+        "north_population": 918669058.0,
+        "south_population": 4903903215.0,
+        "north_gdp_eur_2005": 19629021325745.914,
+        "south_gdp_eur_2005": 5421485880532.87,
+        "north_net_hours_per_capita": 41.391786863540496,
+        "south_net_hours_per_capita": -7.754099577364013,
+        "north_wage_value_per_capita_eur": 787.9790973836036,
+        "south_wage_value_per_capita_eur": -147.61547758586534,
+        "wage_value_pct_north_gdp": 3.6878660586486327,
+        "wage_value_pct_south_gdp": 13.35228074127042,
+        "net_hours_pct_north_domestic_labor": 12.948188828664753,
+        "net_hours_pct_south_domestic_labor": -6.565606383709971,
+        "by_skill": {
+          "high": {
+            "south_to_north_hours": 49139690006.06991,
+            "north_to_south_hours": 11114336159.20438,
+            "net_north_appropriation_hours": 38025353846.865524,
+            "north_export_wage_eur_per_hour": 19.037088202579785,
+            "wage_value_2005_eur": 723892015117.0854
+          }
+        }
+      },
+      "all": {
+        "south_to_north_hours": 634695925337.452,
+        "north_to_south_hours": 39988653040.64812,
+        "net_north_appropriation_hours": 594707272296.804,
+        "wage_value_2005_eur": 6564630847608.924,
+        "north_population": 918669058.0,
+        "south_population": 4903903215.0,
+        "north_gdp_eur_2005": 19629021325745.914,
+        "south_gdp_eur_2005": 5421485880532.87,
+        "north_net_hours_per_capita": 647.3574647126125,
+        "south_net_hours_per_capita": -121.27222871726353,
+        "north_wage_value_per_capita_eur": 7145.805979250608,
+        "south_wage_value_per_capita_eur": -1338.6542433237896,
+        "wage_value_pct_north_gdp": 33.443495417668075,
+        "wage_value_pct_south_gdp": 121.08545502591433,
+        "net_hours_pct_north_domestic_labor": 74.94944859721777,
+        "net_hours_pct_south_domestic_labor": -13.098425554750273,
+        "by_skill": {
+          "low": {
+            "south_to_north_hours": 109354249318.92496,
+            "north_to_south_hours": 3777917042.97943,
+            "net_north_appropriation_hours": 105576332275.94553,
+            "north_export_wage_eur_per_hour": 8.775775690785707,
+            "wage_value_2005_eur": 926514210309.5573
+          },
+          "medium": {
+            "south_to_north_hours": 476201986012.45715,
+            "north_to_south_hours": 25096399838.464306,
+            "net_north_appropriation_hours": 451105586173.99286,
+            "north_export_wage_eur_per_hour": 10.893734799122722,
+            "wage_value_2005_eur": 4914224622182.28
+          },
+          "high": {
+            "south_to_north_hours": 49139690006.06991,
+            "north_to_south_hours": 11114336159.20438,
+            "net_north_appropriation_hours": 38025353846.865524,
+            "north_export_wage_eur_per_hour": 19.037088202579785,
+            "wage_value_2005_eur": 723892015117.0854
+          }
+        }
+      }
+    },
+    "north_regions": [
+      "AT",
+      "AU",
+      "BE",
+      "CA",
+      "CH",
+      "CY",
+      "CZ",
+      "DE",
+      "DK",
+      "EE",
+      "ES",
+      "FI",
+      "FR",
+      "GB",
+      "GR",
+      "IE",
+      "IT",
+      "JP",
+      "KR",
+      "LU",
+      "LV",
+      "MT",
+      "NL",
+      "NO",
+      "PT",
+      "SE",
+      "SI",
+      "SK",
+      "TW",
+      "US"
+    ],
+    "south_regions": [
+      "BG",
+      "BR",
+      "CN",
+      "HR",
+      "HU",
+      "ID",
+      "IN",
+      "LT",
+      "MX",
+      "PL",
+      "RO",
+      "RU",
+      "TR",
+      "WA",
+      "WE",
+      "WF",
+      "WL",
+      "WM",
+      "ZA"
+    ],
+    "note": "Calculated directly from this atlas's EXIOBASE 3.8.2 build for the selected year."
+  },
+  "region_population": {
+    "AT": 7959017.0,
+    "BE": 10156637.0,
+    "BG": 8362826.0,
+    "CY": 880290.0,
+    "CZ": 10315241.0,
+    "DE": 81914831.0,
+    "DK": 5263074.0,
+    "EE": 1415594.0,
+    "ES": 39889852.0,
+    "FI": 5124573.0,
+    "FR": 59754504.0,
+    "GR": 10608800.0,
+    "HR": 4557097.0,
+    "HU": 10311238.0,
+    "IE": 3637510.0,
+    "IT": 56860281.0,
+    "LT": 3601613.0,
+    "LU": 414225.0,
+    "LV": 2457222.0,
+    "MT": 379905.0,
+    "NL": 15530498.0,
+    "PL": 38624370.0,
+    "PT": 10063945.0,
+    "RO": 22619004.0,
+    "SE": 8840998.0,
+    "SI": 1988628.0,
+    "SK": 5373361.0,
+    "GB": 58166950.0,
+    "US": 269394000.0,
+    "JP": 125757000.0,
+    "CN": 1217550000.0,
+    "CA": 29610218.0,
+    "KR": 45524681.0,
+    "BR": 164202549.0,
+    "IN": 979678458.0,
+    "MX": 92452702.0,
+    "RU": 148160129.0,
+    "AU": 18224767.0,
+    "CH": 7071850.0,
+    "TR": 61951134.0,
+    "TW": 21709270.0,
+    "NO": 4381336.0,
+    "ID": 203204348.0,
+    "ZA": 45123018.0,
+    "WA": 726082292.0,
+    "WL": 233705481.0,
+    "WE": 82334261.0,
+    "WF": 638994895.0,
+    "WM": 222387800.0
+  },
+  "region_gdp_eur_2005": {
+    "AT": 186866805848.62903,
+    "BE": 219891045909.33664,
+    "BG": 9683207483.416399,
+    "CY": 7887836378.999802,
+    "CZ": 53074341888.66179,
+    "DE": 1966853092069.4067,
+    "DK": 147777677416.12253,
+    "EE": 3762510750.1067586,
+    "ES": 506127413307.4019,
+    "FI": 104066042984.85977,
+    "FR": 1264680556164.1147,
+    "GR": 114876059752.37419,
+    "HR": 18674059737.94633,
+    "HU": 36747865844.92801,
+    "IE": 59686804175.94676,
+    "IT": 1033695499259.2876,
+    "LT": 6602082160.101559,
+    "LU": 17150633577.8499,
+    "LV": 4700920627.116077,
+    "MT": 2997693683.53796,
+    "NL": 354788168320.3819,
+    "PL": 126166214024.16995,
+    "PT": 96586442088.82375,
+    "RO": 29273261870.760044,
+    "SE": 229775327205.31747,
+    "SI": 16936873755.743038,
+    "SK": 17054048579.509083,
+    "GB": 1114816254927.7844,
+    "US": 6358290935315.221,
+    "JP": 3806973669569.4688,
+    "CN": 680277986303.7776,
+    "CA": 496670583429.3338,
+    "KR": 480559997311.52075,
+    "BR": 669152015485.6663,
+    "IN": 310031444891.7357,
+    "MX": 323677228442.38257,
+    "RU": 311003686045.1828,
+    "AU": 342243419098.17725,
+    "CH": 268148765210.20816,
+    "TR": 196884589390.2984,
+    "TW": 223295660026.72165,
+    "NO": 128786247113.95187,
+    "ID": 209483174542.46576,
+    "ZA": 117936610710.00217,
+    "WA": 772551491243.3041,
+    "WL": 679899991177.8665,
+    "WE": 92920373073.65512,
+    "WF": 309562374874.9314,
+    "WM": 520958223230.27966
+  },
+  "skills": [
+    "all",
+    "low",
+    "medium",
+    "high"
+  ],
+  "views": [
+    "labour_hours",
+    "wage_value"
+  ]
+}
