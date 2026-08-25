@@ -403,21 +403,24 @@ def gross(H,regions):
     return out
 
 def north_south(hours, comp, regions, year, population, gdp, direct_hours):
-    """North-South aggregates with explicit producer/recipient wage decomposition."""
+    """North-South aggregates for every selectable skill grouping."""
     idx = {r: i for i, r in enumerate(regions)}
     north_regions = sorted(r for r in GLOBAL_NORTH if r in idx)
     south_regions = sorted(r for r in regions if r not in GLOBAL_NORTH)
-    north_set, south_set = set(north_regions), set(south_regions)
     north = [idx[r] for r in north_regions]
     south = [idx[r] for r in south_regions]
 
     north_pop = sum(
-        population.get(r, 0.0) for r in north_regions
-        if population.get(r) is not None and math.isfinite(float(population.get(r)))
+        population.get(r, 0.0)
+        for r in north_regions
+        if population.get(r) is not None
+        and math.isfinite(float(population.get(r)))
     )
     south_pop = sum(
-        population.get(r, 0.0) for r in south_regions
-        if population.get(r) is not None and math.isfinite(float(population.get(r)))
+        population.get(r, 0.0)
+        for r in south_regions
+        if population.get(r) is not None
+        and math.isfinite(float(population.get(r)))
     )
     north_gdp = sum(float(gdp.get(r, 0.0)) for r in north_regions)
     south_gdp = sum(float(gdp.get(r, 0.0)) for r in south_regions)
@@ -426,85 +429,49 @@ def north_south(hours, comp, regions, year, population, gdp, direct_hours):
 
     for selection in ("low", "medium", "high", "all"):
         selected_skills = list(SKILLS) if selection == "all" else [selection]
-
-        south_to_north = north_to_south = 0.0
-        stn_prod = stn_rec = stn_gap = 0.0
-        nts_prod = nts_rec = nts_gap = 0.0
+        south_to_north = 0.0
+        north_to_south = 0.0
+        wage_value = 0.0
         by_skill = {}
 
         for skill in selected_skills:
             H = hours[skill]
             C = comp[skill]
-            wages = exported_wage(C, H)
-
             stn = float(H[np.ix_(south, north)].sum())
             nts = float(H[np.ix_(north, south)].sum())
-            south_to_north += stn
-            north_to_south += nts
+            net = stn - nts
 
-            s_prod = s_rec = s_gap = 0.0
-            n_prod = n_rec = n_gap = 0.0
+            north_export_hours = 0.0
+            north_export_comp = 0.0
+            for i in north:
+                mask = np.ones(len(regions), bool)
+                mask[i] = False
+                north_export_hours += float(H[i, mask].sum())
+                north_export_comp += float(C[i, mask].sum())
 
-            for i in range(len(regions)):
-                for j in range(i + 1, len(regions)):
-                    signed = float(H[i, j] - H[j, i])
-                    if signed > 0:
-                        src_i, dst_i, hrs = i, j, signed
-                    elif signed < 0:
-                        src_i, dst_i, hrs = j, i, -signed
-                    else:
-                        continue
-
-                    src, dst = regions[src_i], regions[dst_i]
-                    if not (
-                        (src in south_set and dst in north_set)
-                        or (src in north_set and dst in south_set)
-                    ):
-                        continue
-
-                    ws, wd = wages[src_i], wages[dst_i]
-                    if (
-                        not math.isfinite(ws) or not math.isfinite(wd)
-                        or ws < 0 or wd < 0
-                    ):
-                        continue
-
-                    producer_value = hrs * ws
-                    recipient_value = hrs * wd
-                    gap = recipient_value - producer_value
-
-                    if src in south_set and dst in north_set:
-                        s_prod += producer_value
-                        s_rec += recipient_value
-                        s_gap += gap
-                    else:
-                        n_prod += producer_value
-                        n_rec += recipient_value
-                        n_gap += producer_value - recipient_value
-
-            stn_prod += s_prod
-            stn_rec += s_rec
-            stn_gap += s_gap
-            nts_prod += n_prod
-            nts_rec += n_rec
-            nts_gap += n_gap
+            north_wage = (
+                north_export_comp / north_export_hours
+                if north_export_hours > 0 else math.nan
+            )
+            skill_value = (
+                net * north_wage
+                if net > 0 and math.isfinite(north_wage) else 0.0
+            )
 
             by_skill[skill] = {
                 "south_to_north_hours": stn,
                 "north_to_south_hours": nts,
-                "net_north_appropriation_hours": stn - nts,
-                "south_to_north_producer_compensation_eur": s_prod,
-                "south_to_north_recipient_wage_value_eur": s_rec,
-                "south_to_north_value_transfer_eur": s_gap,
-                "north_to_south_producer_compensation_eur": n_prod,
-                "north_to_south_recipient_wage_value_eur": n_rec,
-                "north_to_south_value_transfer_eur": n_gap,
-                "net_north_value_transfer_eur": s_gap - n_gap,
+                "net_north_appropriation_hours": net,
+                "north_export_wage_eur_per_hour": (
+                    north_wage if math.isfinite(north_wage) else None
+                ),
+                "wage_value_2005_eur": skill_value,
             }
+            south_to_north += stn
+            north_to_south += nts
+            wage_value += skill_value
 
         net_hours = south_to_north - north_to_south
-        net_value_transfer = stn_gap - nts_gap
-
         north_direct = sum(
             direct_hours[sk].get(r, 0.0)
             for sk in selected_skills for r in north_regions
@@ -518,23 +485,17 @@ def north_south(hours, comp, regions, year, population, gdp, direct_hours):
             "south_to_north_hours": south_to_north,
             "north_to_south_hours": north_to_south,
             "net_north_appropriation_hours": net_hours,
-            "south_to_north_producer_compensation_eur": stn_prod,
-            "south_to_north_recipient_wage_value_eur": stn_rec,
-            "south_to_north_value_transfer_eur": stn_gap,
-            "north_to_south_producer_compensation_eur": nts_prod,
-            "north_to_south_recipient_wage_value_eur": nts_rec,
-            "north_to_south_value_transfer_eur": nts_gap,
-            "net_north_value_transfer_eur": net_value_transfer,
+            "wage_value_2005_eur": wage_value,
             "north_population": north_pop,
             "south_population": south_pop,
             "north_gdp_eur_2005": north_gdp,
             "south_gdp_eur_2005": south_gdp,
             "north_net_hours_per_capita": safe_ratio(net_hours, north_pop),
             "south_net_hours_per_capita": safe_ratio(-net_hours, south_pop),
-            "north_value_transfer_per_capita_eur": safe_ratio(net_value_transfer, north_pop),
-            "south_value_transfer_per_capita_eur": safe_ratio(-net_value_transfer, south_pop),
-            "value_transfer_pct_north_gdp": safe_ratio(net_value_transfer, north_gdp, 100.0),
-            "value_transfer_pct_south_gdp": safe_ratio(net_value_transfer, south_gdp, 100.0),
+            "north_wage_value_per_capita_eur": safe_ratio(wage_value, north_pop),
+            "south_wage_value_per_capita_eur": safe_ratio(-wage_value, south_pop),
+            "wage_value_pct_north_gdp": safe_ratio(wage_value, north_gdp, 100.0),
+            "wage_value_pct_south_gdp": safe_ratio(wage_value, south_gdp, 100.0),
             "net_hours_pct_north_domestic_labor": safe_ratio(net_hours, north_direct, 100.0),
             "net_hours_pct_south_domestic_labor": safe_ratio(-net_hours, south_direct, 100.0),
             "by_skill": by_skill,
@@ -545,7 +506,7 @@ def north_south(hours, comp, regions, year, population, gdp, direct_hours):
         "by_selection": by_selection,
         "north_regions": north_regions,
         "south_regions": south_regions,
-        "note": "Calculated pairwise from EXIOBASE 3.8.2 labour hours and compensation.",
+        "note": "Calculated directly from this atlas's EXIOBASE 3.8.2 build for the selected year.",
     }
 
 def build(year,keep_raw=False):
@@ -582,17 +543,9 @@ def build(year,keep_raw=False):
     ydir=OUT/str(year);ydir.mkdir(parents=True,exist_ok=True)
     for sel in ["low","medium","high","all"]:
         if sel=="all":
-            H=sum(hours.values())
-            P=sum(people.values())
-        else:
-            H=hours[sel]
-            P=people[sel]
-
-        labrec=pairwise_net(H,regions)
-        labsum=summary_net(labrec,regions)
-        gh=gross(H,regions)
-        gp=gross(P,regions)
-
+            H=sum(hours.values());P=sum(people.values())
+        else:H=hours[sel];P=people[sel]
+        labrec=pairwise_net(H,regions);labsum=summary_net(labrec,regions);gh=gross(H,regions);gp=gross(P,regions)
         for r in regions:
             labsum[r].update(gh[r])
             labsum[r]["gross_imported_employment_equivalents"]=gp[r]["gross_imported"]
@@ -609,158 +562,33 @@ def build(year,keep_raw=False):
             labsum[r]["net_pct_domestic_labor"]=safe_ratio(
                 labsum[r]["net"],region_direct_hours,100.0
             )
-
-        lp={
-            "year":year,"view":"labour_hours","skill":sel,"unit":"hours",
-            "regions":[
-                {"code":r,"name":REGION_NAMES.get(r,r),"aggregate":r in ROW_CODES,
-                 "members":sorted(members.get(r,[])),**labsum[r]}
-                for r in regions
-            ],
-            "bilateral":labrec,
-        }
-
-        selected_skills=list(SKILLS) if sel=="all" else [sel]
-        decomposed={}
-
-        for sk in selected_skills:
-            Hk=hours[sk]
-            Ck=comp[sk]
-            wages=exported_wage(Ck,Hk)
-
+        lp={"year":year,"view":"labour_hours","skill":sel,"unit":"hours","regions":[{"code":r,"name":REGION_NAMES.get(r,r),"aggregate":r in ROW_CODES,"members":sorted(members.get(r,[])),**labsum[r]} for r in regions],"bilateral":labrec}
+        skills=list(SKILLS) if sel=="all" else [sel]
+        edges={}
+        for sk in skills:
+            Hk=hours[sk];Ck=comp[sk];w=exported_wage(Ck,Hk)
             for i in range(len(regions)):
                 for j in range(i+1,len(regions)):
-                    signed=float(Hk[i,j]-Hk[j,i])
-                    if signed>0:
-                        src_i,dst_i,hrs=i,j,signed
-                    elif signed<0:
-                        src_i,dst_i,hrs=j,i,-signed
-                    else:
-                        continue
-
-                    ws,wd=wages[src_i],wages[dst_i]
-                    if (
-                        not math.isfinite(ws) or not math.isfinite(wd)
-                        or ws<0 or wd<0
-                    ):
-                        continue
-
-                    src,dst=regions[src_i],regions[dst_i]
-                    e=decomposed.setdefault(
-                        (src,dst),
-                        {
-                            "from":src,"to":dst,"hours":0.0,
-                            "producer_compensation":0.0,
-                            "recipient_wage_value":0.0,
-                            "value_transfer_signed":0.0,
-                            "source_wage_num":0.0,
-                            "recipient_wage_num":0.0,
-                        },
-                    )
-
-                    producer_value=hrs*ws
-                    recipient_value=hrs*wd
-                    gap=recipient_value-producer_value
-
-                    e["hours"]+=hrs
-                    e["producer_compensation"]+=producer_value
-                    e["recipient_wage_value"]+=recipient_value
-                    e["value_transfer_signed"]+=gap
-                    e["source_wage_num"]+=hrs*ws
-                    e["recipient_wage_num"]+=hrs*wd
-
-        producer_records=[]
-        recipient_records=[]
-        transfer_records=[]
-
-        for e in decomposed.values():
-            hrs=e["hours"]
-            source_wage=e["source_wage_num"]/hrs if hrs>0 else None
-            recipient_wage=e["recipient_wage_num"]/hrs if hrs>0 else None
-            wage_ratio=(
-                recipient_wage/source_wage
-                if source_wage is not None and source_wage>0
-                and recipient_wage is not None else None
-            )
-
-            common={
-                "hours":hrs,
-                "producer_wage_eur_per_hour":source_wage,
-                "recipient_wage_eur_per_hour":recipient_wage,
-                "wage_ratio":wage_ratio,
-                "producer_compensation":e["producer_compensation"],
-                "recipient_wage_value":e["recipient_wage_value"],
-                "wage_differential_gap":e["value_transfer_signed"],
-            }
-
-            producer_records.append({
-                "from":e["from"],"to":e["to"],
-                "value":e["producer_compensation"],**common,
-            })
-            recipient_records.append({
-                "from":e["from"],"to":e["to"],
-                "value":e["recipient_wage_value"],**common,
-            })
-
-            gap=e["value_transfer_signed"]
-            if gap>0:
-                transfer_records.append({
-                    "from":e["from"],"to":e["to"],"value":gap,**common,
-                })
-            elif gap<0:
-                transfer_records.append({
-                    "from":e["to"],"to":e["from"],"value":-gap,**common,
-                })
-
-        def monetary_payload(view_name,records,note):
-            summary=summary_net(records,regions)
-            for r in regions:
-                summary[r]["population"]=population.get(r)
-                summary[r]["population_coverage"]=pop_coverage.get(r,{})
-                summary[r]["gdp_eur_2005"]=gdp.get(r)
-                summary[r]["net_per_capita"]=safe_ratio(summary[r]["net"],population.get(r))
-                summary[r]["net_pct_gdp"]=safe_ratio(summary[r]["net"],gdp.get(r),100.0)
-            return {
-                "year":year,"view":view_name,"skill":sel,
-                "unit":"constant_2005_EUR",
-                "regions":[
-                    {"code":r,"name":REGION_NAMES.get(r,r),"aggregate":r in ROW_CODES,
-                     "members":sorted(members.get(r,[])),**summary[r]}
-                    for r in regions
-                ],
-                "bilateral":records,
-                "note":note,
-            }
-
-        producer_payload=monetary_payload(
-            "producer_compensation",producer_records,
-            "Net embodied labour valued at producer-side same-skill compensation rates."
-        )
-        recipient_payload=monetary_payload(
-            "recipient_wage_value",recipient_records,
-            "Net embodied labour valued at recipient-side same-skill compensation rates."
-        )
-        transfer_payload=monetary_payload(
-            "value_transfer",transfer_records,
-            "Wage-differential value-transfer estimate: net labour multiplied by the recipient-producer compensation difference."
-        )
-
-        (ydir/f"labour_hours-{sel}.json").write_text(
-            json.dumps(lp,separators=(",",":"),allow_nan=False)
-        )
-        (ydir/f"producer_compensation-{sel}.json").write_text(
-            json.dumps(producer_payload,separators=(",",":"),allow_nan=False)
-        )
-        (ydir/f"recipient_wage_value-{sel}.json").write_text(
-            json.dumps(recipient_payload,separators=(",",":"),allow_nan=False)
-        )
-        (ydir/f"value_transfer-{sel}.json").write_text(
-            json.dumps(transfer_payload,separators=(",",":"),allow_nan=False)
-        )
-
+                    s=float(Hk[i,j]-Hk[j,i])
+                    if s>0:src,dst,hrs,wage=regions[i],regions[j],s,w[j]
+                    elif s<0:src,dst,hrs,wage=regions[j],regions[i],-s,w[i]
+                    else:continue
+                    if not math.isfinite(wage) or wage<0:continue
+                    e=edges.setdefault((src,dst),{"from":src,"to":dst,"value":0.0,"hours":0.0})
+                    e["value"]+=hrs*wage;e["hours"]+=hrs
+        wr=list(edges.values());ws=summary_net(wr,regions)
+        for r in regions:
+            ws[r]["population"]=population.get(r)
+            ws[r]["population_coverage"]=pop_coverage.get(r,{})
+            ws[r]["gdp_eur_2005"]=gdp.get(r)
+            ws[r]["net_per_capita"]=safe_ratio(ws[r]["net"],population.get(r))
+            ws[r]["net_pct_gdp"]=safe_ratio(ws[r]["net"],gdp.get(r),100.0)
+        wp={"year":year,"view":"wage_value","skill":sel,"unit":"constant_2005_EUR","regions":[{"code":r,"name":REGION_NAMES.get(r,r),"aggregate":r in ROW_CODES,"members":sorted(members.get(r,[])),**ws[r]} for r in regions],"bilateral":wr,"note":"Counterfactual wage value of pairwise net-appropriated labour, valued at the recipient region's same-skill export wage."}
+        (ydir/f"labour_hours-{sel}.json").write_text(json.dumps(lp,separators=(",",":"),allow_nan=False))
+        (ydir/f"wage_value-{sel}.json").write_text(json.dumps(wp,separators=(",",":"),allow_nan=False))
     ns=north_south(hours,comp,regions,year,population,gdp,direct_hours)
     (ydir/"north_south.json").write_text(json.dumps(ns,indent=2,allow_nan=False))
-    manifest={"year":year,"exiobase_version":"3.8.2","exiobase_doi":DOI,"system":SYSTEM,"regions":regions,"region_names":{r:REGION_NAMES.get(r,r) for r in regions},"row_regions":sorted(ROW_CODES & set(regions)),"country_to_region":mapping,"geometry":geometry,"members":members,"global_north":sorted(GLOBAL_NORTH & set(regions)),"north_south":ns,"region_population":population,"region_gdp_eur_2005":gdp,"skills":["all","low","medium","high"],"views":["labour_hours","producer_compensation","recipient_wage_value","value_transfer"]}
+    manifest={"year":year,"exiobase_version":"3.8.2","exiobase_doi":DOI,"system":SYSTEM,"regions":regions,"region_names":{r:REGION_NAMES.get(r,r) for r in regions},"row_regions":sorted(ROW_CODES & set(regions)),"country_to_region":mapping,"geometry":geometry,"members":members,"global_north":sorted(GLOBAL_NORTH & set(regions)),"north_south":ns,"region_population":population,"region_gdp_eur_2005":gdp,"skills":["all","low","medium","high"],"views":["labour_hours","wage_value"]}
     (ydir/"manifest.json").write_text(json.dumps(manifest,indent=2,allow_nan=False))
     dest=PUBLIC/str(year)
     if dest.exists():shutil.rmtree(dest)
