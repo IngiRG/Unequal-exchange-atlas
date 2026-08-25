@@ -1,13 +1,8 @@
 {
-  "mode": "exiobase-native",
-  "years": [
-    2021
-  ],
-  "latest_year": 2021,
+  "year": 2021,
   "exiobase_version": "3.8.2",
   "exiobase_doi": "10.5281/zenodo.5589597",
-  "license": "CC-BY-SA",
-  "geography": "44 individual countries + 5 Rest-of-World regions",
+  "system": "pxp",
   "regions": [
     "AT",
     "BE",
@@ -1996,6 +1991,35 @@
     "TW",
     "US"
   ],
+  "benchmark": {
+    "year": 2021,
+    "south_to_north_hours": 905991086537.1382,
+    "north_to_south_hours": 80003604967.05579,
+    "net_hours": 825987481570.0824,
+    "net_hours_by_skill": {
+      "low": 206653418509.69754,
+      "medium": 567296100242.2234,
+      "high": 52037962818.16139
+    },
+    "north_export_wage_eur_per_hour_by_skill": {
+      "low": 14.711380235184857,
+      "medium": 21.165249481777753,
+      "high": 35.72283573258979
+    },
+    "wage_value_2005_eur": 16906064105875.004,
+    "published_hickel_2021": {
+      "south_to_north_hours": 906000000000.0,
+      "north_to_south_hours": 80000000000.0,
+      "net_hours": 826000000000.0,
+      "wage_value_2005_eur": 16900000000000.0
+    },
+    "difference_pct": {
+      "south_to_north_hours": -0.0009838259229377933,
+      "north_to_south_hours": 0.004506208819732666,
+      "net_hours": -0.0015155484161746414,
+      "wage_value_2005_eur": 0.03588228328404678
+    }
+  },
   "skills": [
     "all",
     "low",
@@ -2005,36 +2029,5 @@
   "views": [
     "labour_hours",
     "wage_value"
-  ],
-  "benchmark_by_year": {
-    "2021": {
-      "year": 2021,
-      "south_to_north_hours": 905991086537.1382,
-      "north_to_south_hours": 80003604967.05579,
-      "net_hours": 825987481570.0824,
-      "net_hours_by_skill": {
-        "low": 206653418509.69754,
-        "medium": 567296100242.2234,
-        "high": 52037962818.16139
-      },
-      "north_export_wage_eur_per_hour_by_skill": {
-        "low": 14.711380235184857,
-        "medium": 21.165249481777753,
-        "high": 35.72283573258979
-      },
-      "wage_value_2005_eur": 16906064105875.004,
-      "published_hickel_2021": {
-        "south_to_north_hours": 906000000000.0,
-        "north_to_south_hours": 80000000000.0,
-        "net_hours": 826000000000.0,
-        "wage_value_2005_eur": 16900000000000.0
-      },
-      "difference_pct": {
-        "south_to_north_hours": -0.0009838259229377933,
-        "north_to_south_hours": 0.004506208819732666,
-        "net_hours": -0.0015155484161746414,
-        "wage_value_2005_eur": 0.03588228328404678
-      }
-    }
-  }
+  ]
 }
