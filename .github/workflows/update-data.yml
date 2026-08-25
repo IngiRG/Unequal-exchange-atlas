@@ -42,7 +42,9 @@ jobs:
           YEAR: ${{ matrix.year }}
         run: |
           test -f "public/data/exio/$YEAR/labour_hours-all.json"
-          test -f "public/data/exio/$YEAR/wage_value-all.json"
+          test -f "public/data/exio/$YEAR/producer_compensation-all.json"
+          test -f "public/data/exio/$YEAR/recipient_wage_value-all.json"
+          test -f "public/data/exio/$YEAR/value_transfer-all.json"
           python - <<'PY'
           import json,os
           from pathlib import Path
