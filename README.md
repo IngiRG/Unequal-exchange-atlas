@@ -99,30 +99,32 @@ After validating 2021, build the historical series with:
 
 `1995:2021`
 
+## Current monetary measure
 
-## Wage decomposition and value transfer
+This version deliberately uses the Hickel-style **Northern-wage valuation** rather than the later experimental wage-differential subtraction.
 
-The atlas now separates four quantities:
-
-1. **Net labour hours**
-2. **Producer compensation**
-3. **Recipient-wage value**
-4. **Wage-differential value transfer**
-
-For a pairwise net labour flow from producer \(i\) to recipient \(j\), skill \(k\):
+For each skill category, the North-South headline is:
 
 \[
-PC_{i\to j,k}=L^{net}_{i\to j,k}w_{i,k}
+V_k=L^{net}_{S\to N,k}\,w_{N,k}
 \]
+
+where \(L^{net}_{S\to N,k}\) is net South-to-North embodied labour and \(w_{N,k}\) is the Northern compensation per exported labour hour for that skill.
+
+The total is:
 
 \[
-RV_{i\to j,k}=L^{net}_{i\to j,k}w_{j,k}
+V=\sum_k V_k.
 \]
 
-\[
-VT_{i\to j,k}=L^{net}_{i\to j,k}(w_{j,k}-w_{i,k})
-\]
+This is a counterfactual valuation of net-appropriated labour at Northern wage levels. It is not an observed cash transfer.
 
-so \(RV=PC+VT\).
+The site additionally reports:
 
-“Value transfer” is a wage-differential counterfactual, not an observed financial transfer or conventional trade balance.
+- net labour hours per capita;
+- net labour as a percentage of domestic labour hours;
+- Northern-wage value per capita;
+- Northern-wage value as a percentage of same-year EXIOBASE GDP;
+- cumulative North-South labour appropriation;
+- cumulative Northern-wage valuation over the built annual series.
+
