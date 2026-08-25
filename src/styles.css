@@ -29,3 +29,4 @@
 .ns-table th:first-child,.ns-table td:first-child{
   text-align:left;
 }
+.credits-block{margin-top:16px;padding:16px;border:1px solid var(--border);border-radius:12px;background:#0d141c}.credits-block h3{margin:0 0 8px}.credits-block p{margin:7px 0;color:#cdd6df}
