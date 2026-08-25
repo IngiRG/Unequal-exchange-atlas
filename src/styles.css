@@ -40,3 +40,16 @@
 .cumulative-head h3{margin:0}
 @media(max-width:1100px){.toolbar{grid-template-columns:1fr 1fr}.toolbar-actions{grid-column:1/-1}}
 @media(max-width:650px){.stats.three{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}}
+
+.segmented.four button{font-size:12px}
+.concept-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 12px}
+.concept-strip>div{border:1px solid var(--border);border-radius:10px;background:var(--panel);padding:10px}
+.concept-strip strong,.concept-strip span{display:block}.concept-strip strong{font-size:12px;color:var(--accent);margin-bottom:3px}.concept-strip span{font-size:12px;color:var(--muted)}
+.card-inset{background:#0d141c;border:1px solid var(--border);border-radius:12px;padding:14px;margin:12px 0}.card-inset h3{margin-top:0}
+.decomp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.decomp-grid>div{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:11px}.decomp-grid .gap{border-color:var(--accent)}.decomp-grid span{display:block;color:var(--muted);font-size:12px}.decomp-grid strong{display:block;margin-top:5px;font-size:20px}
+.decomp-equation{display:flex;justify-content:center;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px;color:var(--muted);font-size:12px}
+.method-three{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}.method-three>div{background:#0c1219;border:1px solid var(--border);border-radius:9px;padding:10px}.method-three strong,.method-three span{display:block}.method-three span{margin-top:5px;color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+.theory-note{margin-top:14px;padding:15px;border:1px solid var(--border);border-radius:12px;background:#111923}.theory-note h3{margin-top:0}
+.flow-rich em{display:block;font-size:10px;color:var(--muted);font-style:normal;margin-top:2px}
+@media(max-width:1050px){.concept-strip{grid-template-columns:1fr 1fr}.decomp-grid{grid-template-columns:1fr 1fr}.method-three{grid-template-columns:1fr}}
+@media(max-width:600px){.concept-strip,.decomp-grid{grid-template-columns:1fr}.segmented.four{display:grid;grid-template-columns:1fr 1fr}.segmented.four button{border-bottom:1px solid var(--border)}}
