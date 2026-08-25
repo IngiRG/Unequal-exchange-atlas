@@ -250,6 +250,129 @@ def geography(regions):
         if getattr(c,"numeric",None):geometry.append({"id":str(c.numeric).zfill(3),"iso3":iso3,"exio_region":m})
     return mapping,members,geometry
 
+
+def fetch_population(year):
+    """Annual population by ISO3 code, using World Bank with OWID fallback."""
+    cache_dir = ROOT / "cache/population"
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    year_file = cache_dir / f"population-{year}.json"
+    if year_file.exists():
+        return json.loads(year_file.read_text())
+
+    population = {}
+    wb_url = (
+        "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL"
+        f"?format=json&per_page=400&page=1&date={year}"
+    )
+    try:
+        r = requests.get(wb_url, timeout=180)
+        r.raise_for_status()
+        payload = r.json()
+        rows = payload[1] if isinstance(payload, list) and len(payload) > 1 else []
+        for item in rows:
+            iso = str(item.get("countryiso3code") or "").upper()
+            value = item.get("value")
+            if re.fullmatch(r"[A-Z]{3}", iso) and value is not None:
+                population[iso] = float(value)
+    except Exception as exc:
+        log(f"World Bank population fetch failed: {exc}")
+
+    owid_path = cache_dir / "owid-population.csv"
+    try:
+        if not owid_path.exists() or owid_path.stat().st_size < 10000:
+            log("Downloading population fallback from Our World in Data")
+            r = requests.get(
+                "https://ourworldindata.org/grapher/population.csv",
+                timeout=300,
+            )
+            r.raise_for_status()
+            owid_path.write_bytes(r.content)
+
+        owid = pd.read_csv(owid_path)
+        value_col = next(
+            c for c in owid.columns if c not in {"Entity", "Code", "Year"}
+        )
+        sub = owid[
+            (pd.to_numeric(owid["Year"], errors="coerce") == year)
+            & owid["Code"].astype(str).str.fullmatch(r"[A-Z]{3}")
+        ]
+        for row in sub.to_dict("records"):
+            iso = str(row.get("Code") or "").upper()
+            value = row.get(value_col)
+            if iso not in population and pd.notna(value):
+                population[iso] = float(value)
+    except Exception as exc:
+        log(f"OWID population fallback failed: {exc}")
+
+    year_file.write_text(json.dumps(population))
+    return population
+
+
+def region_population(year, regions, members):
+    country_population = fetch_population(year)
+    result, coverage = {}, {}
+
+    for region in regions:
+        if region in ROW_CODES:
+            isos = members.get(region, [])
+        else:
+            try:
+                isos = [pycountry.countries.get(alpha_2=region).alpha_3]
+            except Exception:
+                isos = []
+
+        values = [
+            country_population[iso]
+            for iso in isos
+            if iso in country_population
+            and math.isfinite(country_population[iso])
+            and country_population[iso] > 0
+        ]
+        result[region] = float(sum(values)) if values else math.nan
+        coverage[region] = {
+            "population_members_found": len(values),
+            "population_members_total": len(isos),
+        }
+    return result, coverage
+
+
+def region_gdp(A, x, sec_regions, regions):
+    """
+    Regional GDP from EXIOBASE value added:
+    VA_j = x_j * (1 - sum_i A_ij).
+    EXIOBASE monetary tables are stored in million EUR.
+    """
+    xv = np.asarray(x).reshape(-1).astype(float)
+    input_share = np.asarray(A.sum(axis=0)).reshape(-1)
+    va = xv * (1.0 - input_share) * 1e6
+    return {
+        region: float(va[sec_regions == region].sum())
+        for region in regions
+    }
+
+
+def aggregate_direct_stressor(F, rows, ext, kind, sec_regions, regions):
+    values = (
+        F.iloc[rows, :].sum(axis=0).to_numpy(float)
+        * scale_from_unit(unit_for(ext, rows[0]), kind)
+    )
+    return {
+        region: float(values[sec_regions == region].sum())
+        for region in regions
+    }
+
+
+def safe_ratio(numerator, denominator, multiplier=1.0):
+    if denominator is None:
+        return None
+    try:
+        d = float(denominator)
+    except (TypeError, ValueError):
+        return None
+    if not math.isfinite(d) or d == 0:
+        return None
+    return float(numerator) / d * multiplier
+
 def exported_wage(C,H):
     n=H.shape[0];w=np.full(n,np.nan)
     for i in range(n):
@@ -279,84 +402,111 @@ def gross(H,regions):
         out[r]={"gross_imported":float(H[mask,i].sum()),"gross_exported":float(H[i,mask].sum()),"domestic":float(H[i,i])}
     return out
 
-def north_south(hours, comp, regions, year):
-    """
-    Aggregate the atlas's own EXIOBASE results into Global South ↔ Global North flows.
-
-    These are calculated directly from the generated EXIOBASE labour-hour and
-    compensation matrices. No external benchmark values are inserted.
-    """
+def north_south(hours, comp, regions, year, population, gdp, direct_hours):
+    """North-South aggregates for every selectable skill grouping."""
     idx = {r: i for i, r in enumerate(regions)}
-    north = [idx[r] for r in GLOBAL_NORTH if r in idx]
-    south = [i for i, r in enumerate(regions) if r not in GLOBAL_NORTH]
+    north_regions = sorted(r for r in GLOBAL_NORTH if r in idx)
+    south_regions = sorted(r for r in regions if r not in GLOBAL_NORTH)
+    north = [idx[r] for r in north_regions]
+    south = [idx[r] for r in south_regions]
 
-    south_to_north = 0.0
-    north_to_south = 0.0
-    wage_value = 0.0
-    by_skill = {}
+    north_pop = sum(
+        population.get(r, 0.0)
+        for r in north_regions
+        if population.get(r) is not None
+        and math.isfinite(float(population.get(r)))
+    )
+    south_pop = sum(
+        population.get(r, 0.0)
+        for r in south_regions
+        if population.get(r) is not None
+        and math.isfinite(float(population.get(r)))
+    )
+    north_gdp = sum(float(gdp.get(r, 0.0)) for r in north_regions)
+    south_gdp = sum(float(gdp.get(r, 0.0)) for r in south_regions)
 
-    for skill in SKILLS:
-        H = hours[skill]
-        C = comp[skill]
+    by_selection = {}
 
-        stn = float(H[np.ix_(south, north)].sum())
-        nts = float(H[np.ix_(north, south)].sum())
-        net = stn - nts
+    for selection in ("low", "medium", "high", "all"):
+        selected_skills = list(SKILLS) if selection == "all" else [selection]
+        south_to_north = 0.0
+        north_to_south = 0.0
+        wage_value = 0.0
+        by_skill = {}
 
-        # Northern export wage for this skill, using the same logic as the
-        # pairwise wage-value calculation elsewhere in the atlas.
-        north_export_hours = 0.0
-        north_export_comp = 0.0
+        for skill in selected_skills:
+            H = hours[skill]
+            C = comp[skill]
+            stn = float(H[np.ix_(south, north)].sum())
+            nts = float(H[np.ix_(north, south)].sum())
+            net = stn - nts
 
-        for i in north:
-            mask = np.ones(len(regions), bool)
-            mask[i] = False
-            north_export_hours += float(H[i, mask].sum())
-            north_export_comp += float(C[i, mask].sum())
+            north_export_hours = 0.0
+            north_export_comp = 0.0
+            for i in north:
+                mask = np.ones(len(regions), bool)
+                mask[i] = False
+                north_export_hours += float(H[i, mask].sum())
+                north_export_comp += float(C[i, mask].sum())
 
-        north_wage = (
-            north_export_comp / north_export_hours
-            if north_export_hours > 0
-            else math.nan
+            north_wage = (
+                north_export_comp / north_export_hours
+                if north_export_hours > 0 else math.nan
+            )
+            skill_value = (
+                net * north_wage
+                if net > 0 and math.isfinite(north_wage) else 0.0
+            )
+
+            by_skill[skill] = {
+                "south_to_north_hours": stn,
+                "north_to_south_hours": nts,
+                "net_north_appropriation_hours": net,
+                "north_export_wage_eur_per_hour": (
+                    north_wage if math.isfinite(north_wage) else None
+                ),
+                "wage_value_2005_eur": skill_value,
+            }
+            south_to_north += stn
+            north_to_south += nts
+            wage_value += skill_value
+
+        net_hours = south_to_north - north_to_south
+        north_direct = sum(
+            direct_hours[sk].get(r, 0.0)
+            for sk in selected_skills for r in north_regions
+        )
+        south_direct = sum(
+            direct_hours[sk].get(r, 0.0)
+            for sk in selected_skills for r in south_regions
         )
 
-        skill_value = (
-            net * north_wage
-            if net > 0 and math.isfinite(north_wage)
-            else 0.0
-        )
-
-        by_skill[skill] = {
-            "south_to_north_hours": stn,
-            "north_to_south_hours": nts,
-            "net_north_appropriation_hours": net,
-            "north_export_wage_eur_per_hour": north_wage,
-            "wage_value_2005_eur": skill_value,
+        by_selection[selection] = {
+            "south_to_north_hours": south_to_north,
+            "north_to_south_hours": north_to_south,
+            "net_north_appropriation_hours": net_hours,
+            "wage_value_2005_eur": wage_value,
+            "north_population": north_pop,
+            "south_population": south_pop,
+            "north_gdp_eur_2005": north_gdp,
+            "south_gdp_eur_2005": south_gdp,
+            "north_net_hours_per_capita": safe_ratio(net_hours, north_pop),
+            "south_net_hours_per_capita": safe_ratio(-net_hours, south_pop),
+            "north_wage_value_per_capita_eur": safe_ratio(wage_value, north_pop),
+            "south_wage_value_per_capita_eur": safe_ratio(-wage_value, south_pop),
+            "wage_value_pct_north_gdp": safe_ratio(wage_value, north_gdp, 100.0),
+            "wage_value_pct_south_gdp": safe_ratio(wage_value, south_gdp, 100.0),
+            "net_hours_pct_north_domestic_labor": safe_ratio(net_hours, north_direct, 100.0),
+            "net_hours_pct_south_domestic_labor": safe_ratio(-net_hours, south_direct, 100.0),
+            "by_skill": by_skill,
         }
-
-        south_to_north += stn
-        north_to_south += nts
-        wage_value += skill_value
 
     return {
         "year": year,
-        "south_to_north_hours": south_to_north,
-        "north_to_south_hours": north_to_south,
-        "net_north_appropriation_hours": (
-            south_to_north - north_to_south
-        ),
-        "wage_value_2005_eur": wage_value,
-        "by_skill": by_skill,
-        "north_regions": sorted(
-            r for r in GLOBAL_NORTH if r in idx
-        ),
-        "south_regions": sorted(
-            r for r in regions if r not in GLOBAL_NORTH
-        ),
-        "note": (
-            "Calculated directly from this atlas's EXIOBASE 3.8.2 results. "
-            "No external benchmark values are inserted."
-        ),
+        "by_selection": by_selection,
+        "north_regions": north_regions,
+        "south_regions": south_regions,
+        "note": "Calculated directly from this atlas's EXIOBASE 3.8.2 build for the selected year.",
     }
 
 def build(year,keep_raw=False):
@@ -364,7 +514,7 @@ def build(year,keep_raw=False):
     archive=download_year(year)
     log(f"Parsing {archive.name}")
     io=pymrio.parse_exiobase3(str(archive))
-    A=io.A;Y=io.Y;ext=extension(io)
+    A=io.A;Y=io.Y;ext=extension(io);x=io.x.iloc[:,0].to_numpy(float)
     regions=list(dict.fromkeys(region_vector(A.index).tolist()))
     if len(regions)!=49:log(f"WARNING expected 49 regions, parsed {len(regions)}")
     sec_regions=region_vector(A.index)
@@ -383,6 +533,13 @@ def build(year,keep_raw=False):
         people[sk]=agg_region(pi[:,None]*Q,sec_regions,regions)
         comp[sk]=agg_region(ci[:,None]*Q,sec_regions,regions)
     mapping,members,geometry=geography(set(regions))
+    population,pop_coverage=region_population(year,regions,members)
+    gdp=region_gdp(A,x,sec_regions,regions)
+    direct_hours={}
+    for sk in SKILLS:
+        direct_hours[sk]=aggregate_direct_stressor(
+            ext.F,rows[sk]["hours"],ext,"hours",sec_regions,regions
+        )
     ydir=OUT/str(year);ydir.mkdir(parents=True,exist_ok=True)
     for sel in ["low","medium","high","all"]:
         if sel=="all":
@@ -390,7 +547,21 @@ def build(year,keep_raw=False):
         else:H=hours[sel];P=people[sel]
         labrec=pairwise_net(H,regions);labsum=summary_net(labrec,regions);gh=gross(H,regions);gp=gross(P,regions)
         for r in regions:
-            labsum[r].update(gh[r]);labsum[r]["gross_imported_employment_equivalents"]=gp[r]["gross_imported"];labsum[r]["gross_exported_employment_equivalents"]=gp[r]["gross_exported"]
+            labsum[r].update(gh[r])
+            labsum[r]["gross_imported_employment_equivalents"]=gp[r]["gross_imported"]
+            labsum[r]["gross_exported_employment_equivalents"]=gp[r]["gross_exported"]
+            labsum[r]["population"]=population.get(r)
+            labsum[r]["population_coverage"]=pop_coverage.get(r,{})
+            labsum[r]["gdp_eur_2005"]=gdp.get(r)
+            selected_skills=list(SKILLS) if sel=="all" else [sel]
+            region_direct_hours=sum(
+                direct_hours[sk].get(r,0.0) for sk in selected_skills
+            )
+            labsum[r]["domestic_labor_hours"]=region_direct_hours
+            labsum[r]["net_per_capita"]=safe_ratio(labsum[r]["net"],population.get(r))
+            labsum[r]["net_pct_domestic_labor"]=safe_ratio(
+                labsum[r]["net"],region_direct_hours,100.0
+            )
         lp={"year":year,"view":"labour_hours","skill":sel,"unit":"hours","regions":[{"code":r,"name":REGION_NAMES.get(r,r),"aggregate":r in ROW_CODES,"members":sorted(members.get(r,[])),**labsum[r]} for r in regions],"bilateral":labrec}
         skills=list(SKILLS) if sel=="all" else [sel]
         edges={}
@@ -406,12 +577,18 @@ def build(year,keep_raw=False):
                     e=edges.setdefault((src,dst),{"from":src,"to":dst,"value":0.0,"hours":0.0})
                     e["value"]+=hrs*wage;e["hours"]+=hrs
         wr=list(edges.values());ws=summary_net(wr,regions)
+        for r in regions:
+            ws[r]["population"]=population.get(r)
+            ws[r]["population_coverage"]=pop_coverage.get(r,{})
+            ws[r]["gdp_eur_2005"]=gdp.get(r)
+            ws[r]["net_per_capita"]=safe_ratio(ws[r]["net"],population.get(r))
+            ws[r]["net_pct_gdp"]=safe_ratio(ws[r]["net"],gdp.get(r),100.0)
         wp={"year":year,"view":"wage_value","skill":sel,"unit":"constant_2005_EUR","regions":[{"code":r,"name":REGION_NAMES.get(r,r),"aggregate":r in ROW_CODES,"members":sorted(members.get(r,[])),**ws[r]} for r in regions],"bilateral":wr,"note":"Counterfactual wage value of pairwise net-appropriated labour, valued at the recipient region's same-skill export wage."}
         (ydir/f"labour_hours-{sel}.json").write_text(json.dumps(lp,separators=(",",":"),allow_nan=False))
         (ydir/f"wage_value-{sel}.json").write_text(json.dumps(wp,separators=(",",":"),allow_nan=False))
-    ns=north_south(hours,comp,regions,year)
+    ns=north_south(hours,comp,regions,year,population,gdp,direct_hours)
     (ydir/"north_south.json").write_text(json.dumps(ns,indent=2,allow_nan=False))
-    manifest={"year":year,"exiobase_version":"3.8.2","exiobase_doi":DOI,"system":SYSTEM,"regions":regions,"region_names":{r:REGION_NAMES.get(r,r) for r in regions},"row_regions":sorted(ROW_CODES & set(regions)),"country_to_region":mapping,"geometry":geometry,"members":members,"global_north":sorted(GLOBAL_NORTH & set(regions)),"north_south":ns,"skills":["all","low","medium","high"],"views":["labour_hours","wage_value"]}
+    manifest={"year":year,"exiobase_version":"3.8.2","exiobase_doi":DOI,"system":SYSTEM,"regions":regions,"region_names":{r:REGION_NAMES.get(r,r) for r in regions},"row_regions":sorted(ROW_CODES & set(regions)),"country_to_region":mapping,"geometry":geometry,"members":members,"global_north":sorted(GLOBAL_NORTH & set(regions)),"north_south":ns,"region_population":population,"region_gdp_eur_2005":gdp,"skills":["all","low","medium","high"],"views":["labour_hours","wage_value"]}
     (ydir/"manifest.json").write_text(json.dumps(manifest,indent=2,allow_nan=False))
     dest=PUBLIC/str(year)
     if dest.exists():shutil.rmtree(dest)
