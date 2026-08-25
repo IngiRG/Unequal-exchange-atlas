@@ -87,3 +87,42 @@ Only after validation should you run:
 ```
 
 The raw EXIOBASE archives are never committed.
+
+
+## Size-adjusted measures
+
+Each region/year includes net labour hours per capita, net labour relative to domestic labour hours, wage value per capita, and wage value as a percentage of EXIOBASE GDP for that year.
+
+The North-South dashboard follows the selected year and skill level. It also calculates cumulative labour flows and cumulative wage value over every built annual observation up to the selected year.
+
+After validating 2021, build the historical series with:
+
+`1995:2021`
+
+
+## Wage decomposition and value transfer
+
+The atlas now separates four quantities:
+
+1. **Net labour hours**
+2. **Producer compensation**
+3. **Recipient-wage value**
+4. **Wage-differential value transfer**
+
+For a pairwise net labour flow from producer \(i\) to recipient \(j\), skill \(k\):
+
+\[
+PC_{i\to j,k}=L^{net}_{i\to j,k}w_{i,k}
+\]
+
+\[
+RV_{i\to j,k}=L^{net}_{i\to j,k}w_{j,k}
+\]
+
+\[
+VT_{i\to j,k}=L^{net}_{i\to j,k}(w_{j,k}-w_{i,k})
+\]
+
+so \(RV=PC+VT\).
+
+“Value transfer” is a wage-differential counterfactual, not an observed financial transfer or conventional trade balance.
