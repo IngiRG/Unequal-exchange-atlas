@@ -1,6 +1,6 @@
 # Unequal Exchange Atlas — EXIOBASE edition
 
-This version uses **EXIOBASE 3.8.2 at its native geographic resolution** instead of estimating ~190 individual countries.
+This atlas uses **EXIOBASE 3.8.2 at its native geographic resolution**. It does not disaggregate EXIOBASE's Rest-of-World regions into unsupported country estimates.
 
 EXIOBASE 3.8.2 provides:
 - 44 individual countries;
@@ -11,6 +11,14 @@ EXIOBASE 3.8.2 provides:
 - a genuine global MRIO.
 
 The Zenodo 3.8.2 record explicitly states a CC-BY-SA licence.
+
+## Methodological credit
+
+The underlying footprint calculation is standard EEMRIO analysis. The unequal-exchange application — embodied labour by skill, North–South net flows, and wage valuation of net-appropriated labour — follows:
+
+Hickel, J., Hanbury Lemos, M. & Barbour, F. (2024). *Unequal exchange of labour in the world economy*. **Nature Communications 15**, 6298. DOI: 10.1038/s41467-024-49687-y.
+
+The calculations in this repository are an independent implementation using EXIOBASE 3.8.2.
 
 ## Physical measure
 
