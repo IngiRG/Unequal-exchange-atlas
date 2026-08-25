@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import pycountry
 import pymrio
+import requests
 from scipy import sparse
 from scipy.sparse.linalg import splu
 
@@ -48,21 +49,140 @@ def need_rows(df,terms,kind):
     return r
 
 def download_year(year):
-    CACHE.mkdir(parents=True,exist_ok=True)
-    expected=CACHE/f"IOT_{year}_{SYSTEM}.zip"
-    if expected.exists() and expected.stat().st_size>1_000_000:return expected
-    for attempt in range(1,5):
+    """
+    Download the exact EXIOBASE 3.8.2 archive directly from Zenodo.
+
+    PyMRIO's Zenodo downloader can fail to resolve older record layouts even
+    though the files are publicly available. Using the official file endpoint
+    avoids that discovery step while still downloading from the canonical
+    EXIOBASE 3.8.2 Zenodo record.
+    """
+    CACHE.mkdir(parents=True, exist_ok=True)
+    expected = CACHE / f"IOT_{year}_{SYSTEM}.zip"
+
+    # A valid EXIOBASE pxp archive is hundreds of MB. A 50 MB floor catches
+    # HTML error pages or partial downloads without hard-coding each year's size.
+    minimum_size = 50 * 1024 * 1024
+
+    if expected.exists() and expected.stat().st_size >= minimum_size:
+        log(
+            f"Using cached EXIOBASE archive "
+            f"{expected.name} ({expected.stat().st_size / 1e6:.1f} MB)"
+        )
+        return expected
+
+    if expected.exists():
+        expected.unlink()
+
+    url = (
+        f"https://zenodo.org/records/5589597/files/"
+        f"IOT_{year}_{SYSTEM}.zip?download=1"
+    )
+    partial = expected.with_suffix(expected.suffix + ".part")
+
+    for attempt in range(1, 5):
         try:
-            log(f"Downloading EXIOBASE 3.8.2 {year}, attempt {attempt}/4")
-            pymrio.download_exiobase3(storage_folder=str(CACHE),years=[year],system=SYSTEM,overwrite_existing=False,doi=DOI)
-            if expected.exists():return expected
-            c=list(CACHE.glob(f"*{year}*{SYSTEM}*.zip"))
-            if c:return c[0]
-            raise RuntimeError("Expected EXIOBASE archive not found")
-        except Exception as e:
-            if attempt==4:raise
-            log(f"Retry after error: {e}")
-            time.sleep(20*attempt)
+            if partial.exists():
+                partial.unlink()
+
+            log(
+                f"Downloading EXIOBASE 3.8.2 {year} ({SYSTEM}) "
+                f"directly from Zenodo, attempt {attempt}/4"
+            )
+
+            with requests.get(
+                url,
+                stream=True,
+                timeout=(60, 1800),
+                headers={
+                    "User-Agent": (
+                        "Unequal-Exchange-Atlas/3.0 "
+                        "(academic EXIOBASE analysis)"
+                    )
+                },
+            ) as response:
+                response.raise_for_status()
+
+                content_type = (
+                    response.headers.get("content-type", "")
+                    .lower()
+                )
+                if "text/html" in content_type:
+                    raise RuntimeError(
+                        "Zenodo returned HTML instead of the EXIOBASE ZIP."
+                    )
+
+                expected_length = int(
+                    response.headers.get("content-length", "0") or 0
+                )
+                downloaded = 0
+
+                with partial.open("wb") as handle:
+                    for chunk in response.iter_content(
+                        chunk_size=4 * 1024 * 1024
+                    ):
+                        if not chunk:
+                            continue
+                        handle.write(chunk)
+                        downloaded += len(chunk)
+
+                        # Log roughly every 100 MB.
+                        if (
+                            downloaded // (100 * 1024 * 1024)
+                            !=
+                            (downloaded - len(chunk))
+                            // (100 * 1024 * 1024)
+                        ):
+                            log(
+                                f"Downloaded "
+                                f"{downloaded / 1e6:.0f} MB..."
+                            )
+
+                actual_size = partial.stat().st_size
+
+                if actual_size < minimum_size:
+                    raise RuntimeError(
+                        f"Downloaded file is too small "
+                        f"({actual_size / 1e6:.1f} MB); "
+                        "likely an incomplete response."
+                    )
+
+                # Content-Length can be absent on redirected/chunked downloads,
+                # so only enforce it when Zenodo supplies one.
+                if (
+                    expected_length > 0
+                    and actual_size != expected_length
+                ):
+                    raise RuntimeError(
+                        f"Incomplete EXIOBASE download: "
+                        f"{actual_size} of {expected_length} bytes."
+                    )
+
+            partial.replace(expected)
+            log(
+                f"EXIOBASE archive ready: "
+                f"{expected.name} "
+                f"({expected.stat().st_size / 1e6:.1f} MB)"
+            )
+            return expected
+
+        except Exception as exc:
+            if partial.exists():
+                partial.unlink()
+
+            if attempt == 4:
+                raise RuntimeError(
+                    f"Failed to download EXIOBASE "
+                    f"{year} after 4 attempts: {exc}"
+                ) from exc
+
+            log(
+                f"Download attempt {attempt} failed: {exc}. "
+                "Retrying..."
+            )
+            time.sleep(20 * attempt)
+
+    raise RuntimeError("EXIOBASE download failed unexpectedly.")
 
 def extension(io):
     for name in ("satellite","employment","factor_inputs"):
