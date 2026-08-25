@@ -1,120 +1,79 @@
-# Unequal Exchange Atlas
+# Unequal Exchange Atlas — EXIOBASE edition
 
-A global interactive atlas built around **one unequal-exchange methodology** with explicit data-quality tiers.
+This version uses **EXIOBASE 3.8.2 at its native geographic resolution** instead of estimating ~190 individual countries.
 
-## One underlying quantity
+EXIOBASE 3.8.2 provides:
+- 44 individual countries;
+- 5 Rest-of-World regions;
+- 200 product sectors in the product-by-product system;
+- labour hours and employment by low/medium/high skill and gender;
+- employee compensation by skill;
+- a genuine global MRIO.
 
-The atlas estimates:
+The Zenodo 3.8.2 record explicitly states a CC-BY-SA licence.
 
-\[
-H_{i\to j}
-\]
-
-the employment in producer country \(i\) associated with production serving consumers in country \(j\).
-
-It can be displayed as:
-
-- **Labour transfer** — embodied employment.
-- **Monetary value** — an Emmanuel-inspired labour-income counterfactual.
-
-## Tier A — MRIO-backed
-
-Where OECD Trade in Employment (TiM) provides a bilateral country-pair estimate, the site uses it directly.
-
-These observations trace indirect supply chains through OECD's inter-country input-output system.
-
-## Tier B — extended calibrated
-
-Countries outside the MRIO core are not discarded.
-
-The extension first estimates export-linked employment:
+## Physical measure
 
 \[
-D_i = E_i\frac{Exports_i}{GDP_i}
+H_{p\to c}=\sum_i q_{p,i}[Ly_c]_{p,i}
 \]
 
-using ILOSTAT employment and World Development Indicators.
+with \(L=(I-A)^{-1}\). The site reports **net embodied labour hours** between regions.
 
-For economies that overlap OECD TiM:
+## Wage-value view
+
+EXIOBASE export wage by skill:
 
 \[
-m_i =
-\frac{\text{OECD TiM foreign-demand employment}_i}{D_i}.
+w_{r,k}=
+\frac{\text{compensation embodied in r's labour exports}}
+{\text{labour hours embodied in r's exports}}.
 \]
 
-Robust regional median multipliers are calculated from those overlapping economies.
+Pairwise net-appropriated hours are valued at the recipient's same-skill export wage.
 
-For relationships not covered by TiM:
+This is a counterfactual wage value, not an observed cash transfer.
 
-\[
-\tilde H_{i\to j}
-=
-E_i
-\frac{Exports_i}{GDP_i}
-m_{region,t}
-s_{ij}
-\]
+## Hickel benchmark
 
-where \(s_{ij}\) is country \(j\)'s share of country \(i\)'s balanced merchandise exports in OECD BIMTS.
+Hickel, Hanbury Lemos & Barbour (2024) used EXIOBASE 3.8.1 and report for 2021:
+- South → North: 906 billion hours
+- North → South: 80 billion hours
+- net North appropriation: 826 billion hours
+- wage value: €16.9 trillion
 
-This is visibly labelled **Extended calibrated**, not MRIO-backed.
-
-## Monetary unequal exchange
-
-Average labour income per employed person is estimated using:
-
-\[
-w_i =
-\frac{LabourIncomeShare_i \times GDP_i}
-{Employment_i}.
-\]
-
-Then:
-
-\[
-UE_{i\to j}=H_{i\to j}(w_j-w_i).
-\]
-
-The formula is **Emmanuel-inspired**. It is not presented as an equation that Arghiri Emmanuel himself published.
-
-## Sources
-
-- OECD Trade in Employment (TiM): MRIO core.
-- OECD BIMTS: approximately 200 reporters/partners; bilateral merchandise-trade shares.
-- ILOSTAT modelled estimates: employment and labour-income share.
-- World Development Indicators: GDP and exports of goods and services.
-
-## Why 2005–2022?
-
-This gives a broad global extension while retaining overlap with the OECD TiM anchor and internationally comparable labour-income inputs.
+The build calculates the same North/South aggregation automatically. Because this project uses 3.8.2, exact equality is not expected.
 
 ## Build
 
+Start with one year:
+
 ```bash
 pip install -r scripts/requirements.txt
-python scripts/build_data.py --clean --years 2005:2022
+python scripts/build_exiobase.py --year 2021
+python scripts/merge_exiobase_metadata.py
 ```
 
-Or run:
+Or use GitHub:
 
-**GitHub → Actions → Refresh global unequal-exchange data → Run workflow**
+**Actions → Build EXIOBASE atlas data → Run workflow**
 
-with:
+and enter:
 
 ```text
-2005:2022
+2021
 ```
 
-## Website
+Validate 2021 before building history. Then try:
 
-The map defaults to **Best available**.
+```text
+1995 2000 2005 2010 2011 2015 2018 2020 2021
+```
 
-The coverage selector can switch to **MRIO-backed only**. That is a confidence filter, not a different economic method.
+Only after validation should you run:
 
-Country borders show data quality:
+```text
+1995:2021
+```
 
-- solid light — predominantly MRIO-backed;
-- amber — mixed;
-- dashed muted — predominantly extended calibrated.
-
-See `DATA_LICENSES.md` for source/reuse notes.
+The raw EXIOBASE archives are never committed.
