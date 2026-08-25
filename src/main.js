@@ -6,11 +6,11 @@ const VIEWS={labour_hours:{name:"Labour appropriation",unit:"hours",subtitle:"Ne
 const SKILLS={all:"All skill levels",low:"Low-skilled",medium:"Medium-skilled",high:"High-skilled"};
 document.querySelector("#app").innerHTML=`<div class="shell">
 <header class="mast"><div><div class="kicker">EXIOBASE 3 unequal-exchange explorer</div><h1>Unequal Exchange Atlas</h1><p class="lede">Trace labour through the global production system from where work is performed to where final consumption occurs. Results use EXIOBASE's native geography: 44 countries and 5 Rest-of-World regions.</p></div><div class="badge">EXIOBASE 3.8.2</div></header>
-<section class="toolbar"><div><span class="control-label">View</span><div class="segmented" id="viewButtons"><button class="active" data-view="labour_hours">Labour hours</button><button data-view="wage_value">Wage value</button></div></div><label><span>Skill level</span><select id="skill" class="control"><option value="all">All skill levels</option><option value="low">Low-skilled</option><option value="medium">Medium-skilled</option><option value="high">High-skilled</option></select></label><label><span>Year</span><select id="year" class="control"></select></label><div class="toolbar-actions"><button id="summaryBtn" class="control">Summary & benchmark</button><button id="methodologyBtn" class="control">Methodology</button></div></section>
+<section class="toolbar"><div><span class="control-label">View</span><div class="segmented" id="viewButtons"><button class="active" data-view="labour_hours">Labour hours</button><button data-view="wage_value">Wage value</button></div></div><label><span>Skill level</span><select id="skill" class="control"><option value="all">All skill levels</option><option value="low">Low-skilled</option><option value="medium">Medium-skilled</option><option value="high">High-skilled</option></select></label><label><span>Year</span><select id="year" class="control"></select></label><div class="toolbar-actions"><button id="summaryBtn" class="control">Summary & North–South</button><button id="methodologyBtn" class="control">Methodology</button></div></section>
 <section class="timeline card"><button id="playBtn" class="play">▶</button><div class="timeline-main"><div class="timeline-labels"><strong id="timelineYear">—</strong><span id="timelineRange"></span></div><input id="yearSlider" type="range" min="0" max="0" value="0" step="1"></div></section>
 <div class="coverage-note"><strong>Map resolution:</strong> individual EXIOBASE countries are shown separately. Clicking a country inside a Rest-of-World aggregate opens the aggregate result. No country-specific value is invented inside those regions.</div>
 <main class="grid"><section class="card mapwrap"><div id="loading" class="loading">Loading EXIOBASE-derived results…</div><svg id="map" viewBox="0 0 1000 560"></svg><div class="legend"><div class="small muted">net supplied ← → net appropriated</div><div class="legendbar"></div><div id="legendScale" class="small"></div></div></section><aside id="details" class="card side"><div class="muted">Select a country or aggregate region.</div></aside></main>
-<section id="summaryPanel" class="card section" hidden><div class="section-head"><div><div class="kicker">Overview</div><h2>Summary & external benchmark</h2></div><button id="closeSummary" class="iconbtn">×</button></div><div id="summaryStats" class="summary-stats"></div><div id="benchmarkBox" class="benchmark-box"></div><div class="charts-grid"><div class="chart-card"><div class="chart-head"><strong>Global net-flow magnitude</strong><span class="small muted">Timeline</span></div><svg id="globalTrend" viewBox="0 0 700 260"></svg></div><div class="chart-card"><div class="chart-head"><strong>Largest net positions</strong><span id="rankYear" class="small muted"></span></div><svg id="rankChart" viewBox="0 0 700 330"></svg></div><div class="chart-card wide"><div class="chart-head"><strong id="countryTrendTitle">Selected-region trend</strong><span class="small muted">Click the map</span></div><svg id="countryTrend" viewBox="0 0 900 260"></svg></div></div></section>
+<section id="summaryPanel" class="card section" hidden><div class="section-head"><div><div class="kicker">Overview</div><h2>Summary & North–South</h2></div><button id="closeSummary" class="iconbtn">×</button></div><div id="summaryStats" class="summary-stats"></div><div id="northSouthBox" class="benchmark-box"></div><div class="charts-grid"><div class="chart-card"><div class="chart-head"><strong>Global net-flow magnitude</strong><span class="small muted">Timeline</span></div><svg id="globalTrend" viewBox="0 0 700 260"></svg></div><div class="chart-card"><div class="chart-head"><strong>Largest net positions</strong><span id="rankYear" class="small muted"></span></div><svg id="rankChart" viewBox="0 0 700 330"></svg></div><div class="chart-card wide"><div class="chart-head"><strong id="countryTrendTitle">Selected-region trend</strong><span class="small muted">Click the map</span></div><svg id="countryTrend" viewBox="0 0 900 260"></svg></div></div></section>
 <section id="methodology" class="card section methodology"><div class="kicker">Methodology</div><h2>How the atlas works</h2><p class="method-intro">The central question is simple: <strong>how much labour performed in one part of the world is embodied in what another part of the world consumes?</strong></p>
 <div class="steps">
 <article class="step-card"><div class="step-number">1</div><div><h3>Start with the global production network</h3><p>EXIOBASE is a multi-regional input-output database. It links industries across countries, so it traces indirect supply chains rather than only direct border trade.</p><div class="plain-example">A mineral can be extracted in one region, processed in another, assembled in a third and ultimately consumed somewhere else. The MRIO follows that chain.</div></div></article>
@@ -21,8 +21,8 @@ document.querySelector("#app").innerHTML=`<div class="shell">
 </div>
 <details class="math-details"><summary>Show technical details</summary><div class="math-content"><h3>Leontief system</h3><div class="formula">A<sub>ij</sub> = z<sub>ij</sub> / x<sub>j</sub></div><div class="formula">L = (I − A)<sup>−1</sup></div><p>The build solves the sparse system (I−A)X=Y for 49 consumer regions instead of constructing a huge dense inverse.</p><h3>Embodied labour</h3><div class="formula">H = q̂ L Y</div><p>q is direct labour-hours intensity. Calculations are done separately for low-, medium- and high-skilled labour.</p><h3>Wage value</h3><p>A region's export wage equals compensation embodied in its labour exports divided by exported labour hours. Net-appropriated hours are valued at the recipient's same-skill export wage.</p></div></details>
 <div class="notice"><strong>Important limitations:</strong> EXIOBASE's original detailed socioeconomic observations largely end around 2011; later years are now-casted. Most Global South countries are inside five Rest-of-World aggregates, so trade occurring within those aggregates is not visible as international trade.</div></section>
-<footer class="footer">EXIOBASE 3.8.2 · CC-BY-SA · derived atlas results. Method benchmarked against Hickel, Hanbury Lemos & Barbour (2024).</footer></div>`;
-const ids=["viewButtons","skill","year","summaryBtn","methodologyBtn","playBtn","yearSlider","timelineYear","timelineRange","loading","details","legendScale","summaryPanel","closeSummary","summaryStats","benchmarkBox","globalTrend","rankChart","rankYear","countryTrend","countryTrendTitle"],el=Object.fromEntries(ids.map(id=>[id,document.getElementById(id)]));
+<footer class="footer">EXIOBASE 3.8.2 · CC-BY-SA · derived atlas results. North–South totals are calculated directly from the atlas's EXIOBASE results.</footer></div>`;
+const ids=["viewButtons","skill","year","summaryBtn","methodologyBtn","playBtn","yearSlider","timelineYear","timelineRange","loading","details","legendScale","summaryPanel","closeSummary","summaryStats","northSouthBox","globalTrend","rankChart","rankYear","countryTrend","countryTrendTitle"],el=Object.fromEntries(ids.map(id=>[id,document.getElementById(id)]));
 let meta={},world=[],view="labour_hours",payload=null,selected=null,timer=null,cache=new Map();
 const years=()=>[...(meta.years||[])].sort((a,b)=>a-b);
 function fmt(v){if(v==null||!Number.isFinite(+v))return"—";const s=v<0?"−":"",a=Math.abs(+v),x=d3.format(".3~s")(a).replace("G","B");return view==="labour_hours"?`${s}${x} h`:`${s}€${x}`}
@@ -36,8 +36,74 @@ function nameOf(c){return meta.region_names?.[c]||c}
 function render(){if(!world.length||!payload)return;const by=new Map((payload.regions||[]).map(d=>[d.code,d])),vals=[...by.values()].map(d=>+d.net||0),mx=d3.quantile(vals.map(Math.abs).sort(d3.ascending),.95)||1,color=d3.scaleLinear().domain([-mx,0,mx]).range(["#ef6a65","#596574","#59b7a8"]).clamp(true);el.legendScale.textContent=`${fmt(-mx)} • 0 • ${fmt(mx)}`;const svg=d3.select("#map"),proj=d3.geoNaturalEarth1().fitExtent([[15,15],[985,545]],{type:"Sphere"}),path=d3.geoPath(proj);svg.selectAll("path.country").data(world,d=>d.id).join("path").attr("class",d=>{const r=regionFor(d);return`country${r&&meta.row_regions.includes(r)?" aggregate":""}${selected===r?" selected":""}`}).attr("d",path).attr("fill",d=>{const r=by.get(regionFor(d));return r?color(r.net):"#1b2530"}).attr("opacity",d=>by.has(regionFor(d))?1:.42).on("click",(e,d)=>{const r=regionFor(d);if(r&&by.has(r)){selected=r;render();details(by.get(r));if(!el.summaryPanel.hidden)drawCountryTrend()}});svg.selectAll("path.sphere").data([{type:"Sphere"}]).join("path").attr("class","sphere").attr("d",path).attr("fill","none").attr("stroke","#354352");if(selected&&by.has(selected))details(by.get(selected));else el.details.innerHTML=`<div class="kicker">${VIEWS[view].name}</div><h2>${el.year.value}</h2><p class="muted">${VIEWS[view].subtitle}</p><p class="muted">${SKILLS[el.skill.value]}</p><p class="muted">Select a country or aggregate.</p>`}
 function details(d){const rel=(payload.bilateral||[]).filter(x=>x.from===d.code||x.to===d.code).sort((a,b)=>b.value-a.value).slice(0,12);el.details.innerHTML=`<div class="kicker">${d.aggregate?"EXIOBASE aggregate":"EXIOBASE country"} · ${d.code}</div><h2>${d.name}</h2>${d.aggregate?`<div class="aggregate-note">Regional aggregate, not a country-specific estimate. ${d.members?.length||0} mapped countries/territories.</div>`:""}<div class="muted">${el.year.value} · ${SKILLS[el.skill.value]}</div><div class="metric ${d.net>=0?"pos":"neg"}">${fmt(d.net)}</div><div class="small muted">net ${view==="labour_hours"?"labour appropriation":"wage value"}</div>${view==="labour_hours"?`<div class="stats"><div class="stat"><span class="small muted">Gross imported labour</span><strong>${fmtH(d.gross_imported)}</strong></div><div class="stat"><span class="small muted">Gross exported labour</span><strong>${fmtH(d.gross_exported)}</strong></div></div>`:""}<div class="flows"><strong>Largest net bilateral relationships</strong>${rel.map(f=>`<div class="flow"><span>${f.to===d.code?"← "+nameOf(f.from):"→ "+nameOf(f.to)}</span><span>${fmt(f.value)}</span></div>`).join("")||'<p class="muted">No net bilateral relationships.</p>'}</div>${d.aggregate?`<details class="members"><summary>Countries contained in this aggregate</summary><p>${(d.members||[]).join(", ")}</p></details>`:""}`}
 const magnitude=rows=>d3.sum(rows,d=>Math.abs(+d.net||0))/2;
-async function renderSummary(){const rows=payload.regions||[],pos=rows.filter(d=>d.net>0).sort((a,b)=>b.net-a.net),neg=rows.filter(d=>d.net<0).sort((a,b)=>a.net-b.net);el.summaryStats.innerHTML=[["Global net-flow magnitude",fmt(magnitude(rows)),"½Σ |regional net balance|"],["Largest net appropriator",pos[0]?.name||"—",pos[0]?fmt(pos[0].net):"—"],["Largest net supplier",neg[0]?.name||"—",neg[0]?fmt(neg[0].net):"—"],["Native regions",rows.length,"44 countries + 5 ROW aggregates"]].map(x=>`<div class="summary-stat"><span class="small muted">${x[0]}</span><strong>${x[1]}</strong><span class="small muted">${x[2]}</span></div>`).join("");benchmark();el.rankYear.textContent=el.year.value;rank(pos.slice(0,6),neg.slice(0,6));await globalTrend();await drawCountryTrend()}
-function benchmark(){const b=meta.benchmark_by_year?.[String(el.year.value)];if(!b){el.benchmarkBox.innerHTML="";return}const p=b.published_hickel_2021;el.benchmarkBox.innerHTML=`<h3>North–South validation ${b.year}</h3><p>The pipeline re-aggregates its 49-region output using Hickel et al.'s published EXIOBASE Global North classification.</p><div class="benchmark-grid"><div><span>South → North</span><strong>${fmtH(b.south_to_north_hours)}</strong>${p?`<small>Published: ${fmtH(p.south_to_north_hours)}</small>`:""}</div><div><span>North → South</span><strong>${fmtH(b.north_to_south_hours)}</strong>${p?`<small>Published: ${fmtH(p.north_to_south_hours)}</small>`:""}</div><div><span>Net North appropriation</span><strong>${fmtH(b.net_hours)}</strong>${p?`<small>Published: ${fmtH(p.net_hours)}</small>`:""}</div><div><span>Hickel-style wage value</span><strong>${fmtE(b.wage_value_2005_eur)}</strong>${p?`<small>Published: ${fmtE(p.wage_value_2005_eur)}</small>`:""}</div></div>${b.difference_pct?'<p class="small muted">The paper used EXIOBASE 3.8.1; this site uses the 3.8.2 bug-fix release. Small differences are expected; large ones require investigation.</p>':""}`}
+async function renderSummary(){const rows=payload.regions||[],pos=rows.filter(d=>d.net>0).sort((a,b)=>b.net-a.net),neg=rows.filter(d=>d.net<0).sort((a,b)=>a.net-b.net);el.summaryStats.innerHTML=[["Global net-flow magnitude",fmt(magnitude(rows)),"½Σ |regional net balance|"],["Largest net appropriator",pos[0]?.name||"—",pos[0]?fmt(pos[0].net):"—"],["Largest net supplier",neg[0]?.name||"—",neg[0]?fmt(neg[0].net):"—"],["Native regions",rows.length,"44 countries + 5 ROW aggregates"]].map(x=>`<div class="summary-stat"><span class="small muted">${x[0]}</span><strong>${x[1]}</strong><span class="small muted">${x[2]}</span></div>`).join("");northSouthDashboard();el.rankYear.textContent=el.year.value;rank(pos.slice(0,6),neg.slice(0,6));await globalTrend();await drawCountryTrend()}
+function northSouthDashboard(){
+  const b=meta.north_south_by_year?.[String(el.year.value)];
+  if(!b){
+    el.northSouthBox.innerHTML="";
+    return;
+  }
+
+  const skillRows=Object.entries(b.by_skill||{}).map(([skill,d])=>`
+    <tr>
+      <td>${SKILLS[skill]||skill}</td>
+      <td>${fmtH(d.south_to_north_hours)}</td>
+      <td>${fmtH(d.north_to_south_hours)}</td>
+      <td>${fmtH(d.net_north_appropriation_hours)}</td>
+      <td>${fmtE(d.wage_value_2005_eur)}</td>
+    </tr>
+  `).join("");
+
+  el.northSouthBox.innerHTML=`
+    <h3>North–South flows ${b.year}</h3>
+    <p>
+      These values are calculated directly from this atlas's EXIOBASE matrices.
+      They are not copied from an external study.
+    </p>
+
+    <div class="benchmark-grid">
+      <div>
+        <span>South → North labour</span>
+        <strong>${fmtH(b.south_to_north_hours)}</strong>
+      </div>
+      <div>
+        <span>North → South labour</span>
+        <strong>${fmtH(b.north_to_south_hours)}</strong>
+      </div>
+      <div>
+        <span>Net North appropriation</span>
+        <strong>${fmtH(b.net_north_appropriation_hours)}</strong>
+      </div>
+      <div>
+        <span>Wage value</span>
+        <strong>${fmtE(b.wage_value_2005_eur)}</strong>
+      </div>
+    </div>
+
+    <details class="north-south-details">
+      <summary>Show skill breakdown</summary>
+      <div class="table-scroll">
+        <table class="ns-table">
+          <thead>
+            <tr>
+              <th>Skill</th>
+              <th>South → North</th>
+              <th>North → South</th>
+              <th>Net North</th>
+              <th>Wage value</th>
+            </tr>
+          </thead>
+          <tbody>${skillRows}</tbody>
+        </table>
+      </div>
+    </details>
+
+    <p class="small muted">
+      “North” follows the atlas's EXIOBASE Global North classification.
+      All remaining EXIOBASE regions are grouped as Global South.
+    </p>
+  `;
+}
 const clear=n=>d3.select(n).selectAll("*").remove();
 function rank(pos,neg){clear(el.rankChart);const svg=d3.select(el.rankChart),data=[...neg.slice().reverse(),...pos];if(!data.length)return;const W=700,H=330,m={t:15,r:80,b:20,l:140},mx=d3.max(data,d=>Math.abs(d.net))||1,x=d3.scaleLinear().domain([-mx,mx]).range([m.l,W-m.r]),y=d3.scaleBand().domain(data.map(d=>d.code)).range([m.t,H-m.b]).padding(.25);svg.append("line").attr("x1",x(0)).attr("x2",x(0)).attr("y1",m.t).attr("y2",H-m.b).attr("stroke","#596574");svg.selectAll("rect").data(data).join("rect").attr("x",d=>x(Math.min(0,d.net))).attr("y",d=>y(d.code)).attr("width",d=>Math.abs(x(d.net)-x(0))).attr("height",y.bandwidth()).attr("fill",d=>d.net>=0?"#59b7a8":"#ef6a65");svg.selectAll("text").data(data).join("text").attr("x",m.l-8).attr("y",d=>y(d.code)+y.bandwidth()/2+4).attr("text-anchor","end").attr("fill","#dce4eb").attr("font-size",11).text(d=>d.name)}
 async function globalTrend(){const s=[];for(const y of years()){try{const p=await getPayload(view,el.skill.value,y);s.push({year:y,value:magnitude(p.regions||[])})}catch{}}line(el.globalTrend,s)}
